@@ -1,0 +1,153 @@
+// 1. HTML5 요소들의 일관된 스타일링
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+// 2. Box Model
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// 3. HTML & Body 기본 설정
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    sans-serif;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+// 4. 기본 타이포그래피 초기화
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+// 5. 리스트 스타일 정리
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+// 6. 링크 스타일 정리
+a {
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+// 7. 이미지 및 미디어 요소 초기화
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// 8. 테이블 기본 설정
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 0;
+  text-align: left;
+  font-weight: normal;
+}
+
+// 9. 폼 요소 기본 설정
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+// 10. 브라우저 호환성 보정
+abbr[title] {
+  text-decoration: underline dotted;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+}
+
+// 11. 접근성 관련 설정
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
