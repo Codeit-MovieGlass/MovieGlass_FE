@@ -1,2 +1,13 @@
+// Color
 $background-color: #100e10;
 $font-base-color: #ffffff;
+
+// Font
+$default-font-family: 'Pretendard Variable';
+$font-base-size: clamp(14px, 1vw, 18px); // 최소값: 14px, 유동값: 1vw(뷰포트의 1%), 최대값: 18px
+
+// Breakpoints
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$large-desktop: 1440px;

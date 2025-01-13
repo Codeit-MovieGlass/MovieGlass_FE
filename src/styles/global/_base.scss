@@ -1,8 +1,50 @@
-@use 'variables' as V;
+@use 'variables' as v;
+@use 'responsive' as *;
+
+// html {
+//   font-size: v.$font-base-size;
+// }
+
+html {
+  @include responsive(small-mobile) {
+    font-size: 87.5%; /* 14px */
+  }
+
+  @include responsive(mobile) {
+    font-size: 93.75%; /* 15px */
+  }
+
+  @include responsive(tablet) {
+    font-size: 100%; /* 16px */
+  }
+
+  @include responsive(desktop) {
+    font-size: 100%; /* 16px */
+  }
+
+  @include responsive(large-desktop) {
+    font-size: 112.5%; /* 18px */
+  }
+}
 
 body {
-  background-color: V.$background-color;
-  color: V.$font-base-color;
+  background-color: v.$background-color;
+  color: v.$font-base-color;
 
-  font-family: 'Pretendard Variable';
+  font-family:
+    v.$default-font-family,
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
 }

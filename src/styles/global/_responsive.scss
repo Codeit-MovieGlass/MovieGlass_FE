@@ -1,0 +1,25 @@
+@use 'variables' as v;
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == small-mobile {
+    @media (max-width: v.$mobile) {
+      @content;
+    }
+  } @else if $breakpoint == mobile {
+    @media (min-width: v.$mobile) and (max-width: v.$tablet) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (min-width: v.$tablet) and (max-width: v.$desktop) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (min-width: v.$desktop) and (max-width: v.$large-desktop) {
+      @content;
+    }
+  } @else if $breakpoint == large-desktop {
+    @media (min-width: v.$large-desktop) {
+      @content;
+    }
+  }
+}
