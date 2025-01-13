@@ -1,6 +1,8 @@
-@use 'variables';
+@use 'variables' as V;
 
 body {
-  background-color: variables.$background-color;
-  color: variables.$font-base-color;
+  background-color: V.$background-color;
+  color: V.$font-base-color;
+
+  font-family: 'Pretendard Variable';
 }
