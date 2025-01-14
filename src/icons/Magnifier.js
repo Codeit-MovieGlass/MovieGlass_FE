@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import magnifier from '@assets/svgs/Magnifier.svg?react';
-import magnifierSolo from '@assets/svgs/Magnifier_solo.svg?react';
+import magnifier from '@assets/svgs/Header/Magnifier.svg?react';
+import magnifierSolo from '@assets/svgs/Header/Magnifier_solo.svg?react';
 import pxToRem from '@utils/pxToRem';
 
 export const Magnifier = styled(magnifier)`

@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
-import defaultProfile from '@assets/svgs/DefaultProfile.svg?react';
+import defaultProfile from '@assets/svgs/Header/DefaultProfile.svg?react';
 import pxToRem from '@utils/pxToRem';
 
 export const HeaderContainer = styled.header`
   width: 100%;
   height: 100px;
   padding: 25px 50px;
+
+  position: relative;
 
   display: flex;
   justify-content: space-between;
@@ -51,9 +53,14 @@ export const SearchProfile = styled.section`
   }
 `;
 
+export const ProfileButton = styled.button`
+  width: fit-content;
+  height: fit-content;
+
+  position: relative;
+`;
+
 export const DefaultProfile = styled(defaultProfile)`
   width: ${pxToRem(40)};
   height: ${pxToRem(40)};
-
-  cursor: pointer;
 `;
