@@ -1,6 +1,9 @@
-import * as S from './Header.styled';
+import SearchBar from './SearchBar/SearchBar';
 
 import * as L from '@icons/Logo';
+import * as M from '@icons/Magnifier';
+
+import * as S from './Header.styled';
 
 const Header = () => {
   return (
@@ -9,6 +12,11 @@ const Header = () => {
         <L.LogoSymbol />
         <L.LogoTypo />
       </S.Logos>
+      <S.SearchProfile>
+        <SearchBar />
+        <M.MagnifierSolo />
+        <S.DefaultProfile />
+      </S.SearchProfile>
     </S.HeaderContainer>
   );
 };
