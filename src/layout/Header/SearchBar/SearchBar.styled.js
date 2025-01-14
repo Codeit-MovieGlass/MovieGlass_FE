@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
 export const SearchBarForm = styled.form`
-  width: ${pxToRem(400)};
+  width: ${pxToRem(600)};
   height: 50px;
   padding: 0 18px;
 

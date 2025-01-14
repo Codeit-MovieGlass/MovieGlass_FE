@@ -9,8 +9,8 @@ export const Magnifier = styled(magnifier)`
 `;
 
 export const MagnifierSolo = styled(magnifierSolo)`
-  width: ${pxToRem(36)};
-  height: ${pxToRem(36)};
+  width: ${pxToRem(32)};
+  height: ${pxToRem(32)};
   cursor: pointer;
 
   @media (min-width: 768px) {
