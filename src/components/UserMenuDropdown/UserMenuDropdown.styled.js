@@ -44,6 +44,6 @@ export const Options = styled.li`
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_3};
-    transition: background-color 0.1s ease-in;
+    transition: background-color 0.1s ease;
   }
 `;

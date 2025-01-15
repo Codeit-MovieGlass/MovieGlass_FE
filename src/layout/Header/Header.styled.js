@@ -54,13 +54,15 @@ export const SearchProfile = styled.section`
 `;
 
 export const ProfileButton = styled.button`
-  width: fit-content;
-  height: fit-content;
+  width: ${pxToRem(40)};
+  height: ${pxToRem(40)};
 
   position: relative;
+
+  border-radius: 50%;
 `;
 
 export const DefaultProfile = styled(defaultProfile)`
-  width: ${pxToRem(40)};
-  height: ${pxToRem(40)};
+  width: inherit;
+  height: inherit;
 `;
