@@ -5,6 +5,7 @@ export const DropdownContainer = styled.div`
   position: absolute;
   top: ${pxToRem(60)};
   right: 0;
+  z-index: 100;
 
   width: ${pxToRem(200)};
   height: fit-content;

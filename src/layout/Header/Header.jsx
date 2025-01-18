@@ -19,7 +19,7 @@ const Header = () => {
     <S.HeaderContainer>
       <S.Logos>
         <L.LogoSymbol />
-        <L.LogoTypo />
+        <L.LogoTypoSerif />
       </S.Logos>
       <S.SearchProfile>
         <SearchBar />
