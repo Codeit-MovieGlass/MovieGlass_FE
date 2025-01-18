@@ -1,5 +1,12 @@
+import { LeftArrow, RightArrow } from '@icons/Arrow';
+
 const Home = () => {
-  return <></>;
+  return (
+    <>
+      <LeftArrow />
+      <RightArrow />
+    </>
+  );
 };
 
 export default Home;
