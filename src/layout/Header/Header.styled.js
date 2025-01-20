@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import pxToRem from '@utils/pxToRem';
 
 import defaultProfile from '@assets/svgs/Header/DefaultProfile.svg?react';
-import pxToRem from '@utils/pxToRem';
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -55,15 +55,20 @@ export const SearchProfile = styled.section`
 `;
 
 export const ProfileButton = styled.button`
-  width: ${pxToRem(40)};
-  height: ${pxToRem(40)};
-
   position: relative;
 
+  width: ${pxToRem(48)};
+  height: ${pxToRem(48)};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   border-radius: 50%;
+  background-color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_4};
 `;
 
 export const DefaultProfile = styled(defaultProfile)`
-  width: inherit;
-  height: inherit;
+  width: ${pxToRem(28)};
+  height: ${pxToRem(28)};
 `;
