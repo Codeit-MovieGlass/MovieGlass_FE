@@ -2,32 +2,31 @@ import styled from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
 export const BalloonContainer = styled.div`
+  position: relative;
+
   width: fit-content;
   height: fit-content;
-
-  position: relative;
 
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const BallonText = styled.div`
-  width: auto;
-  height: auto;
+// TextBalloon.styled.js
+export const BallonText = styled.span`
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  position: absolute;
-  transform: translateY(-50%);
-  top: 50%;
 
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_1};
   ${({ theme }) => theme.fontStyles.Body1};
 `;
 
+// EmojiBalloon.styled.js
 export const BalloonEmojiList = styled.ul`
   position: absolute;
   transform: translateY(-50%);

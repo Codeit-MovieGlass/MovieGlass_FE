@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import pxToRem from '@utils/pxToRem';
 
 export const MovieIntroBoxContainer = styled.div`
-  width: 320px;
-  height: 160px;
-  padding: 20px;
+  width: ${pxToRem(320)};
+  height: ${pxToRem(160)};
+  padding: ${pxToRem(20)};
 
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.5);
@@ -12,7 +13,7 @@ export const MovieIntroBoxContainer = styled.div`
 export const InfoSection = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: ${pxToRem(16)};
 
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_1};
 `;
@@ -30,7 +31,7 @@ export const Title = styled.h2`
 export const GenreKeywordBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: ${pxToRem(8)};
 
   white-space: nowrap;
   overflow: hidden;
@@ -39,7 +40,7 @@ export const GenreKeywordBox = styled.div`
 export const GenresBox = styled.div`
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: ${pxToRem(4)};
 
   ${({ theme }) => theme.fontStyles.Body4};
   font-weight: 700;
