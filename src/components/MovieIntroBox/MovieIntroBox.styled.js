@@ -6,8 +6,7 @@ export const MovieIntroBoxContainer = styled.div`
   padding: 20px;
 
   border-radius: 12px;
-  background-color: ${({ theme }) => theme.colors.MG_Grayscale.White};
-  opacity: 0.5;
+  background-color: rgba(255, 255, 255, 0.5);
 `;
 
 export const InfoSection = styled.section`

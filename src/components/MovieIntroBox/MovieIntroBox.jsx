@@ -1,13 +1,18 @@
+import Rating from '@components/Rating/Rating';
+
 import * as S from './MovieIntroBox.styled';
 
-const genreList = ['판타지', '모험', '판타지', '모험', '판타지', '모험'];
-const keywordList = ['해리포터', '마법사', '돌'];
-
 const MovieIntroBox = () => {
+  /* API 연동 시 받아올 데이터 */
+  const movieTitle = '해리포터와 마법사의 돌';
+  const genreList = ['판타지', '모험', '판타지', '모험', '판타지', '모험'];
+  const keywordList = ['해리포터', '마법사', '돌'];
+  const rating = 4.5;
+
   return (
     <S.MovieIntroBoxContainer>
       <S.InfoSection>
-        <S.Title>해리포터와 마법사의 돌asdasdsadsdasdasd</S.Title>
+        <S.Title>{movieTitle}</S.Title>
         <S.GenreKeywordBox>
           <S.GenresBox>
             {genreList.map((genre, index) => (
@@ -20,6 +25,7 @@ const MovieIntroBox = () => {
             ))}
           </S.KeywordBox>
         </S.GenreKeywordBox>
+        <Rating rating={rating} />
       </S.InfoSection>
     </S.MovieIntroBoxContainer>
   );
