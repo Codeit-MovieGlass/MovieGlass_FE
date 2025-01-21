@@ -78,9 +78,36 @@ const bodyStyles = {
   `,
 };
 
+const ExtraStyles = {
+  P_48: css`
+    ${bodyBaseFontStyles}
+    font-size: ${pxToRem(48)};
+  `,
+  P_40: css`
+    ${bodyBaseFontStyles}
+    font-size: ${pxToRem(40)};
+  `,
+  P_ai: css`
+    ${bodyBaseFontStyles}
+    font-size: ${pxToRem(36)};
+    font-weight: 900;
+  `,
+  Rank_Main: css`
+    ${bodyBaseFontStyles}
+    font-size: ${pxToRem(200)};
+    font-weight: 900;
+  `,
+  Rank_Side: css`
+    ${bodyBaseFontStyles}
+    font-size: ${pxToRem(96)};
+    font-weight: 900;
+  `,
+};
+
 const fontStyles = {
   ...headerStyles,
   ...bodyStyles,
+  ...ExtraStyles,
 };
 
 export default fontStyles;
