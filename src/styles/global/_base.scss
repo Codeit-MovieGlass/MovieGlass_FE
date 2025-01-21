@@ -28,8 +28,14 @@ html {
 }
 
 body {
+  font-family: v.$default-font-family;
+
   background-color: v.$background-color;
   color: v.$font-base-color;
 
-  font-family: v.$default-font-family;
+  padding-top: 100px;
+
+  @media (max-width: 480px) {
+    padding-top: 80px 
+  };
 }
