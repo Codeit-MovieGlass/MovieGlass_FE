@@ -2,7 +2,7 @@ import styled, {css} from "styled-components";
 import logoSymbol from '@assets/svgs/Header/Logo_symbol.svg?react';
 import logoTypo from '@assets/svgs/Header/Logo_typo.svg?react';
 
-export const LoginContainer = styled.div`
+export const Container = styled.div`
 display: inline-flex;
 height: 1080px;
 padding: 206px 360px 206px 438px;
@@ -19,6 +19,7 @@ export const LogoSection = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
+   padding-top:121px;
    gap:42px;
 `;
 
@@ -30,7 +31,7 @@ export const Logo=styled(logoSymbol)`
 
 export const LogoTypo=styled(logoTypo)`
   width:483px;
-  height:86.4px;
+  height:86px;
 
 `;
 
@@ -46,13 +47,14 @@ export const Explain=styled.p`
   letter-spacing: 0.42px;
 `
 
-export const LoginForm=styled.form`
+export const FormField=styled.form`
    width:588px;
    height:668px;
    display: flex;
    flex-direction: column;
    align-items: center;
-   gap: 14px;
+   padding: 72px 68px;
+   gap: 24px;
 `;
 
 const SharedStyle = css`
@@ -89,8 +91,6 @@ export const Login=styled.button`
   font-weight: 700;
   line-height: 100%; /* 21px */
 `
-
-
 export const P=styled.p`
   color: var(--Grayscale-White, #FFF);
   font-family: Pretendard;
@@ -112,14 +112,16 @@ export const A=styled.a`
   text-decoration-thickness: auto;
   text-underline-offset: auto;
   text-underline-position: from-font;
-  
 `
 
-
-/*
-로그인 컨테이너 박스
-로고 세션
-로그인 세션
-
-
-*/
+export const L=styled.label`
+  display:flex;
+  flex-direction: column;
+  color: var(--Grayscale-Gray5, #D2D1D2);
+  font-family: Pretendard;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 21px */
+  gap:12px;
+`

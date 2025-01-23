@@ -8,7 +8,7 @@ import *as C from "./Auth.styled"
 /* 로그인 페이지, 회원가입 페이지 공통 부분*/
 function Lay({children}){
     return(    
-    <C.LoginContainer>
+    <C.Container>
         {/* 로고와 브랜드 설명 */}
         <C.LogoSection>
           <C.Logo/>
@@ -18,7 +18,7 @@ function Lay({children}){
           </C.Explain>
         </C.LogoSection>
         {children}
-    </C.LoginContainer>
+    </C.Container>
 
     )
 }
@@ -44,7 +44,7 @@ function LoginPage() {
 
     //소셜 로그인 로직
   return (
-        <C.LoginForm onSubmit={handleSubmit}>
+        <C.FormField onSubmit={handleSubmit}>
             <C.InputField type="email" name="email" placeholder="Email"
              value={formData.email} onChange={handleChange} required/>
             
@@ -55,7 +55,7 @@ function LoginPage() {
             <C.P>
               무비글라스가 처음이세요? <C.A href="/signup">회원가입하기</C.A>
             </C.P>
-         </C.LoginForm>
+         </C.FormField>
   );
 }
 
@@ -75,39 +75,34 @@ function Sign_Up_Page(){
         e.preventDefault();
 
     }
-    
     return(
-            <C.LoginForm onSubmit={handleSubmit}>
-               <label>닉네임
-                <input type="text" name="nickname"
+            <C.FormField style={{padding:"64px 78px 63px 78px"}} onSubmit={handleSubmit}>
+               <C.L>닉네임
+                <C.InputField type="text" name="nickname"
                  placeholder="닉네임을 입력해주세요"
                  value={formData.nickname} onChange={handleChange}
                  required/>
-                </label>
+                </C.L>
 
-                <label>이메일
-                 <input type="email" name="email"
+                <C.L>이메일
+                 <C.InputField type="email" name="email"
                  placeholder="이메일을 입력해주세요"
                  value={formData.email} onChange={handleChange}
                  required/>
-                </label>
+                </C.L>
 
-                <label>비밀번호
-                 <input type="password" name="password"
+                <C.L>비밀번호
+                 <C.InputField type="password" name="password"
                  placeholder="비밀번호를를 입력해주세요"
                  value={formData.password} onChange={handleChange}
                  required/>
-                </label>
-                <button type="submit">회원가입하기</button>
+                </C.L >
+                <C.Login type="submit" style={{color:" var(--Grayscale-White, #FFF)",background:" var(--Primary, #7E37F9)",marginTop:"60px"}}>회원가입하기</C.Login>
                 
-                <div>
-                 <p>이미 계정이 있으신가요?로그인하기기</p>
-                </div>
-            </C.LoginForm>
+                 <C.P>이미 계정이 있으신가요? <C.A href="/login">로그인하기</C.A></C.P>
+            </C.FormField>
     )
 
 }
-
-
 
 export {Lay,LoginPage, Sign_Up_Page};
