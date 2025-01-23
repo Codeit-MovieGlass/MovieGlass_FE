@@ -38,3 +38,7 @@ export const LogoTypoSerif = styled(logoTypoSerif)`
     width: ${pxToRem(158)};
   }
 `;
+
+export const CommentLogo = styled(logoSymbol)`
+  width: 40px;
+`;
