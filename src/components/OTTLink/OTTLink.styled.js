@@ -16,6 +16,8 @@ export const OTTLinkTitle = styled.h2`
 `;
 
 export const OTTIconContainer = styled.div`
+  position: relative;
+
   display: flex;
   align-items: center;
   gap: 16px;
@@ -30,9 +32,14 @@ export const OTTLinkIcon = styled.img`
   cursor: pointer;
 `;
 
+export const MoreModalWrapper = styled.button`
+  position: relative;
+
+  width: fit-content;
+  height: fit-content;
+`;
+
 export const MoreOTTIcon = styled.img`
   width: 32px;
   height: 32px;
-
-  cursor: pointer;
 `;
