@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { motion } from 'motion/react';
+import pxToRem from '@utils/pxToRem';
 
 export const SpoilerToggleWrapper = styled.div`
   width: fit-content;
@@ -21,15 +22,15 @@ export const SpoilerToggleLabel = styled.label`
 export const SpoilerToggleContainer = styled.div`
   position: relative;
 
-  width: 64px;
-  height: 30px;
-  padding: 0 4px;
+  width: ${pxToRem(64)};
+  height: ${pxToRem(30)};
+  padding: 0 ${pxToRem(4)};
   border-radius: 16px;
 
   display: flex;
   justify-content: ${({ $isOn }) => ($isOn ? 'flex-end' : 'flex-start')};
   align-items: center;
-  gap: 4px;
+  gap: ${pxToRem(4)};
 
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
   background-color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_4};
@@ -42,14 +43,14 @@ export const SpoilerToggleContainer = styled.div`
   ${({ $isOn }) =>
     $isOn &&
     css`
-      gap: 8px;
+      gap: ${pxToRem(8)};
       background-color: ${({ theme }) => theme.colors.MG_Signature.Primary};
     `}
 `;
 
 export const Toggle = styled(motion.div)`
-  width: 22px;
-  height: 22px;
+  width: ${pxToRem(22)};
+  height: ${pxToRem(22)};
   border-radius: 50%;
 
   background-color: ${({ theme }) => theme.colors.MG_Grayscale.White};

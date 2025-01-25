@@ -52,7 +52,7 @@ const RatingInput = () => {
         })}
       </S.RatingInputContainer>
       <S.RatingLabel>
-        <span>{rating.toFixed(1)}</span>/5.0 점
+        <span>{rating.toFixed(1)}</span>/<span>5.0</span>점
       </S.RatingLabel>
     </S.RatingWrapper>
   );

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import pxToRem from '@utils/pxToRem';
 
 export const RatingWrapper = styled.div`
   width: max-content;
@@ -6,7 +7,7 @@ export const RatingWrapper = styled.div`
 
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: ${pxToRem(20)};
 `;
 
 export const RatingInputContainer = styled.div`
@@ -21,17 +22,17 @@ export const RatingInputContainer = styled.div`
 export const StarContainer = styled.div`
   position: relative;
 
-  width: 40px;
-  height: 40px;
+  width: ${pxToRem(40)};
+  height: ${pxToRem(40)};
 
-  transition: transform 0.2s ease;
+  /* transition: transform 0.2s ease; */
   cursor: pointer;
 
-  ${({ $isFilled }) =>
+  /* ${({ $isFilled }) =>
     $isFilled &&
     css`
       transform: scale(1.1);
-    `}
+    `} */
 `;
 
 const starCommon = css`
@@ -39,8 +40,8 @@ const starCommon = css`
   top: 0;
   left: 0;
 
-  width: 40px;
-  height: 40px;
+  width: ${pxToRem(40)};
+  height: ${pxToRem(40)};
 
   background-size: contain;
   background-position: center;
@@ -60,15 +61,25 @@ export const EmptyStar = styled.div`
   background-image: url('/star/star-input_empty.svg');
 `;
 
-export const RatingLabel = styled.span`
+export const RatingLabel = styled.label`
   width: fit-content;
   align-self: flex-end;
 
+  display: flex;
+  align-items: center;
+  gap: ${pxToRem(2)};
+
   ${({ theme }) => theme.fontStyles.Body2}
+  letter-spacing: 0.24px;
+
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+
+  white-space: nowrap;
 
   span {
     display: inline-block;
-    width: 38px; // Resolve wobbling issue
+    width: ${pxToRem(38)}; // Resolve wobbling issue
+
+    white-space: nowrap;
   }
 `;
