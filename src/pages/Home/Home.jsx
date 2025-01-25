@@ -1,5 +1,7 @@
+import TopTenList from '@components/TopTenList/TopTenList';
+
 const Home = () => {
-  return <></>;
+  return <TopTenList />;
 };
 
 export default Home;
