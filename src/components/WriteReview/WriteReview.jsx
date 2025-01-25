@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import SpoilerToggle from '@components/SpoilerToggle/SpoilerToggle';
 import RatingInput from '@components/RatingInput/RatingInput';
 
 import * as S from './WriteReview.styled';
@@ -26,7 +27,10 @@ const WriteReview = () => {
 
   return (
     <S.WriteReviewForm>
-      <RatingInput />
+      <S.RatingSpoilerContainer>
+        <RatingInput />
+        <SpoilerToggle />
+      </S.RatingSpoilerContainer>
       <S.TextareaContainer>
         <S.ReviewTextArea
           value={review}

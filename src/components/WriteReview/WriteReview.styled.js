@@ -9,7 +9,16 @@ export const WriteReviewForm = styled.form`
 
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: ${pxToRem(24)};
+`;
+
+export const RatingSpoilerContainer = styled.div`
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 `;
 
 export const TextareaContainer = styled.div`
