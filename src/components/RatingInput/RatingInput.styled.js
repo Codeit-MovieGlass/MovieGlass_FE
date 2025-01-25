@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
 export const RatingWrapper = styled.div`
-  width: max-content;
+  width: fit-content;
   height: fit-content;
 
   display: flex;
@@ -16,7 +16,7 @@ export const RatingInputContainer = styled.div`
 
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: ${pxToRem(8)};
 `;
 
 export const StarContainer = styled.div`

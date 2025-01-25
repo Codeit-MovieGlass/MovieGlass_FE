@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import SpoilerToggle from '@components/SpoilerToggle/SpoilerToggle';
 import RatingInput from '@components/RatingInput/RatingInput';
+import SpoilerToggle from '@components/SpoilerToggle/SpoilerToggle';
 
 import * as S from './WriteReview.styled';
 

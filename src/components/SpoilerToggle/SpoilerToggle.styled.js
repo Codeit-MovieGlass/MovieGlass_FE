@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
+import pxToRem from '@utils/pxToRem';
 
 import { motion } from 'motion/react';
-import pxToRem from '@utils/pxToRem';
 
 export const SpoilerToggleWrapper = styled.div`
   width: fit-content;
@@ -9,7 +9,7 @@ export const SpoilerToggleWrapper = styled.div`
 
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: ${pxToRem(12)};
 `;
 
 export const SpoilerToggleLabel = styled.label`
