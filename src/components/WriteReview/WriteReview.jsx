@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import RatingInput from '@components/RatingInput/RatingInput';
+
 import * as S from './WriteReview.styled';
 
 const WriteReview = () => {
@@ -24,6 +26,7 @@ const WriteReview = () => {
 
   return (
     <S.WriteReviewForm>
+      <RatingInput />
       <S.TextareaContainer>
         <S.ReviewTextArea
           value={review}
