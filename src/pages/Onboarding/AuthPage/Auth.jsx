@@ -1,9 +1,10 @@
-import React, {useState} from  "react";
+import React, {useState,useEffect} from  "react";
 import *as C from "./Auth.styled"
-/* 해야할 부분
-로그인 데이터 서버로 보내는 로직 구현
-소셜 로그인 구현 및 연동
-반응형 css 추가하기 및 css 수정 */
+import { getGoogleLoginUrl, fetchAccessToken, fetchGoogleUserInfo } from "./SocialLogin";
+/*나중에 해야 할 일
+ 로그인, 소셜 로그인, 회원가입 백엔드와 연동 로직
+ 이메일, 닉네임 중복검사? 
+*/ 
 
 /* 로그인 페이지, 회원가입 페이지 공통 부분*/
 function Lay({children}){
@@ -19,7 +20,6 @@ function Lay({children}){
         </C.LogoSection>
         {children}
     </C.Container>
-
     )
 }
 /* 로그인 부분 */
@@ -29,6 +29,7 @@ function LoginPage() {
         email:"", password:""
     });
     const [erroMessage, setErrorMessage] = useState("");
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     //폼 데이터 변경 핸들러
     const handleChange =(e)=>{
         const {name, value} =e.target;
@@ -37,28 +38,54 @@ function LoginPage() {
             [name]:value,
         })
     }
-    //폼 제출 핸들러
+    //임시 로그인 로직 추후에 구현
     const handleSubmit = async(e)=>{
         e.preventDefault();
+        console.log("폼 데이터", formData)
     }
 
-    //소셜 로그인 로직
+    //구글 로그인 로직(프론트에서 자체적으로 가능 추후에 백엔드와 연동)
+    const handleGoogleLogin = async() =>{
+        window.location.href=getGoogleLoginUrl();
+    }
+    useEffect(()=>{
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code");
+        if(code){
+            (async()=>{
+                try{
+                    const tokenResponse=await fetchAccessToken(code);
+                    const userInfo =await fetchGoogleUserInfo(tokenResponse.access_token)
+                }catch(error){
+                    console.error("Google Login Failed:", error);
+
+                }
+            })();
+        }
+    },[])
+    /*카카오 로그인 로직(추후에 구현)*/
+
+    //비밀번호 토글
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible(!isPasswordVisible);
+      };
+    
   return (
-        <C.FormField onSubmit={handleSubmit}>
+        <C.FormField style={{}} onSubmit={handleSubmit}>
             <C.InputField type="email" name="email" placeholder="Email"
              value={formData.email} onChange={handleChange} required/>
-            
-            <C.InputField type="password" name="password" placeholder="PW" value={formData.password}
-             onChange={handleChange} required style={{ marginBottom: '72px' }}/>
-
+            <C.InputField type={isPasswordVisible ? 'text' : 'password'} name="password" placeholder="Password" value={formData.password}
+             onChange={handleChange} required style={{ marginBottom: '72px', paddingRight:'63px'}}/>
+            <C.EyeLogo onClick={togglePasswordVisibility} style={{position: 'absolute' ,top: '381px' ,left:'1431px'}} ></C.EyeLogo>
             <C.Login type="submit">로그인 하기</C.Login>
+            <C.Google onClick={handleGoogleLogin}><C.GoogleLogo/><C.S>구글로 로그인하기</C.S></C.Google>
+            <C.Kakao><C.KakaoLogo/><C.S style={{color: "var(--kakao-text, rgba(0, 0, 0, 0.85));"}}>카카오로 로그인하기</C.S></C.Kakao>
             <C.P>
               무비글라스가 처음이세요? <C.A href="/signup">회원가입하기</C.A>
             </C.P>
          </C.FormField>
   );
 }
-
 // 회원가입 페이지
 function Sign_Up_Page(){
     const [formData, setFormData]= useState({nickname :"", email: "",password : ""});
@@ -69,12 +96,14 @@ function Sign_Up_Page(){
             ...formData,
             [name]:value,
         })
+        /* 이메일 닉네임 입력 시 중복 검사 로직 */
     }
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-
+        /*이메일 입력 받을 시에 @앞에 부분만 저장에서 서버 전달*/ 
     }
+    
     return(
             <C.FormField style={{padding:"64px 78px 63px 78px"}} onSubmit={handleSubmit}>
                <C.L>닉네임
@@ -102,7 +131,5 @@ function Sign_Up_Page(){
                  <C.P>이미 계정이 있으신가요? <C.A href="/login">로그인하기</C.A></C.P>
             </C.FormField>
     )
-
 }
-
 export {Lay,LoginPage, Sign_Up_Page};
