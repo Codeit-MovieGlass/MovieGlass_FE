@@ -2,6 +2,22 @@ import styled, { css } from 'styled-components';
 
 import { motion } from 'motion/react';
 
+export const SpoilerToggleWrapper = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const SpoilerToggleLabel = styled.label`
+  ${({ theme }) => theme.fontStyles.Body3}
+  color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+
+  white-space: nowrap;
+`;
+
 export const SpoilerToggleContainer = styled.div`
   position: relative;
 
