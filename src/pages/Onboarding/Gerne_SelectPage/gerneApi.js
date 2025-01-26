@@ -1,3 +1,5 @@
+/*장르 데이터 백엔드 연동 추후에 수정정
+
 export const sendGenresToBackend = async (selectedGenres) => {
     try {
       const response = await fetch("http://your-backend-url/api/recommend", {
@@ -13,10 +15,10 @@ export const sendGenresToBackend = async (selectedGenres) => {
       }
   
       const data = await response.json();
-      return data; // 추천 데이터를 반환
+      return data; 
     } catch (error) {
       console.error("Error sending genres to backend:", error);
-      throw error; // 에러를 호출한 곳으로 전달
+      throw error; 
     }
-  };
+  };*/
   

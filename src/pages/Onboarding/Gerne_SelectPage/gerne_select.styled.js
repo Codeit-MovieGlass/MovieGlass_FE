@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import pxToRem  from '@utils/pxToRem';
+import A from '@assets/svgs/icons/arrow_right.svg?react';
 
 export const Frame =styled.div`
   width: 1920px;
@@ -60,4 +60,8 @@ export const S = styled.span`
   font-weight: 500;
   line-height: 120%; /
   letter-spacing: 0.72px;
+`
+export const Arrow=styled(A)`
+  width: 60px;
+  height: 60px;
 `

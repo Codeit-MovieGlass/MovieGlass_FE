@@ -1,4 +1,9 @@
 // @pages/Onboarding/Gerne_SelectPage/gerne_select.jsx
+/*
+<해야할 일>
+-장르 선택 후 데이터 백엔드로 보내는 기능
+*/
+
 import React,{useState} from 'react'
 import *as G from './gerne_select.styled';
 const SelectPage = () => {
@@ -10,20 +15,20 @@ const SelectPage = () => {
         ,{id:8, name:'로맨스/성인'}, {id:9, name:'액션/자극'}
     ]
     
-    //장르 선택 로직직
+    //장르 선택 로직
     const [selectedGenres, setSelectedGenres] = useState([]);
     const handleGenreClick=(genreId)=>{
         if(selectedGenres.includes(genreId)){
             setSelectedGenres(selectedGenres.filter((id)=>id !==genreId))
-        }else if (selectedGenres<2){
+        }else if (selectedGenres.length<2){
             setSelectedGenres([...selectedGenres,genreId]);
         }
     }
 
     return (
       <G.Frame>
-        <G.GenreContainer>
-          <G.P >종아하는 영화 장르 두 개를 골라주세요.</G.P>
+        <G.GenreContainer style={{position:'relative'}} >
+          <G.P >좋아하는 영화 장르 두 개를 골라주세요.</G.P>
           <G.D>
             {gernes.map((gerne)=>(
                     <G.Genre style={{backgroundColor: selectedGenres.includes(gerne.id)
@@ -36,11 +41,13 @@ const SelectPage = () => {
                 ))
             } 
           </G.D>
-          <div>
-            <button></button>
-          </div> 
+          {selectedGenres.length === 2 &&<div>
+            <button style={{position:'absolute',right:'78px',bottom:'37px'
+            }} onClick={()=>{}}>
+               <G.Arrow></G.Arrow>
+            </button>
+          </div>}
         </G.GenreContainer>
-        
       </G.Frame>
     );
   };
