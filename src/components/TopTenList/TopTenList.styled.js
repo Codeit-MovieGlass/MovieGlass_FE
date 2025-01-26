@@ -108,7 +108,7 @@ export const LeftArrow = styled(Arrow)`
   left: 25%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 3;
   cursor: pointer;
 `;
 
@@ -117,7 +117,7 @@ export const RightArrow = styled(Arrow)`
   right: 25%;
   top: 50%;
   transform: translate(50%, -50%) rotate(180deg);
-  z-index: 1;
+  z-index: 3;
   cursor: pointer;
 `;
 
