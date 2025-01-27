@@ -3,7 +3,7 @@ import pxToRem from '@utils/pxToRem';
 
 export const MyReviewContainer = styled.div`
   width: 100%;
-  padding: 50px 100px;
+  padding: 50px 100px; // 모달에 통합 시 Padding 제거
 
   display: flex;
   flex-direction: column;

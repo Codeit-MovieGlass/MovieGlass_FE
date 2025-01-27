@@ -1,5 +1,11 @@
+import MyComment from '@components/Review/MyReview/MyReview';
+
 const Home = () => {
-  return <></>;
+  return (
+    <>
+      <MyComment />
+    </>
+  );
 };
 
 export default Home;
