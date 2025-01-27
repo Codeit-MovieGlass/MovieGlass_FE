@@ -1,10 +1,7 @@
 import styled from 'styled-components';
+import pxToRem from '@utils/pxToRem';
 
-export const Padding = styled.div`
-  padding: 20px 100px;
-`;
-
-export const ReadCommentContainer = styled.div`
+export const ReviewContainer = styled.div`
   width: 100%;
   height: fit-content;
 
@@ -13,7 +10,7 @@ export const ReadCommentContainer = styled.div`
   gap: 20px;
 `;
 
-export const CommentInfos = styled.div`
+export const ReviewInfos = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 48px; // 추후 반응형 작업 시 수정
@@ -99,14 +96,26 @@ export const ProfileImage = styled.div`
 `;
 
 // Comment Content
-export const CommentContent = styled.p`
+export const MyReviewBorderHighlight = styled.div`
+  width: 100%;
+  min-width: 280px;
+  padding: ${pxToRem(28)} ${pxToRem(36)};
+
+  border-radius: 8px;
+
+  border: 2px solid ${({ theme }) => theme.colors.MG_Signature.Primary};
+
+  overflow: scroll;
+`;
+
+export const ReviewContent = styled.p`
   ${({ theme }) => theme.fontStyles.Body2}
   line-height: 120%;
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
 `;
 
 // Divider
-export const CommentDivider = styled.div`
+export const ReviewDivider = styled.div`
   width: 100%;
   height: 1px;
   margin-top: 20px;
