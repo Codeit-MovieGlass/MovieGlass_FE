@@ -1,13 +1,10 @@
 import Rating from '@components/Rating/Rating';
-
 import * as S from './MovieIntroBox.styled';
 
-const MovieIntroBox = () => {
+import PropTypes from 'prop-types';
+
+const MovieIntroBox = ({ movieTitle, genreList, keywordList, rating }) => {
   /* API 연동 시 받아올 데이터 */
-  const movieTitle = '해리포터와 마법사의 돌';
-  const genreList = ['판타지', '모험', '판타지', '모험', '판타지', '모험'];
-  const keywordList = ['해리포터', '마법사', '돌'];
-  const rating = 4.5;
 
   return (
     <S.MovieIntroBoxContainer>
@@ -29,6 +26,20 @@ const MovieIntroBox = () => {
       </S.InfoSection>
     </S.MovieIntroBoxContainer>
   );
+};
+
+MovieIntroBox.propsTypes = {
+  movieTitle: PropTypes.string.isRequired,
+  genreList: PropTypes.array.isRequired,
+  keywordList: PropTypes.array.isRequired,
+  rating: PropTypes.number.isRequired,
+};
+
+MovieIntroBox.defaultProps = {
+  movieTitle: '해리포터와 마법사의 돌',
+  genreList: ['판타지', '모험', '판타지', '모험', '판타지', '모험'],
+  keywordList: ['해리포터', '마법사', '돌'],
+  rating: 4.5,
 };
 
 export default MovieIntroBox;
