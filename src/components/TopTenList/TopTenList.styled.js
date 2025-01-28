@@ -6,6 +6,7 @@ export const TopTenContainer = styled.div`
   position: relative;
 
   width: 100%;
+  min-width: 1440px;
   height: ${pxToRem(840)};
   padding: ${pxToRem(56)} 0 ${pxToRem(48)};
 
@@ -35,6 +36,7 @@ export const MovieCarouselContainer = styled.div`
   width: 100%;
   height: fit-content;
 
+  flex-shrink: 1;
   display: flex;
   justify-content: center;
   align-items: center;

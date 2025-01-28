@@ -1,13 +1,16 @@
 import styled, { css } from 'styled-components';
 
-import baseArrow from '@assets/svgs/icons/arrow.svg?react';
+import leftArrow from '@assets/svgs/icons/left-arrow.svg?react';
+import rightArrow from '@assets/svgs/icons/right-arrow.svg?react';
+
 import dropdownArrow from '@assets/svgs/icons/dropdown-arrow.svg?react';
 
 const topTenArrowStyles = css`
   position: absolute;
-  top: 45%;
+  top: 40%;
   z-index: 10;
 
+  transition: transform 0.2s ease;
   cursor: pointer;
 
   path {
@@ -15,16 +18,22 @@ const topTenArrowStyles = css`
   }
 `;
 
-export const LeftArrow = styled(baseArrow)`
+export const LeftArrow = styled(leftArrow)`
   ${topTenArrowStyles}
-  transform: translateY(-50%);
   left: 5%;
+
+  &:hover {
+    transform: translateX(-3px) scale(1.1);
+  }
 `;
 
-export const RightArrow = styled(baseArrow)`
+export const RightArrow = styled(rightArrow)`
   ${topTenArrowStyles}
-  transform: rotate(180deg) translateY(50%);
   right: 5%;
+
+  &:hover {
+    transform: translateX(3px) scale(1.1);
+  }
 `;
 
 export const ViewCountDropdownArrow = styled(dropdownArrow)``;
