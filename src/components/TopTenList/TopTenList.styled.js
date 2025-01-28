@@ -57,8 +57,7 @@ export const CurrentMoviePoster = styled.img`
 
   cursor: pointer;
 
-  user-select: none; /* 텍스트 선택 비활성화 */
-  -webkit-user-select: none; /* Safari */
+  -webkit-user-drag: none; /* 이미지 드래그 비활성화 */
 `;
 
 export const CurrentMovieNumber = styled.span`
@@ -93,8 +92,7 @@ const sideMoviePosterStyles = css`
   filter: blur(5px);
 
   cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
+  -webkit-user-drag: none;
 `;
 
 export const PreviousMoviePoster = styled.img`
