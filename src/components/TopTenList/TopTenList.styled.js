@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
 //전체 컨테이너 및 베경 이미지
@@ -38,8 +38,10 @@ export const MovieCarouselContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: ${pxToRem(180)};
 `;
 
+// Current Movie Section
 export const CurrentMovieContainer = styled.div`
   position: relative;
 
@@ -60,9 +62,12 @@ export const CurrentMoviePoster = styled.img`
 export const CurrentMovieNumber = styled.span`
   position: absolute;
   top: -10%;
-  left: -10%;
+  left: -5%;
+
+  transform: translateX(-25%);
 
   ${({ theme }) => theme.fontStyles.Rank_Main};
+  letter-spacing: -18px;
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
   opacity: 0.8;
 
@@ -70,44 +75,57 @@ export const CurrentMovieNumber = styled.span`
   -webkit-user-select: none; /* Safari */
 `;
 
-export const PreviousMoviePoster = styled.img`
-  height: 390px;
-  position: absolute;
-  left: 25%;
-  top: 50%;
-  transform: perspective(800px) rotateY(-20deg) translate(-50%, -50%);
-  filter: blur(5px);
-  cursor: pointer;
+// Side Movie Section
+export const SideMoviePosterContainer = styled.div`
+  position: relative;
+
+  width: fit-content;
+  height: fit-content;
 `;
 
-export const PreviousMovieNumber = styled.p`
-  ${({ theme }) => theme.fontStyles.Rank_Side};
+const sideMoviePosterStyles = css`
+  width: ${pxToRem(250)};
+  height: ${pxToRem(400)};
 
-  position: absolute;
-  left: 20%;
-  top: 25%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+  /* transform: perspective(700px); */
+  filter: blur(5px);
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+`;
+
+export const PreviousMoviePoster = styled.img`
+  ${sideMoviePosterStyles}/* transform: rotateY(-20deg) translate(-50%, -50%); */
 `;
 
 export const NextMoviePoster = styled.img`
-  height: 390px;
-  position: absolute;
-  right: 25%;
-  top: 50%;
-  transform: perspective(700px) rotateY(20deg) translate(50%, -50%);
-  filter: blur(5px);
-  cursor: pointer;
+  ${sideMoviePosterStyles}/* transform:rotateY(20deg) translate(50%, -50%); */
 `;
 
-export const NextMovieNumber = styled.p`
-  ${({ theme }) => theme.fontStyles.Rank_Side};
-
+const sideMovieNumberStyles = css`
   position: absolute;
-  right: 32%;
-  top: 25%;
-  transform: translate(50%, -50%);
-  z-index: 1;
+  top: -7%;
+  left: -0.5%;
+  z-index: 10;
+
+  transform: translateX(-50%);
+
+  ${({ theme }) => theme.fontStyles.Rank_Side};
+  letter-spacing: -8px;
+  color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_5};
+  opacity: 0.7;
+
+  user-select: none;
+  -webkit-user-select: none;
+`;
+
+export const PreviousMovieNumber = styled.span`
+  ${sideMovieNumberStyles}
+`;
+
+export const NextMovieNumber = styled.span`
+  ${sideMovieNumberStyles}
 `;
 
 export const TopTenTitle = styled.h1`

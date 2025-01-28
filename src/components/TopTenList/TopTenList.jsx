@@ -10,14 +10,6 @@ import * as S from './TopTenList.styled';
 const TopTenList = () => {
   const username = '김철흥'; // 로그인 후 userID(name)을 통해 GET 요청으로 영화 리스트 받아오기
 
-  //현재 영화의 정보
-  // const [MovieId, setMovieId] = useState(0);
-  // const [MovieTitle, setMovieTitle] = useState(TopTenMovieData[MovieId].title);
-  // const [MovieRating, setMovieRating] = useState(TopTenMovieData[MovieId].rating);
-  // const [MovieGenreList, setMovieGenreList] = useState(TopTenMovieData[MovieId].genreList);
-  // const [MovieKeywordList, setMovieKeywordList] = useState(TopTenMovieData[MovieId].keywordList);
-  // const [MovieImgUrl, setMovieImgUrl] = useState(TopTenMovieData[MovieId].imageUrl);
-
   const [movieList, setMovieList] = useState(TopTenMovieList);
   const [currentMovieID, setCurrentMovieID] = useState(movieList[0].id);
 
@@ -44,19 +36,15 @@ const TopTenList = () => {
 
       <LeftArrow onClick={handlePreviousClick} />
       <S.MovieCarouselContainer>
-        {/* Side Movie Section */}
-        {/* <S.PreviousMovieNumber>{previousMovieID}</S.PreviousMovieNumber>
-        <S.NextMovieNumber>{nextMovieID}</S.NextMovieNumber>
-        <S.PreviousMoviePoster
-          src={previousMoviePoster.posterImgURL}
-          alt="poster-previous"
-          onClick={handlePreviousClick}
-        />
-        <S.NextMoviePoster
-          src={nextMoviePoster.posterImgURL}
-          alt="poster-previous"
-          onClick={handleNextClick}
-        /> */}
+        {/* Previous Movie Section */}
+        <S.SideMoviePosterContainer>
+          <S.PreviousMovieNumber>{previousMovieID}</S.PreviousMovieNumber>
+          <S.PreviousMoviePoster
+            src={previousMoviePoster.posterImgURL}
+            alt="poster-previous"
+            onClick={handlePreviousClick}
+          />
+        </S.SideMoviePosterContainer>
 
         {/* Current Movie Section */}
         <S.CurrentMovieContainer>
@@ -69,6 +57,16 @@ const TopTenList = () => {
             rating={currentMovieInfo.rating}
           />
         </S.CurrentMovieContainer>
+
+        {/* Next Movie Section */}
+        <S.SideMoviePosterContainer>
+          <S.NextMovieNumber>{nextMovieID}</S.NextMovieNumber>
+          <S.NextMoviePoster
+            src={nextMoviePoster.posterImgURL}
+            alt="poster-previous"
+            onClick={handleNextClick}
+          />
+        </S.SideMoviePosterContainer>
       </S.MovieCarouselContainer>
       <RightArrow onClick={handleNextClick} />
       <S.TopTenTitle>{username} 님만을 위한 TOP 10</S.TopTenTitle>

@@ -5,7 +5,7 @@ import dropdownArrow from '@assets/svgs/icons/dropdown-arrow.svg?react';
 
 const topTenArrowStyles = css`
   position: absolute;
-  top: 50%;
+  top: 45%;
   z-index: 10;
 
   cursor: pointer;
@@ -18,13 +18,13 @@ const topTenArrowStyles = css`
 export const LeftArrow = styled(baseArrow)`
   ${topTenArrowStyles}
   transform: translateY(-50%);
-  left: 10%;
+  left: 5%;
 `;
 
 export const RightArrow = styled(baseArrow)`
   ${topTenArrowStyles}
   transform: rotate(180deg) translateY(50%);
-  right: 10%;
+  right: 5%;
 `;
 
 export const ViewCountDropdownArrow = styled(dropdownArrow)``;
