@@ -17,9 +17,13 @@ export const useMovies = () =>{
         fetchInitialMovies();
     },[])
 
-    const selectMovie=(id) => {
-    
+    const selectMovie =(id)=>{
+        setSelectedMovies((prev)=>{
+            return prev.includes(id) ? prev.filter((movieId)=>movieId !==id): [...prev,id]
+        })
+
     }
+
 
     return {displayMovies,selectedMovies,selectMovie};
 }
