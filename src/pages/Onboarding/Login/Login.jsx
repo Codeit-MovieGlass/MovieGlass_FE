@@ -81,7 +81,10 @@ const LoginPage = () => {
             onChange={handleChange}
             required
           />
-          <S.EyeIcon onClick={togglePasswordVisibility} />
+          <S.EyeIcon
+            onClick={togglePasswordVisibility}
+            $disabled={formData.password.length === 0}
+          />
         </S.PasswordContainer>
         <S.LoginButton type="submit">로그인</S.LoginButton>
       </S.LoginForm>

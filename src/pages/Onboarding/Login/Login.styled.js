@@ -69,6 +69,8 @@ export const EyeIcon = styled(eyeIcon)`
   transform: translateY(-50%);
 
   cursor: pointer;
+
+  pointer-events: ${({ $disabled }) => $disabled && 'none'};
 `;
 
 export const LoginButton = styled.button`
@@ -160,5 +162,7 @@ export const SignUpSection = styled.section`
     color: ${({ theme }) => theme.colors.MG_Signature.Primary};
 
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
   }
 `;
