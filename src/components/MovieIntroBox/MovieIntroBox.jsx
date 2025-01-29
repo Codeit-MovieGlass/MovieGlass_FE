@@ -28,7 +28,7 @@ const MovieIntroBox = ({ movieTitle, genreList, keywordList, rating }) => {
   );
 };
 
-MovieIntroBox.propsTypes = {
+MovieIntroBox.propTypes = {
   movieTitle: PropTypes.string.isRequired,
   genreList: PropTypes.array.isRequired,
   keywordList: PropTypes.array.isRequired,

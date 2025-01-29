@@ -1,7 +1,11 @@
 import TopTenList from '@components/TopTenList/TopTenList';
 
 const Home = () => {
-  return <TopTenList />;
+  return (
+    <>
+      <TopTenList />
+    </>
+  );
 };
 
 export default Home;
