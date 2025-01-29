@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import MovieData from "./Select_moviedata.js"
+import MovieData from "./SelectMovieData.js"
 
 export const useMovies = () =>{
 

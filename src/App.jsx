@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import Layout from '@layout/Layout';
 
 import Home from '@pages/Home/Home';
-import Movie_select from '@pages/movie_select/Movie_Select'
+import MovieSelect from '@pages/MovieSelect/MovieSelect';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route element={<Layout />}>
           <Route index element={<Home />} />
         </Route>
-        <Route path='/movie_select' element={<Movie_select/>}/>
+        <Route path="/movieselect" element={<MovieSelect />} />
       </Routes>
     </BrowserRouter>
   );

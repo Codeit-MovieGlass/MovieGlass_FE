@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import Check_W from "@assets/svgs/icons/check_white.svg?react";
-import Check_B from "@assets/svgs/icons/check_black.svg?react";
+import CheckW from "@assets/svgs/icons/check_white.svg?react";
+import CheckB from "@assets/svgs/icons/check_black.svg?react";
 
 export const Frame = styled.div`
   display: inline-flex;
+  width:1920px;
   height: 1080px;
   padding: 90px 461px 90px 463px;
   justify-content: center;
@@ -31,23 +32,21 @@ export const MovieList = styled.div`
   display:flex;
   flex-wrap: wrap;
   gap:44px;
-  padding:40px 117px 0px 88px;
+  padding:40px 88px 0px 117px;
   overflow-y: auto;
-  scrollbar-width: none; /* Firefox에서 스크롤바 숨김 */
-  -ms-overflow-style: none; /* IE에서 스크롤바 숨김 */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
   &::-webkit-scrollbar {
-    display: none; /* WebKit 기반 브라우저에서 스크롤바 숨김 */
+  display: none; 
   }
-
 `
 export const Movie = styled.div`
  width: 233.921px;
  height: 311.628px;
  flex-shrink: 0;
  margin-Bottom:11px;
-
 `
-export const CButton =styled.button`
+export const Check =styled.button`
   width: 60px;
   height: 60px;
   position:relative;
@@ -62,13 +61,13 @@ export const CButton =styled.button`
   box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.25);
 `
 
-export const C_W =styled(Check_W)`
+export const Active =styled(CheckW)`
   width: 36px;
   height: 36px;
   flex-shrink: 0;
 `
 
-export const C_B =styled(Check_B)`
+export const DeActive =styled(CheckB)`
   width: 36px;
   height: 36px;
   flex-shrink: 0;
@@ -86,10 +85,13 @@ export const Complete =styled.button`
   gap: 9.6px;
   flex-shrink: 0;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.MG_Grayscale.Gray_2}
+  background: ${({ Selected, theme }) =>
+  Selected ? "var(--Primary, #7E37F9)" : theme.colors.MG_Grayscale.Gray_2};
 `
 export const C =styled.p`
   ${({theme}) => theme.fontStyles.Body1}
   font-style: normal;
-  color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_3}
+  color: ${({ active, theme }) =>
+    active ? theme.colors.MG_Grayscale.White: theme.colors.MG_Grayscale.Gray_3};
+  
 `
