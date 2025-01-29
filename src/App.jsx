@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 
+import OnBoardingLayout from '@layout/OnBoarding/OnBoardingLayout';
 import Layout from '@layout/Layout';
-import {Lay,LoginPage,Sign_Up_Page} from '@pages/Onboarding/AuthPage/Auth'
 
 import Home from '@pages/Home/Home';
-
+import LoginPage from '@pages/OnBoarding/Login/Login';
+import SignUp from '@pages/OnBoarding/SignUp/SignUp';
 
 function App() {
   return (
@@ -13,9 +14,11 @@ function App() {
         <Route element={<Layout />}>
           <Route index element={<Home />} />
         </Route>
-        <Route path='/login' element={<Lay>
-          <LoginPage/></Lay>}/>
-        <Route path='/signup' element={<Lay><Sign_Up_Page/></Lay>}/>
+
+        <Route element={<OnBoardingLayout />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="signup" element={<SignUp />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
