@@ -1,5 +1,11 @@
 import * as M from '@pages/MovieSelect/MovieSelect.styled';
 import { useMovies } from './MovieLogic';
+/* 수정할 부분 
+-MovieLogic파일
+초기 영화 데이터 받아오는 로직, 
+영화 선택 시 4개 영화 받아오는 로직
+완료 버튼 클릭 시 취향 분석 페이지 이동하는 이벤트 핸들러 구현
+*/
 
 function MovieSelect() {
   const { displayMovies, selectedMovies, selectMovie } = useMovies();

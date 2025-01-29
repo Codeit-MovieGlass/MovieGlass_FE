@@ -1,3 +1,4 @@
+//임시 데이터
 const MovieData=[
     {
         "id": 0,
@@ -57,6 +58,26 @@ const MovieData=[
         "id": 9,
         "title": "영화9",
         "poster": "https://i.namu.wiki/i/wNZJh8URYjY10m8GgwXPuMPtyIx8JPO-oH7-ewcu7rMI0nqxDRxL6Mh_vA2DL_Y8jWfvCGc72WwcXy-4Vo3ypQ.webp",
-    }
+    },
 ]
-export default MovieData;
+
+const GetMovieData=[
+    {
+        "id": 10,
+        "title": "영화10",
+        "poster": "https://mblogthumb-phinf.pstatic.net/MjAxODEyMDNfMjAy/MDAxNTQzODIwODMyMjEz.DxnzCI80cPzdD7SjHN5xmq7ce8bQK5hIUalVot-FiGkg.XswWDWZUDvRRNUSBOr8nciWtziZY6onCEudwdPXoP_Eg.JPEG.ptxayo/0ef995c585f9cf7593754c7b19e50099.jpg?type=w800"},
+    {
+        "id": 11,
+        "title": "영화11",
+        "poster": "http://www.songpatimes.com/news/photo/201706/24730_15738_65.jpg"},
+    {
+        "id": 12,
+        "title": "영화12",
+        "poster": "https://i.namu.wiki/i/uLrmwS7wd1LGkJx_42tip2G2wGjiEPhzvccsbwAKZtH4uOnwLtTHBUpxUcsPZT3zGHILtJH3Datv0eer4YQ4zbjet0t2f50YBoy79QDVjv0yJXvnSjkRlOddNDG4dVHrqsUOBMeDhOZlNzdopxeG5A.webp"},
+    {
+        "id": 13,
+        "title": "영화13",
+        "poster":"https://i.namu.wiki/i/mGnpmn2rMF6vyQhLJPCtuMSy3JQxHOrqLioBnCv8PvZ7y4vAiG8WNQv70k_dhGF5HJmSs-PoQ5u8qfK7WmQ44rSGmyyMXM03b8AYHBXp19KQpP4pQ8eyOiml2hum3P7dVa_A2iQnkdM3HGXs5pZ8PA.webp"},
+]
+
+export {MovieData, GetMovieData};
