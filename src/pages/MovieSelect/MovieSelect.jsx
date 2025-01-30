@@ -14,6 +14,7 @@ function MovieSelect() {
     <S.MovieSelectFrame>
       <S.Modal>
         <S.Explain>재미있게 본 영화를 세 개 이상 골라주세요.</S.Explain>
+        
         <S.MovieList>
           {displayMovies.map((movie) => (
             <S.Movie key={movie.id} style={{ background: `lightgray url(${movie.poster}) 50% / cover no-repeat` }}
@@ -24,9 +25,10 @@ function MovieSelect() {
             </S.Movie>
           ))}
         </S.MovieList>
-            <S.Complete $Selected={selectedMovies.length>=3}>
-              <S.Click $active={selectedMovies.length>=3}>완료</S.Click>
-            </S.Complete>
+
+        <S.CompleteButton $Selected={selectedMovies.length>=3} $active={selectedMovies.length>=3}>
+          <span>완료</span>
+        </S.CompleteButton>
       </S.Modal>
     </S.MovieSelectFrame>
   );

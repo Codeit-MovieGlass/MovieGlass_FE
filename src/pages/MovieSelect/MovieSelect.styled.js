@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import pxToRem from "@utils/pxToRem";
+
 import WhiteCheckIcon from "@assets/svgs/icons/check_white.svg?react";
 import BlackCheckIcon from "@assets/svgs/icons/check_black.svg?react";
 
 export const MovieSelectFrame = styled.div`
   width:1920px;
   height: 1080px;
-  padding: 90px 461px 90px 463px;
+  padding: ${pxToRem(90)} ${pxToRem(461)} ${pxToRem(90)} ${pxToRem(463)};
   
   display: inline-flex;
   justify-content: center;
@@ -25,7 +27,7 @@ export const Explain = styled.p`
     width: 592px;
     height:36px;
     margin:84px 202px 23px 202px;
-
+   
     color: ${({theme})=>theme.colors.MG_Grayscale.Gray_White};
     
     ${({theme}) => theme.fontStyles.Body1};
@@ -34,11 +36,11 @@ export const Explain = styled.p`
 
 export const MovieList = styled.div`
   height: 759px;
-  padding:40px 88px 0px 117px;
+  padding: ${pxToRem(40)} ${pxToRem(88)} ${pxToRem(0)} ${pxToRem(117)};
   
   display:flex;
   flex-wrap: wrap;
-  gap:44px;
+  gap:${pxToRem(44)};
   
   overflow-y: auto;
   scrollbar-width: none; 
@@ -89,30 +91,32 @@ export const CheckIcon =styled(BlackCheckIcon)
   flex-shrink: 0;
 `
 
-export const Complete =styled.button`
+export const CompleteButton =styled.button`
   position: relative;
   left:764px;
   bottom:112px;
 
   width: 200px;
   height: 80px;
-  padding: 0px 19.2px;
+  padding: ${pxToRem(0)} ${pxToRem(19.2)};
   
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 9.6px;
+  gap: ${pxToRem(9.6)};
   flex-shrink: 0;
   
   border-radius: 8px;
   background: ${({ $Selected, theme }) =>
   $Selected ? theme.colors.MG_Signature.Primary : theme.colors.MG_Grayscale.Gray_2};
-`
-export const Click =styled.p`
-  color: ${({ $active, theme }) =>
-  $active ? theme.colors.MG_Grayscale.White: theme.colors.MG_Grayscale.Gray_3};
-
-  ${({theme}) => theme.fontStyles.Body1}
-  font-style: normal;`
   
- 
+  span{
+    color: ${({ $active, theme }) =>
+    $active ? theme.colors.MG_Grayscale.White: theme.colors.MG_Grayscale.Gray_3};
+
+    ${({theme}) => theme.fontStyles.Body1}
+    font-style: normal; 
+  }
+`
+
+  
