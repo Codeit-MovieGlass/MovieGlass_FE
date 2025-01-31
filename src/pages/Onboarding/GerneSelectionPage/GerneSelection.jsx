@@ -5,8 +5,10 @@
 */
 
 import React,{useState} from 'react'
-import *as G from './gerne_select.styled';
-const SelectPage = () => {
+
+import *as S from './GerneSelection.styled';
+
+const GerneSelectionPage = () => {
     //장르 목록
     const gernes=[{id:1, name: '드라마/감동'}, 
         {id:2, name:'스릴/긴장'}, {id:3, name:'모험/판타지'}
@@ -26,31 +28,31 @@ const SelectPage = () => {
     }
 
     return (
-      <G.Frame>
-        <G.GenreContainer style={{position:'relative'}} >
-          <G.P >좋아하는 영화 장르 두 개를 골라주세요.</G.P>
-          <G.D>
+      <S.GenreSelectionFrame>
+        <S.GenreSelectionContainer style={{position:'relative'}} >
+          <S.GenreSelectionText >좋아하는 영화 장르 두 개를 골라주세요.</S.GenreSelectionText>
+          <S.GenreList>
             {gernes.map((gerne)=>(
-                    <G.Genre style={{backgroundColor: selectedGenres.includes(gerne.id)
+                    <S.Genre style={{backgroundColor: selectedGenres.includes(gerne.id)
                         ? 'var(--Primary, #7E37F9)'
                         : 'transparent',
                       cursor: 'pointer',}} key={gerne.id}
                     onClick={()=>handleGenreClick(gerne.id)}>
-                    <G.S style={{color: selectedGenres.includes(gerne.id) ? 'white' : 'var(--Primary, #7E37F9)',}}>{gerne.name}</G.S>
-                    </G.Genre>
+                    <S.S style={{color: selectedGenres.includes(gerne.id) ? 'white' : 'var(--Primary, #7E37F9)',}}>{gerne.name}</S.S>
+                    </S.Genre>
                 ))
             } 
-          </G.D>
+          </S.GenreList>
           {selectedGenres.length === 2 &&<div>
             <button style={{position:'absolute',right:'78px',bottom:'37px'
             }} onClick={()=>{}}>
-               <G.Arrow></G.Arrow>
+               <S.RightArrow></S.RightArrow>
             </button>
           </div>}
-        </G.GenreContainer>
-      </G.Frame>
+        </S.GenreSelectionContainer>
+      </S.GenreSelectionFrame>
     );
   };
   
-  export default SelectPage; // 기본 내보내기
+  export default GerneSelectionPage; // 기본 내보내기
   
