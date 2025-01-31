@@ -1,4 +1,4 @@
-/*장르 데이터 백엔드 연동 추후에 수정정
+/*장르 데이터 백엔드 연동 추후에 수정
 
 export const sendGenresToBackend = async (selectedGenres) => {
     try {

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
-import Arrow from '@assets/svgs/icons/arrow_right.svg?react';
+import Arrow from '@assets/svgs/icons/arrowRightPurple.svg?react';
+
 
 export const GenreSelectionFrame =styled.div`
   width: 1920px;
@@ -13,6 +14,8 @@ export const GenreSelectionFrame =styled.div`
 `
 
 export const GenreSelectionContainer = styled.div`
+  position:relative;
+
   width: 998px;
   height: 902px;
 
@@ -26,6 +29,7 @@ export const GenreSelectionContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.MG_Grayscale.Gray_4};
 `
 export const GenreSelectionText = styled.header`
+  
   width: 552px;
   margin-Top:84px;
   margin-Bottom:64px;
@@ -61,7 +65,7 @@ export const Genre = styled.button`
   
   border-radius: 8px;
   border: 2px solid ${({theme}) => theme.colors.MG_Signature.Primary};
-  background:${({ theme }) => theme.colors.MG_Grayscale.Gray_1};
+  background:${({ theme, selected }) =>selected ? theme.colors.MG_Signature.Primary : theme.colors.MG_Grayscale.Gray_1 };
 
   span{
     height: 48px;
@@ -69,17 +73,26 @@ export const Genre = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    color: ${({theme,selected})=>selected ? theme.colors.MG_Grayscale.White : theme.colors.MG_Signature.Primary};
   
     ${({theme})=>theme.fontStyles.Body2}
     font-style: normal;
     line-height: 120%; 
   }
 `
-export const S = styled.span`
 
+export const ArrowButton = styled.button`
+  position: absolute;
+  right:78px;
+  bottom: 37px;
+
+  line-height:0;
 `
+
 export const RightArrow=styled(Arrow)`
   width: 60px;
   height: 60px;
+  
   flex-shrink: 0;
 `
