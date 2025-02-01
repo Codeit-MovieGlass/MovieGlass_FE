@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { LeftArrow as Arrow } from '@icons/Arrow';
+import pxToRem from '@utils/pxToRem';
 
 export const CurationContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 425px;
+  height: ${pxToRem(425)};
   width: 100%;
   justify-content: space-between;
 `;
