@@ -1,10 +1,19 @@
 import styled from 'styled-components';
-
 import pxToRem from '@utils/pxToRem';
 
 import logoSymbol from '@assets/svgs/Header/Logo_symbol.svg?react';
 import logoTypo from '@assets/svgs/Header/Logo_typo.svg?react';
 import logoTypoSerif from '@assets/svgs/Header/Logo_typo_serif.svg?react';
+
+export const OnBoardingLogoSymbol = styled(logoSymbol)`
+  width: ${pxToRem(280)};
+  height: fit-content;
+`;
+
+export const OnBoardingLogoTypo = styled(logoTypo)`
+  width: ${pxToRem(320)};
+  height: fit-content;
+`;
 
 export const LogoSymbol = styled(logoSymbol)`
   width: 100px;
@@ -37,4 +46,8 @@ export const LogoTypoSerif = styled(logoTypoSerif)`
   @media (max-width: 768px) {
     width: ${pxToRem(158)};
   }
+`;
+
+export const CommentLogo = styled(logoSymbol)`
+  width: 40px;
 `;

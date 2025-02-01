@@ -1,129 +1,142 @@
-import styled from 'styled-components';
-import { LeftArrow as Arrow } from '@icons/Arrow.js';
+import styled, { css } from 'styled-components';
+import pxToRem from '@utils/pxToRem';
 
-//전체 컨테이너 및 베경 이미지------------------------------------------------
+//전체 컨테이너 및 베경 이미지
 export const TopTenContainer = styled.div`
+  position: relative;
+
   width: 100%;
-  height: 840px;
+  min-width: 1440px;
+  height: ${pxToRem(840)};
+  padding: ${pxToRem(56)} 0 ${pxToRem(48)};
+
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
-export const BackgroundImg = styled.img.attrs((props) => ({
-  src: props.Url || '',
-  alt: '',
-}))`
-  width: 100%;
-  height: 840px;
-  object-fit: cover;
-  opacity: 30%;
-
+export const BackgroundImg = styled.img`
   position: absolute;
-  z-index: -1;
-`;
-
-//포스터 보여주는 부분------------------------------------------------
-export const MovieListContainer = styled.div`
   top: 0;
-  position: relative;
+  left: 0;
+  z-index: -1;
+
   width: 100%;
-  height: 87%;
+  height: ${pxToRem(840)};
+
+  object-fit: cover;
+
+  opacity: 0.3;
 `;
 
-export const MainMovieImg = styled.img.attrs((props) => ({
-  src: props.Url || '',
-  alt: '',
-}))`
-  height: 576px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
+// Movie Carousel Section
+export const MovieCarouselContainer = styled.div`
+  position: relative;
+
+  width: 100%;
+  height: fit-content;
+
+  flex-shrink: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: ${pxToRem(180)};
+`;
+
+// Current Movie Section
+export const CurrentMovieContainer = styled.div`
+  position: relative;
+
+  width: fit-content;
+  height: fit-content;
+`;
+
+export const CurrentMoviePoster = styled.img`
+  width: ${pxToRem(432)};
+  height: ${pxToRem(576)};
+
   cursor: pointer;
+
+  user-select: none; /* 텍스트 선택 비활성화 */
+  -webkit-user-select: none; /* Safari */
 `;
 
-export const PrevMovieImg = styled.img.attrs((props) => ({
-  src: props.Url || '',
-  alt: '',
-}))`
-  height: 390px;
+export const CurrentMovieNumber = styled.span`
   position: absolute;
-  left: 25%;
-  top: 50%;
-  transform: perspective(800px) rotateY(-20deg) translate(-50%, -50%);
+  top: -10%;
+  left: -5%;
+
+  transform: translateX(-25%);
+
+  ${({ theme }) => theme.fontStyles.Rank_Main};
+  letter-spacing: -18px;
+  color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+  opacity: 0.8;
+
+  user-select: none; /* 텍스트 선택 비활성화 */
+  -webkit-user-select: none; /* Safari */
+`;
+
+// Side Movie Section
+export const SideMoviePosterContainer = styled.div`
+  position: relative;
+
+  width: fit-content;
+  height: fit-content;
+`;
+
+const sideMoviePosterStyles = css`
+  width: ${pxToRem(250)};
+  height: ${pxToRem(400)};
+
+  /* transform: perspective(700px); */
   filter: blur(5px);
+
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
 `;
 
-export const NextMovieImg = styled.img.attrs((props) => ({
-  src: props.Url || '',
-  alt: '',
-}))`
-  height: 390px;
+export const PreviousMoviePoster = styled.img`
+  ${sideMoviePosterStyles}/* transform: rotateY(-20deg) translate(-50%, -50%); */
+`;
+
+export const NextMoviePoster = styled.img`
+  ${sideMoviePosterStyles}/* transform:rotateY(20deg) translate(50%, -50%); */
+`;
+
+const sideMovieNumberStyles = css`
   position: absolute;
-  right: 25%;
-  top: 50%;
-  transform: perspective(700px) rotateY(20deg) translate(50%, -50%);
-  filter: blur(5px);
-  cursor: pointer;
+  top: -7%;
+  left: -0.5%;
+  z-index: 10;
+
+  transform: translateX(-50%);
+
+  ${({ theme }) => theme.fontStyles.Rank_Side};
+  letter-spacing: -8px;
+  color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_5};
+  opacity: 0.7;
+
+  user-select: none;
+  -webkit-user-select: none;
 `;
 
-//영화 정보-------------------------------------------------
-export const MovieNum = styled.p`
-  font: ${({ theme }) => theme.fontStyles.Rank_Main};
-  left: 37%;
-  position: absolute;
-  z-index: 3;
+export const PreviousMovieNumber = styled.span`
+  ${sideMovieNumberStyles}
 `;
 
-export const PrevMovieNum = styled.p`
-  font: ${({ theme }) => theme.fontStyles.Rank_Side};
-  position: absolute;
-  left: 20%;
-  top: 25%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+export const NextMovieNumber = styled.span`
+  ${sideMovieNumberStyles}
 `;
 
-export const NextMovieNum = styled.p`
-  font: ${({ theme }) => theme.fontStyles.Rank_Side};
-  position: absolute;
-  right: 32%;
-  top: 25%;
-  transform: translate(50%, -50%);
-  z-index: 1;
-`;
-
-export const MovieIntroBoxContainer = styled.div`
-  position: absolute;
-  left: 47%;
-  top: 63%;
-  z-index: 3;
-`;
-
-//영화 변경 화살표----------------------------------------------------------------
-export const LeftArrow = styled(Arrow)`
-  position: absolute;
-  left: 25%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  cursor: pointer;
-`;
-
-export const RightArrow = styled(Arrow)`
-  position: absolute;
-  right: 25%;
-  top: 50%;
-  transform: translate(50%, -50%) rotate(180deg);
-  z-index: 3;
-  cursor: pointer;
-`;
-
-//~~를 위한 TOP 10 부분-----------------------------------------------------------------
 export const TopTenTitle = styled.h1`
-  font-family: ${({ theme }) => theme.fontStyles.Header1};
-  margin: 0 auto;
-  opacity: 100%;
+  margin-top: ${pxToRem(56)};
+
+  ${({ theme }) => theme.fontStyles.Header1};
+  letter-spacing: 0;
+  color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+
+  user-select: none; /* 텍스트 선택 비활성화 */
+  -webkit-user-select: none; /* Safari */
 `;
