@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LeftArrow as Arrow } from '@icons/Arrow';
+import { LeftArrow as LArrow, RightArrow as RArrow } from '@icons/Arrow';
 import pxToRem from '@utils/pxToRem';
 
 export const CurationContainer = styled.div`
@@ -8,44 +8,45 @@ export const CurationContainer = styled.div`
   height: ${pxToRem(425)};
   width: 100%;
   justify-content: space-between;
+  margin-top: ${pxToRem(120)};
 `;
 
-export const LeftArrow = styled(Arrow)`
-  margin-top: 190px;
-  margin-left: 3%;
+export const LeftArrow = styled(LArrow)`
+  position: relative;
+  margin: ${pxToRem(30)};
+  left: ${pxToRem(10)};
 `;
 
-export const RightArrow = styled(Arrow)`
-  transform: rotate(180deg);
-  margin-top: 190px;
-  margin-right: 3%;
+export const RightArrow = styled(RArrow)`
+  margin: ${pxToRem(30)};
+  position: relative;
+  right: ${pxToRem(10)};
 `;
 
 export const MovieListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 425px;
+  height: 100%;
   width: 100%;
   justify-content: space-between;
-  border: 1px solid;
 `;
 
 export const CurationTitle = styled.h3`
   font: ${({ theme }) => theme.fontStyles.Header3};
-  margin-bottom: 15px;
+  margin-bottom: ${pxToRem(15)};
 `;
 
 export const MovieContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 360px;
+  height: ${pxToRem(360)};
 `;
 
 export const MovieImg = styled.img.attrs((props) => ({
   src: props.Url || '',
   alt: '포스터',
 }))`
-  height: 360px;
+  height: 100%;
   margin: 0 auto;
 
   ${({ isFirst }) =>
@@ -53,7 +54,6 @@ export const MovieImg = styled.img.attrs((props) => ({
     `
     margin-left: 0;
   `}
-  /* 마지막 이미지의 right 고정 */
   ${({ isLast }) =>
     isLast &&
     `
