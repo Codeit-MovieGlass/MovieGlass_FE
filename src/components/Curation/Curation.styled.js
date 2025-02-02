@@ -8,7 +8,8 @@ export const CurationContainer = styled.div`
   height: ${pxToRem(425)};
   width: 100%;
   justify-content: space-between;
-  margin-top: ${pxToRem(120)};
+  padding: ${pxToRem(20)};
+  margin-top: ${pxToRem(90)};
 `;
 
 export const LeftArrow = styled(LArrow)`

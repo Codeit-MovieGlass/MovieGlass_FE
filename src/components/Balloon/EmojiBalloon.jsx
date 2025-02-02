@@ -3,7 +3,7 @@ import * as B from '@icons/Balloon';
 
 const EmojiBalloon = () => {
   return (
-    <S.BalloonContainer>
+    <S.EBalloonContainer>
       <B.EmojiBalloonIcon />
       <S.BalloonEmojiList>
         <S.LoveEmoji />
@@ -12,7 +12,7 @@ const EmojiBalloon = () => {
         <S.HappyEmoji />
         <S.ToughEmoji />
       </S.BalloonEmojiList>
-    </S.BalloonContainer>
+    </S.EBalloonContainer>
   );
 };
 

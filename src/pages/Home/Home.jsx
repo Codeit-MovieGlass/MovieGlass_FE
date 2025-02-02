@@ -1,11 +1,11 @@
-import Curation from '@components/Curation/Curation';
+import CurationSet from '@components/Curation/CurationSet';
 import TopTenList from '@components/TopTenList/TopTenList';
 
 const Home = () => {
   return (
     <>
       <TopTenList />
-      <Curation />
+      <CurationSet />
     </>
   );
 };
