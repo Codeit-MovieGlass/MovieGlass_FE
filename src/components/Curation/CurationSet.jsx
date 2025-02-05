@@ -1,18 +1,14 @@
-import TextBalloon from '@components/Balloon/TextBalloon';
-import EmojiBalloon from '@components/Balloon/EmojiBalloon';
 import Curation from '@components/Curation/Curation';
 
 import { CurationData } from './Mock/CurationData';
 
 import * as S from './CurationSet.styled';
+import BallonSection from '@components/Balloon/BallonSection';
 
 const CurationSet = () => {
   return (
     <S.CurationWrapper>
-      <S.EmojiCurationContainer>
-        <TextBalloon />
-        <EmojiBalloon />
-      </S.EmojiCurationContainer>
+      <BallonSection />
       <Curation curationTitle={CurationData.curationTitle} movieList={CurationData.movieList} />
     </S.CurationWrapper>
   );

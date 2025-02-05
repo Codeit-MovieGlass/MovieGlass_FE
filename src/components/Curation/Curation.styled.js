@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
-export const CurationContainer = styled.div`
+export const CurationContainer = styled.section`
   width: 100%;
   height: fit-content;
 

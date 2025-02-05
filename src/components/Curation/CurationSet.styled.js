@@ -9,8 +9,8 @@ export const CurationWrapper = styled.div`
 
 export const EmojiCurationContainer = styled.section`
   width: 100%;
-  margin-bottom: ${pxToRem(96)};
 
   display: flex;
   flex-direction: column;
+  gap: ${pxToRem(84)};
 `;

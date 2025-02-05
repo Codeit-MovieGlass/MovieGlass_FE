@@ -1,35 +1,11 @@
 import styled from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
-// TextBalloon.styled.js
-export const TBalloonContainer = styled.div`
-  position: relative;
+import { BalloonContainerStyles } from '../BalloonSection.styled';
 
-  width: fit-content;
-  height: fit-content;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: ${pxToRem(50)};
-`;
-
-export const BallonText = styled.span`
-  position: absolute;
-  transform: translateY(-50%);
-  top: 50%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_1};
-  ${({ theme }) => theme.fontStyles.Body1};
-`;
-
-// EmojiBalloon.styled.js
-export const EBalloonContainer = styled(TBalloonContainer)`
-  margin-left: auto;
+export const EmojiBalloonContainer = styled.div`
+  ${BalloonContainerStyles}
+  align-self: flex-end;
 `;
 
 export const BalloonEmojiList = styled.ul`
@@ -41,6 +17,8 @@ export const BalloonEmojiList = styled.ul`
   justify-content: center;
   align-items: center;
   gap: ${pxToRem(40)};
+
+  justify-self: flex-end;
 `;
 
 // Emojis
