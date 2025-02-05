@@ -21,4 +21,3 @@ export const sendGenresToBackend = async (selectedGenres) => {
       throw error; 
     }
   };*/
-  

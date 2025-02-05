@@ -1,98 +1,112 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
-import Arrow from '@assets/svgs/icons/arrowRightPurple.svg?react';
+export const GenreSelectionContainer = styled.div`
+  width: 100%;
+  height: 100vh;
 
-
-export const GenreSelectionFrame =styled.div`
-  width: 1920px;
-  padding: ${pxToRem(94)} ${pxToRem(46)} ${pxToRem(86)} ${pxToRem(462)};
-  
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
-export const GenreSelectionContainer = styled.div`
-  position:relative;
+export const GenreSelectionFrame = styled.section`
+  position: relative;
 
-  width: 998px;
-  height: 902px;
+  width: fit-content;
+  height: fit-content;
+  padding: ${pxToRem(48)} ${pxToRem(72)};
 
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  
-  flex-shrink: 0;
+  gap: ${pxToRem(64)};
 
   border-radius: 16px;
   border: 1px solid ${({ theme }) => theme.colors.MG_Grayscale.Gray_4};
-`
-export const GenreSelectionText = styled.header`
-  
-  width: 552px;
-  margin-Top:84px;
-  margin-Bottom:64px;
-  
-  text-align:center;
+`;
 
-  color:${({ theme }) => theme.colors.MG_Grayscale.White};
-  
+export const GenreSelectionText = styled.h2`
   ${({ theme }) => theme.fontStyles.Body1};
-  font-style: normal;
-`
-export const GenreList= styled.div`
-  width:100%; 
-  
-  display: flex;
-  justify-content:center;
+  color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+`;
 
-  flex-Direction:row;
-  flex-Wrap: wrap;
-  
-  gap: 31px;
-`
-export const Genre = styled.button`
-  width: 264px;
-  height: 84px;
-  padding: 0px 19.2px;
-  
+export const GenreList = styled.ul`
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: ${pxToRem(36)};
+`;
+
+export const GenreItem = styled.li`
+  width: fit-content;
+  height: fit-content;
+`;
+
+export const GenreButton = styled.button`
+  width: ${pxToRem(280)};
+  height: fit-content;
+  padding: ${pxToRem(20)} ${pxToRem(36)};
+
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  flex-shrink: 0;
-  
+
   border-radius: 8px;
-  border: 2px solid ${({theme}) => theme.colors.MG_Signature.Primary};
-  background:${({ theme, selected }) =>selected ? theme.colors.MG_Signature.Primary : theme.colors.MG_Grayscale.Gray_1 };
+  border: 2px solid ${({ theme }) => theme.colors.MG_Signature.Primary};
 
-  span{
-    height: 48px;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  ${({ theme }) => theme.fontStyles.Body3};
+  color: ${({ theme }) => theme.colors.MG_Signature.Light1};
+  background-color: transparent;
 
-    color: ${({theme,selected})=>selected ? theme.colors.MG_Grayscale.White : theme.colors.MG_Signature.Primary};
-  
-    ${({theme})=>theme.fontStyles.Body2}
-    font-style: normal;
-    line-height: 120%; 
+  ${({ $selected }) =>
+    $selected
+      ? css`
+          background-color: ${({ theme }) => theme.colors.MG_Signature.Primary};
+          color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+        `
+      : css`
+          opacity: 0.6;
+        `}
+
+  opacity: ${({ $initial }) => $initial && 1};
+
+  transition: opacity 0.1s ease-out;
+`;
+
+export const NextButtonContainer = styled.section`
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const NextButton = styled.button`
+  width: ${pxToRem(60)};
+  height: ${pxToRem(60)};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0.6;
+  pointer-events: none;
+
+  ${({ $selected }) =>
+    $selected &&
+    css`
+      opacity: 1;
+      pointer-events: all;
+    `}
+
+  &:hover {
+    transform: translateX(3px) scale(1.05);
   }
-`
 
-export const ArrowButton = styled.button`
-  position: absolute;
-  right:78px;
-  bottom: 37px;
-
-  line-height:0;
-`
-
-export const RightArrow=styled(Arrow)`
-  width: 60px;
-  height: 60px;
-  
-  flex-shrink: 0;
-`
+  transition:
+    transform 0.2s ease,
+    opacity 0.1s ease-out;
+`;

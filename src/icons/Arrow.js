@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components';
+import pxToRem from '@utils/pxToRem';
 
 import leftArrow from '@assets/svgs/icons/left-arrow.svg?react';
 import rightArrow from '@assets/svgs/icons/right-arrow.svg?react';
 
 import dropdownArrow from '@assets/svgs/icons/dropdown-arrow.svg?react';
+import genreSelectArrow from '@assets/svgs/icons/purple-arrow.svg?react';
 
 const topTenArrowStyles = css`
   position: absolute;
@@ -37,3 +39,8 @@ export const RightArrow = styled(rightArrow)`
 `;
 
 export const ViewCountDropdownArrow = styled(dropdownArrow)``;
+
+export const NextArrow = styled(genreSelectArrow)`
+  width: ${pxToRem(39)};
+  height: fit-content;
+`;
