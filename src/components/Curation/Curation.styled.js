@@ -7,25 +7,25 @@ export const CurationContainer = styled.div`
   flex-direction: row;
   height: ${pxToRem(425)};
   width: 100%;
-  justify-content: space-between;;
+  justify-content: space-between;
   margin-top: ${pxToRem(90)};
-  border: 1px solid;
   min-width: max-content;
-  padding-left: ${pxToRem(20)};
-  padding-right: ${pxToRem(20)};
+  padding-left: ${pxToRem(25)};
+  padding-right: ${pxToRem(25)};
 `;
 
 export const LeftArrow = styled(LArrow)`
   display: flex;
   position: relative;
   margin: 0 auto;
-  border: 1px solid;
+  left: ${pxToRem(10)};
 `;
 
 export const RightArrow = styled(RArrow)`
   display: flex;
   position: relative;
   margin: 0 auto;
+  right: ${pxToRem(10)};
 `;
 
 export const MovieListContainer = styled.div`
@@ -34,7 +34,6 @@ export const MovieListContainer = styled.div`
   height: 100%;
   width: 90%;
   min-width: max-content;
-  border: 1px solid red;
   justify-content: space-between;
 `;
 
@@ -44,7 +43,6 @@ export const CurationTitle = styled.h3`
 `;
 
 export const MovieContainer = styled.div`
-  border: 1px solid;
   margin: 0 auto;
   display: flex;
   width: 100%;
