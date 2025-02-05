@@ -4,6 +4,7 @@ import leftArrow from '@assets/svgs/icons/left-arrow.svg?react';
 import rightArrow from '@assets/svgs/icons/right-arrow.svg?react';
 
 import dropdownArrow from '@assets/svgs/icons/dropdown-arrow.svg?react';
+import pxToRem from '@utils/pxToRem';
 
 const topTenArrowStyles = css`
   position: absolute;
@@ -16,6 +17,13 @@ const topTenArrowStyles = css`
   path {
     fill-opacity: 0.8;
   }
+`;
+
+const curationArrowStyles = css`
+  width: ${pxToRem(20)};
+  height: fit-content;
+
+  transform: translateY(-50%);
 `;
 
 export const LeftArrow = styled(leftArrow)`
@@ -34,6 +42,14 @@ export const RightArrow = styled(rightArrow)`
   &:hover {
     transform: translateX(3px) scale(1.1);
   }
+`;
+
+export const CurationLeftArrow = styled(leftArrow)`
+  ${curationArrowStyles}
+`;
+
+export const CurationRightArrow = styled(rightArrow)`
+  ${curationArrowStyles}
 `;
 
 export const ViewCountDropdownArrow = styled(dropdownArrow)``;

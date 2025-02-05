@@ -1,71 +1,69 @@
-import styled from 'styled-components';
-import { LeftArrow as LArrow, RightArrow as RArrow } from '@icons/Arrow';
+import styled, { css } from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
 export const CurationContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: ${pxToRem(425)};
   width: 100%;
-  justify-content: space-between;
-  margin-top: ${pxToRem(90)};
-  min-width: max-content;
-  padding-left: ${pxToRem(25)};
-  padding-right: ${pxToRem(25)};
-`;
+  height: fit-content;
 
-export const LeftArrow = styled(LArrow)`
   display: flex;
-  position: relative;
-  margin: 0 auto;
-  left: ${pxToRem(10)};
-`;
-
-export const RightArrow = styled(RArrow)`
-  display: flex;
-  position: relative;
-  margin: 0 auto;
-  right: ${pxToRem(10)};
+  justify-content: center;
+  align-items: center;
+  gap: ${pxToRem(42)};
 `;
 
 export const MovieListContainer = styled.div`
+  width: fit-content;
+  height: fit-content;
+
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 90%;
-  min-width: max-content;
-  justify-content: space-between;
+  gap: ${pxToRem(48)};
 `;
 
 export const CurationTitle = styled.h3`
-  font: ${({ theme }) => theme.fontStyles.Header3};
-  margin-bottom: ${pxToRem(15)};
+  ${({ theme }) => theme.fontStyles.Header3};
+  letter-spacing: 0.28px;
+  color: ${({ theme }) => theme.colors.MG_Grayscale.White};
 `;
 
-export const MovieContainer = styled.div`
-  margin: 0 auto;
+const arrowButtonStyles = css`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: ${pxToRem(48)};
+  height: fit-content;
+
   display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LeftArrowButton = styled.button`
+  ${arrowButtonStyles}
+  transform: translateX(-50%);
+  left: -5%;
+`;
+
+export const RightArrowButton = styled.button`
+  ${arrowButtonStyles}
+  transform: translateX(50%);
+  right: -5%;
+`;
+
+export const MovieContainer = styled.section`
+  position: relative;
+
   width: 100%;
   min-width: max-content;
-  flex-direction: row;
-  height: ${pxToRem(360)};
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: ${pxToRem(36)};
 `;
 
-export const MovieImg = styled.img.attrs((props) => ({
-  src: props.Url || '',
-  alt: '포스터',
-}))`
+export const MovieImg = styled.img`
+  width: ${pxToRem(240)};
   height: ${pxToRem(360)};
-  margin: 0 auto;
-
-  ${({ isFirst }) =>
-    isFirst &&
-    `
-    margin-left: 0;
-  `}
-  ${({ isLast }) =>
-    isLast &&
-    `
-    margin-right: 0;
-  `}
 `;

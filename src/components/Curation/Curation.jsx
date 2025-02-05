@@ -1,54 +1,50 @@
-import * as S from './Curation.styled';
-import { CurationData } from './Mock/CurationData';
-import PropTypes from 'prop-types';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const Curation = ({ CurationTitle }) => {
-  const [mIdx, setMIdx] = useState(0);
-  const TOTALMOVIES = 10;
-  const SHOWINGMOVIES = 5;
+import { CurationLeftArrow, CurationRightArrow } from '@icons/Arrow';
 
-  const OnClickPrev = () => {
-    if (mIdx !== 0) {
-      setMIdx((prev) => prev - 1);
+import * as S from './Curation.styled';
+
+const Curation = ({ curationTitle, movieList }) => {
+  const [movieIndex, setMovieIndex] = useState(0);
+
+  const SHOWING_MOVIES = 5;
+
+  const onClickPrevious = () => {
+    if (movieIndex !== 0) {
+      setMovieIndex((prev) => prev - 1);
     }
   };
 
-  const OnClickNext = () => {
-    if (mIdx !== TOTALMOVIES - SHOWINGMOVIES) {
-      setMIdx((prev) => prev + 1);
+  const onClickNext = () => {
+    if (movieIndex !== movieList.length - SHOWING_MOVIES) {
+      setMovieIndex((prev) => prev + 1);
     }
   };
 
   return (
     <S.CurationContainer>
-      <S.LeftArrow onClick={OnClickPrev} />
-
       <S.MovieListContainer>
-        <S.CurationTitle>{CurationTitle}</S.CurationTitle>
+        <S.CurationTitle>{curationTitle}</S.CurationTitle>
         <S.MovieContainer>
-          {CurationData.slice(mIdx, SHOWINGMOVIES + mIdx).map((movie, index) => (
-            <S.MovieImg
-              key={index}
-              Url={movie.posterImgURL}
-              isFirst={index === 0}
-              isLast={index === SHOWINGMOVIES - 1}
-            />
+          <S.LeftArrowButton onClick={onClickPrevious}>
+            <CurationLeftArrow />
+          </S.LeftArrowButton>
+          {movieList.slice(movieIndex, movieIndex + SHOWING_MOVIES).map((movie, index) => (
+            <S.MovieImg key={index} src={movie.posterImgURL} alt={movie.title} />
           ))}
+          <S.RightArrowButton onClick={onClickNext}>
+            <CurationRightArrow />
+          </S.RightArrowButton>
         </S.MovieContainer>
       </S.MovieListContainer>
-
-      <S.RightArrow onClick={OnClickNext} />
     </S.CurationContainer>
   );
 };
 
 Curation.propTypes = {
-  CurationTitle: PropTypes.string.isRequired,
-};
-
-Curation.defaultProps = {
-  CurationTitle: '이런영화는 어때요?',
+  curationTitle: PropTypes.string.isRequired,
+  movieList: PropTypes.array.isRequired,
 };
 
 export default Curation;
