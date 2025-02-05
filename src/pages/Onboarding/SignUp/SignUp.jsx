@@ -3,8 +3,12 @@ import { useNavigate } from 'react-router';
 
 import * as S from './SignUp.styled';
 
+import { useSignup } from './SignUpApI';
+
+
 const SignUp = () => {
   const navigate = useNavigate();
+  const {signup, loading, error, success} = useSignup();
 
   const [formData, setFormData] = useState({ nickname: '', email: '', password: '' });
 
@@ -20,6 +24,9 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    {
+      signup(formData);
+    }
     /* 이메일 입력 받을 시에 @앞에 부분만 저장해서 서버 전달 */
   };
 
@@ -63,7 +70,7 @@ const SignUp = () => {
             required
           />
         </S.InputContainer>
-        <S.SignUpButton type="submit">회원가입</S.SignUpButton>
+        <S.SignUpButton type="submit" onClick={handleSubmit}>회원가입</S.SignUpButton>
 
         <S.LoginSection>
           이미 계정이 있으신가요? <span onClick={handleLoginClick}>로그인하기</span>
