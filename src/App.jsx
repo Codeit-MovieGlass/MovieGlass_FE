@@ -6,13 +6,17 @@ import Layout from '@layout/Layout';
 import Home from '@pages/Home/Home';
 import LoginPage from '@pages/OnBoarding/Login/Login';
 import SignUp from '@pages/OnBoarding/SignUp/SignUp';
+import { useState } from 'react';
 
 function App() {
+  const [keyword, setKeyword] = useState('');
+  console.log(keyword);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<Home />} />
+        <Route element={<Layout setKeyword={setKeyword} />}>
+          <Route index element={<Home keyword={keyword} />} />
         </Route>
 
         <Route element={<OnBoardingLayout />}>

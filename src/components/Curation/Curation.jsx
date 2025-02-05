@@ -1,5 +1,5 @@
 import * as S from './Curation.styled';
-import CurationData from '../../Mock/CurationData';
+import { CurationData } from './Mock/CurationData';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
@@ -23,19 +23,21 @@ const Curation = ({ CurationTitle }) => {
   return (
     <S.CurationContainer>
       <S.LeftArrow onClick={OnClickPrev} />
+
       <S.MovieListContainer>
         <S.CurationTitle>{CurationTitle}</S.CurationTitle>
         <S.MovieContainer>
           {CurationData.slice(mIdx, SHOWINGMOVIES + mIdx).map((movie, index) => (
             <S.MovieImg
               key={index}
-              Url={movie.imageUrl}
+              Url={movie.posterImgURL}
               isFirst={index === 0}
               isLast={index === SHOWINGMOVIES - 1}
             />
           ))}
         </S.MovieContainer>
       </S.MovieListContainer>
+
       <S.RightArrow onClick={OnClickNext} />
     </S.CurationContainer>
   );

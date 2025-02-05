@@ -7,28 +7,34 @@ export const CurationContainer = styled.div`
   flex-direction: row;
   height: ${pxToRem(425)};
   width: 100%;
-  justify-content: space-between;
-  padding: ${pxToRem(20)};
+  justify-content: space-between;;
   margin-top: ${pxToRem(90)};
+  border: 1px solid;
+  min-width: max-content;
+  padding-left: ${pxToRem(20)};
+  padding-right: ${pxToRem(20)};
 `;
 
 export const LeftArrow = styled(LArrow)`
+  display: flex;
   position: relative;
-  margin: ${pxToRem(30)};
-  left: ${pxToRem(10)};
+  margin: 0 auto;
+  border: 1px solid;
 `;
 
 export const RightArrow = styled(RArrow)`
-  margin: ${pxToRem(30)};
+  display: flex;
   position: relative;
-  right: ${pxToRem(10)};
+  margin: 0 auto;
 `;
 
 export const MovieListContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 100%;
+  width: 90%;
+  min-width: max-content;
+  border: 1px solid red;
   justify-content: space-between;
 `;
 
@@ -38,7 +44,11 @@ export const CurationTitle = styled.h3`
 `;
 
 export const MovieContainer = styled.div`
+  border: 1px solid;
+  margin: 0 auto;
   display: flex;
+  width: 100%;
+  min-width: max-content;
   flex-direction: row;
   height: ${pxToRem(360)};
 `;
@@ -47,7 +57,7 @@ export const MovieImg = styled.img.attrs((props) => ({
   src: props.Url || '',
   alt: '포스터',
 }))`
-  height: 100%;
+  height: ${pxToRem(360)};
   margin: 0 auto;
 
   ${({ isFirst }) =>
