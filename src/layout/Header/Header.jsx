@@ -7,8 +7,9 @@ import * as L from '@icons/Logo';
 import * as M from '@icons/Magnifier';
 
 import * as S from './Header.styled';
+import PropTypes from 'prop-types';
 
-const Header = () => {
+const Header = ({ setKeyword }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleProfileClick = () => {
@@ -22,7 +23,7 @@ const Header = () => {
         <L.LogoTypo />
       </S.Logos>
       <S.SearchProfile>
-        <SearchBar />
+        <SearchBar setKeyword={setKeyword} />
         <M.MagnifierSolo />
         <S.ProfileButton onClick={handleProfileClick}>
           <S.DefaultProfile />
@@ -31,6 +32,10 @@ const Header = () => {
       </S.SearchProfile>
     </S.HeaderContainer>
   );
+};
+
+Header.propTypes = {
+  setKeyword: PropTypes.func.isRequired,
 };
 
 export default Header;
