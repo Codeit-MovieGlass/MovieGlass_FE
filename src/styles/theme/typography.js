@@ -102,6 +102,11 @@ const ExtraStyles = {
     font-size: ${pxToRem(96)};
     font-weight: 900;
   `,
+  H_Regular: css`
+    ${bodyBaseFontStyles}
+    font-size: ${pxToRem(36)};
+    font-weight: 400;
+  `,
 };
 
 const fontStyles = {
