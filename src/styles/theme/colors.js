@@ -1,5 +1,6 @@
 const colors = {
   MG_Signature: {
+    Primary_Edit: '#965AFF',
     Primary: '#7E37F9',
     Light: '#F1E9FF',
   },

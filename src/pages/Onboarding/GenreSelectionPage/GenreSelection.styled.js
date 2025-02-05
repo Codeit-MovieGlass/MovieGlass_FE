@@ -6,7 +6,7 @@ import Arrow from '@assets/svgs/icons/arrowRightPurple.svg?react';
 
 export const GenreSelectionFrame =styled.div`
   width: 1920px;
-  padding: ${pxToRem(94)} ${pxToRem(46)} ${pxToRem(86)} ${pxToRem(462)};
+  padding: 108px 462px;
   
   display: flex;
   justify-content: center;
@@ -17,21 +17,20 @@ export const GenreSelectionContainer = styled.div`
   position:relative;
 
   width: 998px;
-  height: 902px;
+  height: 864px;
+  padding: 48px 72px;
 
   display:flex;
   flex-direction:column;
   align-items: center;
-  
+
   flex-shrink: 0;
 
   border-radius: 16px;
   border: 1px solid ${({ theme }) => theme.colors.MG_Grayscale.Gray_4};
 `
+
 export const GenreSelectionText = styled.header`
-  
-  width: 552px;
-  margin-Top:84px;
   margin-Bottom:64px;
   
   text-align:center;
@@ -50,12 +49,13 @@ export const GenreList= styled.div`
   flex-Direction:row;
   flex-Wrap: wrap;
   
-  gap: 31px;
+  gap: 36px;
 `
 export const Genre = styled.button`
-  width: 264px;
-  height: 84px;
-  padding: 0px 19.2px;
+  width: 259px;
+  height: 64px;
+  padding: 16px 0px;
+  margin-bottom:6px;
   
   display: flex;
   justify-content: center;
@@ -64,17 +64,18 @@ export const Genre = styled.button`
   flex-shrink: 0;
   
   border-radius: 8px;
-  border: 2px solid ${({theme}) => theme.colors.MG_Signature.Primary};
-  background:${({ theme, selected }) =>selected ? theme.colors.MG_Signature.Primary : theme.colors.MG_Grayscale.Gray_1 };
+  border: 2px solid ${({theme}) => theme.colors.MG_Signature.Primary_Edit};
+  background:${({ theme, selected }) =>selected ? theme.colors.MG_Signature.Primary_Edit : theme.colors.MG_Grayscale.Gray_2 };
 
   span{
+    width: fit-content;
     height: 48px;
   
     display: flex;
     justify-content: center;
     align-items: center;
 
-    color: ${({theme,selected})=>selected ? theme.colors.MG_Grayscale.White : theme.colors.MG_Signature.Primary};
+    color: ${({theme,selected})=>selected ? theme.colors.MG_Grayscale.White : theme.colors.MG_Signature.Primary_Edit};
   
     ${({theme})=>theme.fontStyles.Body2}
     font-style: normal;
@@ -84,8 +85,8 @@ export const Genre = styled.button`
 
 export const ArrowButton = styled.button`
   position: absolute;
-  right:78px;
-  bottom: 37px;
+  right:72px;
+  bottom: 48px;
 
   line-height:0;
 `
