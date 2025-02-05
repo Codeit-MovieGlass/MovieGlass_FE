@@ -29,7 +29,7 @@ export const CurationTitle = styled.h3`
 const arrowButtonStyles = css`
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(50%);
 
   width: ${pxToRem(48)};
   height: fit-content;
@@ -43,12 +43,24 @@ export const LeftArrowButton = styled.button`
   ${arrowButtonStyles}
   transform: translateX(-50%);
   left: -5%;
+
+  ${({ $startOfList }) =>
+    $startOfList &&
+    css`
+      pointer-events: none;
+    `}
 `;
 
 export const RightArrowButton = styled.button`
   ${arrowButtonStyles}
   transform: translateX(50%);
   right: -5%;
+
+  ${({ $endOfList }) =>
+    $endOfList &&
+    css`
+      pointer-events: none;
+    `}
 `;
 
 export const MovieContainer = styled.section`
@@ -66,4 +78,7 @@ export const MovieContainer = styled.section`
 export const MovieImg = styled.img`
   width: ${pxToRem(240)};
   height: ${pxToRem(360)};
+
+  user-select: none;
+  -webkit-user-select: none;
 `;

@@ -27,14 +27,17 @@ const Curation = ({ curationTitle, movieList }) => {
       <S.MovieListContainer>
         <S.CurationTitle>{curationTitle}</S.CurationTitle>
         <S.MovieContainer>
-          <S.LeftArrowButton onClick={onClickPrevious}>
-            <CurationLeftArrow />
+          <S.LeftArrowButton $startOfList={movieIndex === 0} onClick={onClickPrevious}>
+            <CurationLeftArrow $startOfList={movieIndex === 0} />
           </S.LeftArrowButton>
           {movieList.slice(movieIndex, movieIndex + SHOWING_MOVIES).map((movie, index) => (
             <S.MovieImg key={index} src={movie.posterImgURL} alt={movie.title} />
           ))}
-          <S.RightArrowButton onClick={onClickNext}>
-            <CurationRightArrow />
+          <S.RightArrowButton
+            $endOfList={movieIndex === movieList.length - SHOWING_MOVIES}
+            onClick={onClickNext}
+          >
+            <CurationRightArrow $endOfList={movieIndex === movieList.length - SHOWING_MOVIES} />
           </S.RightArrowButton>
         </S.MovieContainer>
       </S.MovieListContainer>

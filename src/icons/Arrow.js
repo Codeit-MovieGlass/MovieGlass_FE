@@ -46,10 +46,22 @@ export const RightArrow = styled(rightArrow)`
 
 export const CurationLeftArrow = styled(leftArrow)`
   ${curationArrowStyles}
+
+  ${({ $startOfList }) =>
+    $startOfList &&
+    css`
+      opacity: 0.2;
+    `}
 `;
 
 export const CurationRightArrow = styled(rightArrow)`
   ${curationArrowStyles}
+
+  ${({ $endOfList }) =>
+    $endOfList &&
+    css`
+      opacity: 0.2;
+    `}
 `;
 
 export const ViewCountDropdownArrow = styled(dropdownArrow)``;
