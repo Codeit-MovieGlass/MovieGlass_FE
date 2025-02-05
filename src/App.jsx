@@ -6,6 +6,7 @@ import Layout from '@layout/Layout';
 import Home from '@pages/Home/Home';
 import LoginPage from '@pages/OnBoarding/Login/Login';
 import SignUp from '@pages/OnBoarding/SignUp/SignUp';
+import GenreSelect from '@pages/OnBoarding/GenreSelectionPage/GenreSelection';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignUp />} />
         </Route>
+        <Route path="/select" element={<GenreSelect />} />
       </Routes>
     </BrowserRouter>
   );
