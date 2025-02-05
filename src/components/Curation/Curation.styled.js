@@ -29,10 +29,9 @@ export const CurationTitle = styled.h3`
 const arrowButtonStyles = css`
   position: absolute;
   top: 50%;
-  transform: translateY(50%);
 
   width: ${pxToRem(48)};
-  height: fit-content;
+  height: ${pxToRem(48)};
 
   display: flex;
   justify-content: center;
@@ -41,7 +40,7 @@ const arrowButtonStyles = css`
 
 export const LeftArrowButton = styled.button`
   ${arrowButtonStyles}
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   left: -5%;
 
   ${({ $startOfList }) =>
@@ -53,7 +52,7 @@ export const LeftArrowButton = styled.button`
 
 export const RightArrowButton = styled.button`
   ${arrowButtonStyles}
-  transform: translateX(50%);
+  transform: translate(50%, -50%);
   right: -5%;
 
   ${({ $endOfList }) =>

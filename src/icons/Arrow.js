@@ -22,8 +22,6 @@ const topTenArrowStyles = css`
 const curationArrowStyles = css`
   width: ${pxToRem(20)};
   height: fit-content;
-
-  transform: translateY(-50%);
 `;
 
 export const LeftArrow = styled(leftArrow)`
