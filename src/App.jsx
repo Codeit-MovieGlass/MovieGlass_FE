@@ -1,9 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 
+import OnBoardingLayout from '@layout/OnBoarding/OnBoardingLayout';
 import Layout from '@layout/Layout';
 
 import Home from '@pages/Home/Home';
-import GenreSelect from '@pages/Onboarding/GenreSelectionPage/GenreSelection'
+import LoginPage from '@pages/OnBoarding/Login/Login';
+import SignUp from '@pages/OnBoarding/SignUp/SignUp';
+import GenreSelect from '@pages/OnBoarding/GenreSelectionPage/GenreSelection';
 
 function App() {
   return (
@@ -12,7 +15,15 @@ function App() {
         <Route element={<Layout />}>
           <Route index element={<Home />} />
         </Route>
-        <Route path='/select' element={<GenreSelect/>}/>
+
+        <Route element={<OnBoardingLayout />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="signup" element={<SignUp />} />
+        </Route>
+
+        <Route path="select">
+          <Route path="genre" element={<GenreSelect />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

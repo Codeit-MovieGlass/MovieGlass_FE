@@ -2,12 +2,20 @@ import styled from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
 export const MovieIntroBoxContainer = styled.div`
+  position: absolute;
+  bottom: 8%;
+  right: -20%;
+
   width: ${pxToRem(320)};
   height: ${pxToRem(160)};
   padding: ${pxToRem(20)};
 
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+
+  user-select: none; /* 텍스트 선택 비활성화 */
+  -webkit-user-select: none; /* Safari */
 `;
 
 export const InfoSection = styled.section`
