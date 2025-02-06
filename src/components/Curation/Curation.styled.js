@@ -62,7 +62,7 @@ export const RightArrowButton = styled.button`
     `}
 `;
 
-export const MovieContainer = styled.section`
+export const MovieList = styled.section`
   position: relative;
 
   width: 100%;
@@ -74,7 +74,12 @@ export const MovieContainer = styled.section`
   gap: ${pxToRem(36)};
 `;
 
-export const MovieImg = styled.img`
+export const MovieInfoLink = styled.a`
+  width: fit-content;
+  height: fit-content;
+`;
+
+export const MoviePoster = styled.img`
   width: ${pxToRem(240)};
   height: ${pxToRem(360)};
 
