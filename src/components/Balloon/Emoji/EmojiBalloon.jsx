@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import * as S from './Balloon.styled';
 import * as B from '@icons/Balloon';
+
+import * as S from './EmojiBalloon.styled';
 
 const EmojiBalloon = () => {
   const [selectedEmoji, setSelectedEmoji] = useState(null);
@@ -10,7 +11,7 @@ const EmojiBalloon = () => {
   };
 
   return (
-    <S.EBalloonContainer>
+    <S.EmojiBalloonContainer>
       <B.EmojiBalloonIcon />
       <S.BalloonEmojiList>
         {selectedEmoji === null ? (
@@ -31,7 +32,7 @@ const EmojiBalloon = () => {
           </>
         )}
       </S.BalloonEmojiList>
-    </S.EBalloonContainer>
+    </S.EmojiBalloonContainer>
   );
 };
 

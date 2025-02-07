@@ -17,6 +17,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.MG_Grayscale.Gray_3};
+  background-color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_1};
 
   @media (max-width: 480px) {
     height: 80px;

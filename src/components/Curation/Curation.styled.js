@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
-export const CurationContainer = styled.div`
+export const CurationContainer = styled.section`
   width: 100%;
   height: fit-content;
 
@@ -31,7 +31,7 @@ const arrowButtonStyles = css`
   top: 50%;
 
   width: ${pxToRem(48)};
-  height: fit-content;
+  height: ${pxToRem(48)};
 
   display: flex;
   justify-content: center;
@@ -40,7 +40,7 @@ const arrowButtonStyles = css`
 
 export const LeftArrowButton = styled.button`
   ${arrowButtonStyles}
-  transform: translateY(-50%) translateX(-50%);
+  transform: translate(-50%, -50%);
   left: -5%;
 
   ${({ $startOfList }) =>
@@ -52,7 +52,7 @@ export const LeftArrowButton = styled.button`
 
 export const RightArrowButton = styled.button`
   ${arrowButtonStyles}
-  transform: translateY(-50%) translateX(50%);
+  transform: translate(50%, -50%);
   right: -5%;
 
   ${({ $endOfList }) =>
@@ -62,7 +62,7 @@ export const RightArrowButton = styled.button`
     `}
 `;
 
-export const MovieContainer = styled.section`
+export const MovieList = styled.section`
   position: relative;
 
   width: 100%;
@@ -74,8 +74,14 @@ export const MovieContainer = styled.section`
   gap: ${pxToRem(36)};
 `;
 
-export const MovieImg = styled.img`
-  width: ${pxToRem(230)};
+export const MovieInfoLink = styled.a`
+  width: fit-content;
+  height: fit-content;
+`;
+
+export const MoviePoster = styled.img`
+  width: ${pxToRem(240)};
+  height: ${pxToRem(360)};
 
   user-select: none;
   -webkit-user-select: none;
