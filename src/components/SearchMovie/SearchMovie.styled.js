@@ -11,11 +11,11 @@ export const SearchMovieContainer = styled.div`
 `;
 
 //영화 검색 헤더부분
-export const SearchMovieHeaderContainer = styled.div`
+export const SearchMovieHeaderDiv = styled.div`
   justify-content: space-between;
 `;
 
-export const SearchMoiveTitleContainer = styled.div`
+export const SearchMoiveTitleDiv = styled.div`
   display: flex;
   flex-direction: row;
 `;
@@ -30,7 +30,7 @@ export const SearchMovieTitle = styled.p`
 `;
 
 //영화 검색 이미지 부분
-export const SearchMoviePosterContainer = styled.div`
+export const SearchMoviePosterDiv = styled.div`
   margin-top: ${pxToRem(40)};
   display: flex;
   flex-wrap: wrap;

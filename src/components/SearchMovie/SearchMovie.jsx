@@ -8,17 +8,17 @@ const SearchMoive = ({ keyword }) => {
   return (
     <>
       <S.SearchMovieContainer>
-        <S.SearchMovieHeaderContainer>
-          <S.SearchMoiveTitleContainer>
+        <S.SearchMovieHeaderDiv>
+          <S.SearchMoiveTitleDiv>
             <S.SearchMovieKeyword>‘{keyword}’</S.SearchMovieKeyword>
             <S.SearchMovieTitle>에 대한 검색 내용이에요</S.SearchMovieTitle>
-          </S.SearchMoiveTitleContainer>
-        </S.SearchMovieHeaderContainer>
-        <S.SearchMoviePosterContainer>
+          </S.SearchMoiveTitleDiv>
+        </S.SearchMovieHeaderDiv>
+        <S.SearchMoviePosterDiv>
           {SearchMovieData.map((movie, index) => (
             <S.SearchMoviePoster key={index} Url={movie.posterImgURL} />
           ))}
-        </S.SearchMoviePosterContainer>
+        </S.SearchMoviePosterDiv>
       </S.SearchMovieContainer>
     </>
   );

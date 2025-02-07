@@ -12,11 +12,20 @@ import SearchMoive from '@components/SearchMovie/SearchMovie';
 const Home = ({ keyword }) => {
   return (
     <S.HomeContatiner>
-      {keyword === '' ? <TopTenList /> : <></>}
-      <S.CurationWrapper>
-        <BallonSection />
-        <Curation curationTitle={CurationData.curationTitle} movieList={CurationData.movieList} />
-      </S.CurationWrapper>
+      {keyword === '' ? (
+        <>
+          <TopTenList />
+          <S.CurationWrapper>
+            <BallonSection />
+            <Curation
+              curationTitle={CurationData.curationTitle}
+              movieList={CurationData.movieList}
+            />
+          </S.CurationWrapper>
+        </>
+      ) : (
+        <SearchMoive keyword={keyword} />
+      )}
     </S.HomeContatiner>
   );
 };
