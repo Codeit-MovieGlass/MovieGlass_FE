@@ -2,13 +2,16 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import * as S from './Login.styled';
+import axios from 'axios';
+
+import { useLogin } from './LoginApI';
 
 // 나중에 해야 할 일
 // - 로그인, 소셜 로그인, 회원가입 백엔드와 연동 로직
-// - 이메일, 닉네임 중복검사?
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const {login, error}=useLogin();
 
   // 사이트 자체 로그인 데이터
   const [formData, setFormData] = useState({
@@ -31,7 +34,8 @@ const LoginPage = () => {
   // 임시 로그인 로직 추후에 구현
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login Form Data: ', formData);
+    await login(formData);
+
   };
 
   // 비밀번호 토글

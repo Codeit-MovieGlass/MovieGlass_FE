@@ -13,7 +13,7 @@ export function useSignup() {
 
     try {
       console.log(formData);
-      const response = await axios.post('http://3.35.55.17/api/auth/signUp', formData);
+      const response = await axios.post("http://3.35.55.17/api/auth/signUp", formData);
       console.log(response);
       if (response.data.isSuccess) {
         alert(response.data.result.message); 
