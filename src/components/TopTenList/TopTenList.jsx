@@ -2,15 +2,14 @@ import { useState } from 'react';
 
 import MovieIntroBox from '@components/MovieIntroBox/MovieIntroBox';
 
-import { TopTenMovieList } from './mock/TopTenMovieList'; //api연결 전 MockData
 import { LeftArrow, RightArrow } from '@icons/Arrow';
 
 import * as S from './TopTenList.styled';
+import PropTypes from 'prop-types';
 
-const TopTenList = () => {
+const TopTenList = ({ movieList }) => {
   const username = '김철흥'; // 로그인 후 userID(name)을 통해 GET 요청으로 영화 리스트 받아오기
 
-  const [movieList, setMovieList] = useState(TopTenMovieList);
   const [currentMovieID, setCurrentMovieID] = useState(movieList[0].id);
 
   const currentMovieInfo = movieList.find((movie) => movie.id === currentMovieID);
@@ -72,6 +71,10 @@ const TopTenList = () => {
       <S.TopTenTitle>{username} 님만을 위한 TOP 10</S.TopTenTitle>
     </S.TopTenContainer>
   );
+};
+
+TopTenList.Proptypes = {
+  movieList: PropTypes.array.isRequired,
 };
 
 export default TopTenList;

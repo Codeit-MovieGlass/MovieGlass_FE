@@ -4,17 +4,19 @@ import pxToRem from '@utils/pxToRem';
 export const CurationContainer = styled.section`
   width: 100%;
   height: fit-content;
-
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: ${pxToRem(42)};
+  padding-left: ${pxToRem(120)};
+  padding-right: ${pxToRem(120)};
 `;
 
 export const MovieListContainer = styled.div`
   width: fit-content;
   height: fit-content;
-
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: ${pxToRem(48)};
