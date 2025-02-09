@@ -27,7 +27,7 @@ const KakaoCallback = () => {
 
         const sendAuthCodeToserver = async () => {
             try{
-                const response = await axios.post("",{
+                const response = await axios.post('',{
                     code: KAKAO_AUTH_CODE,
                 });
                 console.log(response.data);
@@ -41,7 +41,7 @@ const KakaoCallback = () => {
                     navigate('/');
                 }else{
                     console.warn('Authorization Code POST fail');
-                    navigate("/login");
+                    navigate('/login');
                 }
             }catch(error){
                 console.error('Fetching access token failed: ', error);

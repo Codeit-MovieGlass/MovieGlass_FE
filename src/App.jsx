@@ -6,6 +6,8 @@ import Layout from '@layout/Layout';
 import Home from '@pages/Home/Home';
 import LoginPage from '@pages/OnBoarding/Login/Login';
 import SignUp from '@pages/OnBoarding/SignUp/SignUp';
+import GoogleCallback from './auth/redirects/GoogleRedirect';
+import KakaoCallback from './auth/redirects/KakaoRedirect';
 
 function App() {
   return (
@@ -19,6 +21,12 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignUp />} />
         </Route>
+
+        <Route path="oauth">
+          <Route path="google" element={<GoogleCallback/>}/>
+          <Route path="kakao" element={<KakaoCallback/>}/>
+        </Route>
+
       </Routes>
     </BrowserRouter>
   );

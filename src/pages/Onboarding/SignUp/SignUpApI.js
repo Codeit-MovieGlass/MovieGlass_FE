@@ -1,3 +1,8 @@
+/*수정할 부분
+이메일,닉네임 중복검사 관련 로직
+중복 시 알림 수정
+ */
+
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -13,8 +18,9 @@ export function useSignup() {
 
     try {
       console.log(formData);
-      const response = await axios.post("", formData);
+      const response = await axios.post('', formData);
       console.log(response);
+
       if (response.data.isSuccess) {
         alert(response.data.result.message); 
         if(onSuccess) onSuccess();
@@ -31,9 +37,21 @@ export function useSignup() {
 }
 
 /*닉네임, 이메일 중복검사 로직
+
+이메일 형식 검사 함수
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 const checkDuplicate = async(type, value) =>{
-  if(!value) return; // 공백시 중복 검사x
-  
+  if(!value.trim()) return; // 공백시 중복 검사x
+
+  if (type === "email" && !isValidEmail(value)) {
+    setEmailError("올바른 이메일 형식을 입력해주세요.");
+    return;
+  }
+      
   try{
     const response = await axios.get('',
     params: {type, value},);
@@ -49,9 +67,5 @@ const checkDuplicate = async(type, value) =>{
     }
    };
   }
-
-  
   }
-
-
 */

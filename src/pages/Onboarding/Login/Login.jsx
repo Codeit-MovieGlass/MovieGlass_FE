@@ -31,11 +31,10 @@ const LoginPage = () => {
     });
   };
 
-  // 임시 로그인 로직 
+  // 로그인 로직 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(formData);
-
   };
 
   // 비밀번호 토글

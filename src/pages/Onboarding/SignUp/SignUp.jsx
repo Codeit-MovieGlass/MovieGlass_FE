@@ -7,7 +7,6 @@ import { useSignup } from './SignUpApI';
 
 
 const SignUp = () => {
-
   const navigate = useNavigate();
   const {signup} = useSignup();
 
@@ -23,22 +22,14 @@ const SignUp = () => {
   };
 
   /*
-  이메일 형식 검사 함수
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
   닉네임, 이메일 입력창 벗어날 때 중복검사 핸들러
   const handleBlur=(e)=>{   
     } 
   */
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    {
-      signup(formData, () => navigate('/select/genre'));
-    }
+    await signup(formData, () => navigate('/select/genre'));
   };
 
   const handleLoginClick = () => navigate('/login');
