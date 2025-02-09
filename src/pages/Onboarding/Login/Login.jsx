@@ -13,7 +13,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const {login, error}=useLogin();
 
-  // 사이트 자체 로그인 데이터
+  // 자체 로그인 데이터
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -43,27 +43,14 @@ const LoginPage = () => {
 
   const handleSignupClick = () => navigate('/signup');
 
-  // // 구글 로그인 로직(프론트에서 자체적으로 가능 추후에 백엔드와 연동)
-  // const handleGoogleLogin = async () => {
-  //   window.location.href = getGoogleLoginUrl();
-  // };
+  //소셜 로그인 핸들러
+  const handleGoogleLogin = () => {
+    window.location.href = '';
+  };
 
-  // useEffect(() => {
-  //   const params = new URLSearchParams(window.location.search);
-  //   const code = params.get('code');
-  //   if (code) {
-  //     (async () => {
-  //       try {
-  //         const tokenResponse = await fetchAccessToken(code);
-  //         const userInfo = await fetchGoogleUserInfo(tokenResponse.access_token);
-  //       } catch (error) {
-  //         console.error('Google Login Failed:', error);
-  //       }
-  //     })();
-  //   }
-  // }, []);
-
-  /*카카오 로그인 로직(추후에 구현)*/
+  const handleKakaoLogin = () => {
+    window.location.href = '';
+  };
 
   return (
     <S.LoginContainer>
@@ -94,11 +81,11 @@ const LoginPage = () => {
       </S.LoginForm>
       <S.SocialDivider />
       <S.SocialLoginContainer>
-        <S.GoogleLoginBtn>
+        <S.GoogleLoginBtn onClick={handleGoogleLogin}>
           <S.GoogleLogo />
           <S.SocialLoginText>구글로 로그인하기</S.SocialLoginText>
         </S.GoogleLoginBtn>
-        <S.KakaoLoginBtn>
+        <S.KakaoLoginBtn onClick={handleKakaoLogin}>
           <S.KakaoLogo />
           <S.SocialLoginText>카카오로 로그인하기</S.SocialLoginText>
         </S.KakaoLoginBtn>
