@@ -31,7 +31,7 @@ const LoginPage = () => {
     });
   };
 
-  // 임시 로그인 로직 추후에 구현
+  // 임시 로그인 로직 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(formData);
