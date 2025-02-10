@@ -5,6 +5,7 @@ export const BalloonWrapper = styled.section`
   width: 100%;
   height: fit-content;
   padding: ${pxToRem(24)} ${pxToRem(120)};
+  margin: 0 auto;
   margin-bottom: ${pxToRem(120)};
 
   display: flex;

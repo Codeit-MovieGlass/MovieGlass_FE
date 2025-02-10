@@ -4,7 +4,6 @@ import pxToRem from '@utils/pxToRem';
 //전체 컨테이너 및 베경 이미지
 export const TopTenContainer = styled.div`
   position: relative;
-
   width: 100%;
   min-width: 1440px;
   height: ${pxToRem(840)};
