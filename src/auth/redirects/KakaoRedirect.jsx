@@ -34,11 +34,19 @@ const KakaoCallback = () => {
                 //로그인 성공 시 로컬 스토리지에 저장할 요소 나중에 수정
                 if(response.data.isSuccess){
                     
-                    localStorage.setItem();
-                    localStorage.setItem();
-                    localStorage.setItem();
+                    localStorage.setItem('accessToken', response.data.accessToken);
+                    localStorage.setItem('refreshToken', response.data.refreshToken);
+                    localStorage.setItem('userInfo', Json.stringify(response.data.userInfo));
                     
-                    navigate('/');
+                    //상태 코드에 따른 리다이렉트 처리리
+                    if (response.status === 201) {
+                      // 최초 회원가입 -> 장르 선택 페이지로 이동
+                      navigate('/select/genre');
+                    } else if (response.status === 200) {
+                      // 기존 로그인 -> 홈페이지로 이동
+                      navigate('/');
+                    } 
+
                 }else{
                     console.warn('Authorization Code POST fail');
                     navigate('/login');

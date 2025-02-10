@@ -21,7 +21,7 @@ export function useSignup() {
         if(onSuccess) onSuccess();
       } else {
         console.log(response.status)
-        alert(`회원가입 실패: ${response.data.message}`);
+        alert(`회원가입 실패: ${response.data.message}`);//이메일 중복인지 닉네임 중복인지 구분분
       }
     } catch (error) {
       console.error("서버 오류 발생:", error);
