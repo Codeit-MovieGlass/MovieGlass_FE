@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
 export const HomeContatiner = styled.div`
+  width: 100%;
   min-width: 1440px;
   margin: 0 auto;
 `;
