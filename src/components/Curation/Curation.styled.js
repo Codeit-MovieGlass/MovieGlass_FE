@@ -44,6 +44,7 @@ export const LeftArrowButton = styled.button`
   ${arrowButtonStyles}
   transform: translate(-50%, -50%);
   left: -5%;
+  z-index: 2;
 
   ${({ $startOfList }) =>
     $startOfList &&
@@ -56,6 +57,7 @@ export const RightArrowButton = styled.button`
   ${arrowButtonStyles}
   transform: translate(50%, -50%);
   right: -5%;
+  z-index: 2;
 
   ${({ $endOfList }) =>
     $endOfList &&
@@ -76,9 +78,39 @@ export const MovieList = styled.section`
   gap: ${pxToRem(36)};
 `;
 
-export const MovieInfoLink = styled.a`
+export const MovieInfo = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 150%;
+
   width: fit-content;
-  height: fit-content;
+
+  text-align: center;
+  padding: ${pxToRem(8)};
+
+  opacity: 0;
+  z-index: 10;
+
+  transition:
+    opacity 200ms,
+    transform 200ms;
+`;
+
+export const MovieInfoLink = styled.a`
+  width: ${pxToRem(240)};
+  height: ${pxToRem(360)};
+
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    z-index: 1;
+  }
+
+  &:hover ${MovieInfo} {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 export const MoviePoster = styled.img`
@@ -87,4 +119,11 @@ export const MoviePoster = styled.img`
 
   user-select: none;
   -webkit-user-select: none;
+
+  transition: 100ms;
+
+  &:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+  }
 `;

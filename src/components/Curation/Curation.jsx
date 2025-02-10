@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { CurationLeftArrow, CurationRightArrow } from '@icons/Arrow';
 
 import * as S from './Curation.styled';
+import MovieIntroBox from '@components/MovieIntroBox/MovieIntroBox';
 
 const Curation = ({ curationTitle, movieList }) => {
   const [movieIndex, setMovieIndex] = useState(0);
@@ -33,6 +34,14 @@ const Curation = ({ curationTitle, movieList }) => {
           {movieList.slice(movieIndex, movieIndex + SHOWING_MOVIES).map((movie, index) => (
             <S.MovieInfoLink key={index}>
               <S.MoviePoster src={movie.posterImgURL} alt={movie.title} />
+              <S.MovieInfo>
+                <MovieIntroBox
+                  movieTitle={movie.title}
+                  genreList={movie.genreList}
+                  keywordList={movie.keywordList}
+                  rating={movie.rating}
+                />
+              </S.MovieInfo>
             </S.MovieInfoLink>
           ))}
           <S.RightArrowButton
