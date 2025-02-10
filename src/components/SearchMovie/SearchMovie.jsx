@@ -1,14 +1,10 @@
 import PropTypes from 'prop-types';
 import { SearchMovieData } from './Mock/SearchMovieData';
+import BackToHome from './BackToHome';
 import * as S from './SearchMovie.styled';
-import { HomeIcon } from '@icons/HomeIcon';
 
 const SearchMoive = ({ keyword }) => {
   console.log(SearchMovieData);
-
-  const onClickBackToHome = () => {
-    window.location.reload();
-  };
 
   return (
     <>
@@ -18,10 +14,7 @@ const SearchMoive = ({ keyword }) => {
             <S.SearchMovieKeyword>‘{keyword}’</S.SearchMovieKeyword>
             <S.SearchMovieTitle>에 대한 검색 내용이에요</S.SearchMovieTitle>
           </S.SearchMoiveTitleDiv>
-          <S.BackToHomeDiv onClick={onClickBackToHome}>
-            <HomeIcon />
-            <S.BackToHome>&nbsp;메인으로</S.BackToHome>
-          </S.BackToHomeDiv>
+          <BackToHome />
         </S.SearchMovieHeaderDiv>
         <S.SearchMoviePosterDiv>
           {SearchMovieData.map((movie, index) => (

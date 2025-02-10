@@ -11,6 +11,7 @@ export const CurationContainer = styled.section`
   gap: ${pxToRem(42)};
   padding-left: ${pxToRem(120)};
   padding-right: ${pxToRem(120)};
+  margin-bottom: ${pxToRem(96)};
 `;
 
 export const MovieListContainer = styled.div`
@@ -96,6 +97,16 @@ export const MovieInfo = styled.div`
     transform 200ms;
 `;
 
+export const MoviePoster = styled.img`
+  width: ${pxToRem(240)};
+  height: ${pxToRem(360)};
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  transition: 100ms;
+`;
+
 export const MovieInfoLink = styled.a`
   width: ${pxToRem(240)};
   height: ${pxToRem(360)};
@@ -111,18 +122,8 @@ export const MovieInfoLink = styled.a`
     opacity: 1;
     transform: translateY(0);
   }
-`;
 
-export const MoviePoster = styled.img`
-  width: ${pxToRem(240)};
-  height: ${pxToRem(360)};
-
-  user-select: none;
-  -webkit-user-select: none;
-
-  transition: 100ms;
-
-  &:hover {
+  &:hover ${MoviePoster} {
     transform: scale(1.5);
     cursor: pointer;
   }
