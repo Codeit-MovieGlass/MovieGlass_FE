@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import Home from '../assets/svgs/icons/Home';
+import home from '@assets/svgs/icons/home.svg?react';
 import pxToRem from '@utils/pxToRem';
 
-export const HomeIcon = styled(Home)`
+export const HomeIcon = styled(home)`
   width: ${pxToRem(34)};
   height: ${pxToRem(30)};
 `;
