@@ -21,12 +21,6 @@ const SignUp = () => {
     });
   };
 
-  /*
-  닉네임, 이메일 입력창 벗어날 때 중복검사 핸들러
-  const handleBlur=(e)=>{   
-    } 
-  */
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signup(formData, () => navigate('/select/genre'));
