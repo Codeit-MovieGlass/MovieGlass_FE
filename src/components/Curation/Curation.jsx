@@ -7,6 +7,8 @@ import * as S from './Curation.styled';
 import MovieIntroBox from '@components/MovieIntroBox/MovieIntroBox';
 
 const Curation = ({ curationTitle, movieList }) => {
+  console.log(movieList);
+
   const [movieIndex, setMovieIndex] = useState(0);
 
   const SHOWING_MOVIES = 5;
@@ -31,15 +33,15 @@ const Curation = ({ curationTitle, movieList }) => {
           <S.LeftArrowButton $startOfList={movieIndex === 0} onClick={onClickPrevious}>
             <CurationLeftArrow $startOfList={movieIndex === 0} />
           </S.LeftArrowButton>
-          {movieList.slice(movieIndex, movieIndex + SHOWING_MOVIES).map((movie, index) => (
-            <S.MovieInfoLink key={index}>
-              <S.MoviePoster src={movie.posterImgURL} alt={movie.title} />
+          {movieList.slice(movieIndex, movieIndex + SHOWING_MOVIES).map((movie) => (
+            <S.MovieInfoLink key={movie.movie_id}>
+              <S.MoviePoster src={movie.poster_url} alt={movie.movie_name} />
               <S.MovieInfo>
                 <MovieIntroBox
-                  movieTitle={movie.title}
-                  genreList={movie.genreList}
-                  keywordList={movie.keywordList}
-                  rating={movie.rating}
+                  movieTitle={movie.movie_name}
+                  genreList={movie.genre}
+                  keywordList={movie.keyword}
+                  rating={movie.averageRating}
                 />
               </S.MovieInfo>
             </S.MovieInfoLink>
@@ -59,6 +61,10 @@ const Curation = ({ curationTitle, movieList }) => {
 Curation.propTypes = {
   curationTitle: PropTypes.string.isRequired,
   movieList: PropTypes.array.isRequired,
+};
+
+Curation.defaultProps = {
+  movieList: [], // 기본값을 빈 배열로 설정
 };
 
 export default Curation;

@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
-import { SearchMovieData } from './Mock/SearchMovieData';
 import BackToHome from './BackToHome';
 import * as S from './SearchMovie.styled';
 
-const SearchMoive = ({ keyword }) => {
-  console.log(SearchMovieData);
-
+const SearchMoive = ({ keyword, searchData }) => {
   return (
     <>
       <S.SearchMovieContainer>
@@ -17,8 +14,8 @@ const SearchMoive = ({ keyword }) => {
           <BackToHome />
         </S.SearchMovieHeaderDiv>
         <S.SearchMoviePosterDiv>
-          {SearchMovieData.map((movie, index) => (
-            <S.SearchMoviePoster key={index} Url={movie.posterImgURL} />
+          {searchData.map((movie, index) => (
+            <S.SearchMoviePoster key={index} Url={movie.poster_url} />
           ))}
         </S.SearchMoviePosterDiv>
       </S.SearchMovieContainer>
@@ -28,6 +25,7 @@ const SearchMoive = ({ keyword }) => {
 
 SearchMoive.propTypes = {
   keyword: PropTypes.string.isRequired,
+  searchData: PropTypes.any.isRequired,
 };
 
 export default SearchMoive;
