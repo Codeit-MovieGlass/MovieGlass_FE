@@ -5,7 +5,7 @@ import pxToRem from '@utils/pxToRem';
 export const TopTenContainer = styled.div`
   position: relative;
   width: 100%;
-  min-width: 1440px;
+  min-width: ${pxToRem(1714)};
   height: ${pxToRem(840)};
   padding: ${pxToRem(56)} 0 ${pxToRem(48)};
 
