@@ -5,7 +5,7 @@
 완료 버튼 클릭 시 취향 분석 페이지 이동하는 이벤트 핸들러 구현
 */
 
-import { useMovies } from './MovieLogic';
+import { useMovies } from '@api/movieSelect';
 
 import { CheckIcon } from '@icons/Check';
 

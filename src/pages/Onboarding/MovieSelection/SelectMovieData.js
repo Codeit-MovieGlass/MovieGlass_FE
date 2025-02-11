@@ -1,5 +1,5 @@
 //임시 데이터
-const MovieData = [
+export const MovieData = [
   {
     id: 0,
     title: '영화0',
@@ -66,7 +66,7 @@ const MovieData = [
   },
 ];
 
-const GetMovieData = [
+export const GetMovieData = [
   {
     id: 10,
     title: '영화10',
@@ -91,5 +91,3 @@ const GetMovieData = [
       'https://i.namu.wiki/i/mGnpmn2rMF6vyQhLJPCtuMSy3JQxHOrqLioBnCv8PvZ7y4vAiG8WNQv70k_dhGF5HJmSs-PoQ5u8qfK7WmQ44rSGmyyMXM03b8AYHBXp19KQpP4pQ8eyOiml2hum3P7dVa_A2iQnkdM3HGXs5pZ8PA.webp',
   },
 ];
-
-export { MovieData, GetMovieData };

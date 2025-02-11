@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { MovieData, GetMovieData } from './SelectMovieData.js';
+import { GetMovieData, MovieData } from '@pages/OnBoarding/MovieSelection/selectMovieData';
 
 // 영화 선택 시 4개의 영화 데이터를 받아오는 로직, 백엔드와 연동할 때 수정
 const getNewMovies = async () => {
