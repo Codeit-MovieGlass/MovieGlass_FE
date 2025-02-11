@@ -9,14 +9,14 @@ import MovieIntroBox from '@components/MovieIntroBox/MovieIntroBox';
 
 const animationVariants = {
   enter: (direction) => ({
-    x: direction > 0 ? 100 : -100, // 오른쪽으로 이동 시 x: 100, 왼쪽으로 이동 시 x: -100
+    x: direction > 0 ? 50 : -50, // 오른쪽으로 이동 시 x: 50, 왼쪽으로 이동 시 x: -50
   }),
   center: {
     x: 0,
     transition: { duration: 0.05 },
   },
   exit: (direction) => ({
-    x: direction > 0 ? -100 : 100, // 오른쪽으로 이동 시 x: -100, 왼쪽으로 이동 시 x: 100
+    x: direction > 0 ? -50 : 50, // 오른쪽으로 이동 시 x: -50, 왼쪽으로 이동 시 x: 50
     transition: { duration: 0.05 },
   }),
 };
