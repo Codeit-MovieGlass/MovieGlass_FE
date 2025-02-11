@@ -1,18 +1,20 @@
+import Calendar from '@components/Calendar/Calendar';
+
 import { LikeIcon, ReviewIcon, SettingsIcon } from '@icons/MyPage';
 import { PencilIconPurple } from '@icons/EditDelete';
+import { DatePickerArrow } from '@icons/Arrow';
 
 import defaultProfile from '@assets/images/profile.jpg';
 
 import * as S from './MyPage.styled';
-import { DatePickerArrow } from '@icons/Arrow';
-
-const profileInfos = {
-  image: defaultProfile,
-  name: '김철흥',
-  email: 'keaikim77@gmail.com',
-};
 
 const Mypage = () => {
+  const profileInfos = {
+    image: defaultProfile,
+    name: '김철흥',
+    email: 'keaikim77@gmail.com',
+  };
+
   return (
     <S.MyPageContainer>
       {/* Header */}
@@ -47,6 +49,8 @@ const Mypage = () => {
       {/* Calendar */}
       <S.CalenaderContainer>
         <S.CalendarTitle>캘린더</S.CalendarTitle>
+
+        {/* Date Picker */}
         <S.DatePickContainer>
           <S.YearPickerButton>
             2025
@@ -61,6 +65,9 @@ const Mypage = () => {
             </S.DatePickerArrowBox>
           </S.MonthPickerButton>
         </S.DatePickContainer>
+
+        {/* Calendar Component */}
+        <Calendar />
       </S.CalenaderContainer>
     </S.MyPageContainer>
   );

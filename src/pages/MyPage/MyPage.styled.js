@@ -7,6 +7,10 @@ export const MyPageContainer = styled.div`
   width: 100%;
   height: fit-content;
   padding: ${pxToRem(209)} ${pxToRem(348)} ${pxToRem(226)};
+
+  @media (max-width: 1440px) {
+    padding: ${pxToRem(209)} ${pxToRem(240)} ${pxToRem(226)};
+  }
 `;
 
 // Header
@@ -83,7 +87,7 @@ export const ProfileName = styled.span`
   width: fit-content;
   height: fit-content;
 
-  ${({ theme }) => theme.fontStyles.Header2}
+  ${({ theme }) => theme.fontStyles.Header3}
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
 `;
 
@@ -92,7 +96,7 @@ export const ProfileEmail = styled.span`
   height: fit-content;
   margin-bottom: ${pxToRem(24)};
 
-  ${({ theme }) => theme.fontStyles.Body1}
+  ${({ theme }) => theme.fontStyles.Body2}
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_5};
 `;
 
@@ -107,14 +111,14 @@ export const ReviewLikeButtonContainer = styled.div`
 `;
 
 const ReviewLikeButtonStyles = css`
-  width: ${pxToRem(64)};
-  height: ${pxToRem(64)};
+  width: ${pxToRem(60)};
+  height: ${pxToRem(60)};
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border-radius: 18px;
+  border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_6};
 
   &:hover {
@@ -144,9 +148,11 @@ export const CalenaderContainer = styled.section`
 `;
 
 export const CalendarTitle = styled.h3`
-  ${({ theme }) => theme.fontStyles.Header3}
+  ${({ theme }) => theme.fontStyles.Header4}
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
   text-align: center;
+
+  white-space: nowrap;
 `;
 
 // Date Pick
@@ -154,6 +160,7 @@ export const DatePickContainer = styled.div`
   width: 100%;
   height: fit-content;
   padding: ${pxToRem(12)} 0;
+  margin-bottom: ${pxToRem(18)};
 
   display: flex;
   justify-content: flex-end;

@@ -6,12 +6,12 @@ import reviewIcon from '@assets/svgs/icons/review.svg?react';
 import settingsIcon from '@assets/svgs/icons/settings.svg?react';
 
 export const LikeIcon = styled(likeIcon)`
-  width: ${pxToRem(30)};
+  width: ${pxToRem(28)};
   height: fit-content;
 `;
 
 export const ReviewIcon = styled(reviewIcon)`
-  width: ${pxToRem(30)};
+  width: ${pxToRem(28)};
   height: fit-content;
 `;
 
