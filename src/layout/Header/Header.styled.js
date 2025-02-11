@@ -18,6 +18,8 @@ export const HeaderContainer = styled.header`
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.MG_Grayscale.Gray_3};
 
+  background-color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_1};
+
   @media (max-width: 480px) {
     height: 80px;
     padding: 10px ${pxToRem(40)};
