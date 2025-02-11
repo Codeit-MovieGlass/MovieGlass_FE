@@ -1,4 +1,3 @@
-import fontStyles from '@styles/theme/typography';
 import pxToRem from '@utils/pxToRem';
 import styled from 'styled-components';
 
@@ -62,4 +61,17 @@ export const SearchMoviePoster = styled.img.attrs((props) => ({
   object-fit: cover;
   width: 23%;
   margin-top: ${pxToRem(48)};
+`;
+
+export const NoSearchDataContainer = styled.div`
+  height: ${pxToRem(700)};
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const NoSearchDataSpace = styled.div`
+  margin-top: 30px;
 `;

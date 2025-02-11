@@ -95,10 +95,7 @@ const Home = ({ keyword }) => {
       ) : (
         <S.SearchMovieWrapper>
           <SearchMoive keyword={keyword} searchData={searchData} />
-          <Curation
-            curationTitle={'비슷한 영화를 추천해드려요'}
-            movieList={recommendCuration.movieList}
-          />
+          <Curation curationTitle={'비슷한 영화를 추천해드려요'} movieList={recommendCuration} />
         </S.SearchMovieWrapper>
       )}
     </S.HomeContatiner>
