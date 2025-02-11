@@ -9,6 +9,7 @@ export const MyPageContainer = styled.div`
   padding: ${pxToRem(209)} ${pxToRem(348)} ${pxToRem(226)};
 `;
 
+// Header
 export const MyPageHeader = styled.section`
   width: 100%;
   height: fit-content;
@@ -19,6 +20,7 @@ export const MyPageHeader = styled.section`
   gap: ${pxToRem(64)};
 `;
 
+// Profile Image
 export const ProfileImageContainer = styled.div`
   width: ${pxToRem(240)};
   height: ${pxToRem(240)};
@@ -34,6 +36,7 @@ export const ProfileImage = styled.img`
   height: 100%;
 `;
 
+// Profile Info
 export const ProfileInfoSection = styled.div`
   flex-grow: 1;
 
@@ -47,8 +50,33 @@ export const ProfileNameContainer = styled.div`
   margin-bottom: ${pxToRem(12)};
 
   display: flex;
+  gap: ${pxToRem(32)};
+`;
+
+export const ProfileEditSettingsContainer = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
   align-items: center;
-  gap: ${pxToRem(24)};
+  gap: ${pxToRem(16)};
+`;
+
+const EditSettingsButtonStyles = css`
+  width: ${pxToRem(48)};
+  height: ${pxToRem(48)};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EditButton = styled.button`
+  ${EditSettingsButtonStyles}
+`;
+
+export const SettingsButton = styled.button`
+  ${EditSettingsButtonStyles}
 `;
 
 export const ProfileName = styled.span`
@@ -68,6 +96,7 @@ export const ProfileEmail = styled.span`
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_5};
 `;
 
+// Review & Like Button
 export const ReviewLikeButtonContainer = styled.div`
   width: fit-content;
   height: fit-content;
@@ -102,4 +131,20 @@ export const MyReviewLink = styled(Link)`
 
 export const MyLikeLink = styled(Link)`
   ${ReviewLikeButtonStyles}
+`;
+
+// Calendar
+export const CalenaderContainer = styled.section`
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  gap: ${pxToRem(12)};
+`;
+
+export const CalendarTitle = styled.h3`
+  ${({ theme }) => theme.fontStyles.Header3}
+  color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+  text-align: center;
 `;
