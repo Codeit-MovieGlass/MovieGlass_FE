@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router';
 
 import { NextArrow } from '@icons/Arrow';
 
+import { handleNext } from './GenreApi';
+
 import * as S from './GenreSelection.styled';
 
 // 장르 목록
@@ -57,7 +59,7 @@ const GerneSelectionPage = () => {
         <S.NextButtonContainer>
           <S.NextButton
             $selected={selectedGenres.length == 2}
-            onClick={() => navigate('/select/movie')}
+            onClick={()=>handleNext(selectedGenres,gernes,navigate)}
           >
             <NextArrow />
           </S.NextButton>

@@ -1,23 +1,27 @@
-/*장르 데이터 백엔드 연동 추후에 수정
+import axios from "axios";
 
-export const sendGenresToBackend = async (selectedGenres) => {
-    try {
-      const response = await fetch("http://your-backend-url/api/recommend", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ genres: selectedGenres }),
-      });
-  
-      if (!response.ok) {
-        throw new Error("Failed to fetch recommendations");
+  export const handleNext = async(selectedGenres,genres,navigate) =>{
+
+    if(selectedGenres.length ===2){
+      const selectedGenreNames = genres.filter((genre)=>selectedGenres.includes(genre.id)).map(
+        (genre)=>genre.name
+      ).join(',');
+
+      console.log(selectedGenreNames);
+
+      try{
+        const response = await axios.get('',{
+          params:{genre:selectedGenreNames},
+        });
+
+        console.log('백엔드 응답 데이터:', response);
+
+        const movies = response.data;
+        navigate('/select/movie', { state: {movies} })
+
+      }catch(error){
+        console.error('영화 데이터 가져오기 실패:', error);
       }
-  
-      const data = await response.json();
-      return data; 
-    } catch (error) {
-      console.error("Error sending genres to backend:", error);
-      throw error; 
+
     }
-  };*/
+  }
