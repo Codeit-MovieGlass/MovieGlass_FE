@@ -7,7 +7,7 @@ import Home from '@pages/Home/Home';
 import LoginPage from '@pages/OnBoarding/Login/Login';
 import SignUp from '@pages/OnBoarding/SignUp/SignUp';
 import GenreSelect from '@pages/OnBoarding/GenreSelectionPage/GenreSelection';
-import MovieSelectionPage from '@pages/OnBoarding/MovieSelectionPage/MovieSelection';
+import MovieSelection from '@pages/OnBoarding/MovieSelection/MovieSelection';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
 
         <Route path="select">
           <Route path="genre" element={<GenreSelect />} />
-          <Route path="movie" element={<MovieSelectionPage />} />
+          <Route path="movie" element={<MovieSelection />} />
         </Route>
       </Routes>
     </BrowserRouter>
