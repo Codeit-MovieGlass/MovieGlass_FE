@@ -6,9 +6,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { NextArrow } from '@icons/Arrow';
+import { handleNext } from '@api/genre';
 
-import { handleNext } from './GenreApi';
+import { NextArrow } from '@icons/Arrow';
 
 import * as S from './GenreSelection.styled';
 
@@ -59,7 +59,7 @@ const GerneSelectionPage = () => {
         <S.NextButtonContainer>
           <S.NextButton
             $selected={selectedGenres.length == 2}
-            onClick={()=>handleNext(selectedGenres,gernes,navigate)}
+            onClick={() => handleNext(selectedGenres, gernes, navigate)}
           >
             <NextArrow />
           </S.NextButton>
