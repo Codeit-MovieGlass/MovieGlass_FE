@@ -7,6 +7,8 @@ import rightArrow from '@assets/svgs/icons/right-arrow.svg?react';
 import dropdownArrow from '@assets/svgs/icons/dropdown-arrow.svg?react';
 import genreSelectArrow from '@assets/svgs/icons/purple-arrow.svg?react';
 
+import datePickerArrow from '@assets/svgs/icons/arrow-down.svg?react';
+
 const topTenArrowStyles = css`
   position: absolute;
   top: 40%;
@@ -42,5 +44,11 @@ export const ViewCountDropdownArrow = styled(dropdownArrow)``;
 
 export const NextArrow = styled(genreSelectArrow)`
   width: ${pxToRem(39)};
+  height: fit-content;
+`;
+
+// Date Picker
+export const DatePickerArrow = styled(datePickerArrow)`
+  width: ${pxToRem(12)};
   height: fit-content;
 `;

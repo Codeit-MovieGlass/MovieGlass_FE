@@ -148,3 +148,49 @@ export const CalendarTitle = styled.h3`
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
   text-align: center;
 `;
+
+// Date Pick
+export const DatePickContainer = styled.div`
+  width: 100%;
+  height: fit-content;
+  padding: ${pxToRem(12)} 0;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: ${pxToRem(12)};
+`;
+
+const DatePickButtonStyles = css`
+  width: fit-content;
+  height: fit-content;
+  padding: ${pxToRem(4)} ${pxToRem(12)};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: ${pxToRem(8)};
+
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.MG_Grayscale.Gray_4};
+
+  ${({ theme }) => theme.fontStyles.Header7}
+  color: ${({ theme }) => theme.colors.MG_Signature.Primary_Light};
+`;
+
+export const YearPickerButton = styled.button`
+  ${DatePickButtonStyles}
+`;
+
+export const MonthPickerButton = styled.button`
+  ${DatePickButtonStyles}
+`;
+
+export const DatePickerArrowBox = styled.div`
+  width: ${pxToRem(24)};
+  height: ${pxToRem(24)};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

@@ -4,6 +4,7 @@ import { PencilIconPurple } from '@icons/EditDelete';
 import defaultProfile from '@assets/images/profile.jpg';
 
 import * as S from './MyPage.styled';
+import { DatePickerArrow } from '@icons/Arrow';
 
 const profileInfos = {
   image: defaultProfile,
@@ -46,6 +47,20 @@ const Mypage = () => {
       {/* Calendar */}
       <S.CalenaderContainer>
         <S.CalendarTitle>캘린더</S.CalendarTitle>
+        <S.DatePickContainer>
+          <S.YearPickerButton>
+            2025
+            <S.DatePickerArrowBox>
+              <DatePickerArrow />
+            </S.DatePickerArrowBox>
+          </S.YearPickerButton>
+          <S.MonthPickerButton>
+            JAN
+            <S.DatePickerArrowBox>
+              <DatePickerArrow />
+            </S.DatePickerArrowBox>
+          </S.MonthPickerButton>
+        </S.DatePickContainer>
       </S.CalenaderContainer>
     </S.MyPageContainer>
   );
