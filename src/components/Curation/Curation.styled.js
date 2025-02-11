@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import pxToRem from '@utils/pxToRem';
+import { motion } from 'framer-motion';
 
 export const CurationContainer = styled.section`
   width: 100%;
@@ -15,7 +16,7 @@ export const CurationContainer = styled.section`
 `;
 
 export const MovieListContainer = styled.div`
-  width: fit-content;
+  width: 100%;
   height: fit-content;
   margin: 0 auto;
   display: flex;
@@ -107,7 +108,7 @@ export const MoviePoster = styled.img`
   transition: 100ms;
 `;
 
-export const MovieInfoLink = styled.a`
+export const MovieInfoLink = styled(motion.a)`
   width: ${pxToRem(240)};
   height: ${pxToRem(360)};
 
