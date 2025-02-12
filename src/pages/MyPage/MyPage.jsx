@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { format, subYears } from 'date-fns';
 
+import AccountDropdown from '@components/AccountDropdown/AccountDropdown';
 import Calendar from '@components/Calendar/Calendar';
 import DatePickerDropdown from '@components/Calendar/DatePicker/DatePickerDropdown';
 
@@ -61,6 +62,7 @@ const Mypage = () => {
 
   const yearDropdownRef = useRef(null);
   const monthDropdownRef = useRef(null);
+  const accountDropdownRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -71,11 +73,20 @@ const Mypage = () => {
       if (monthDropdownRef.current && !monthDropdownRef.current.contains(e.target)) {
         setIsMonthPickerOpen(false);
       }
+
+      if (accountDropdownRef.current && !accountDropdownRef.current.contains(e.target)) {
+        setIsAccountDropdownOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Account Dropdown 상태 관리
+  const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
+
+  const handleAccountDropdown = () => setIsAccountDropdownOpen(!isAccountDropdownOpen);
 
   return (
     <S.MyPageContainer>
@@ -91,9 +102,12 @@ const Mypage = () => {
               <S.EditButton>
                 <PencilIconPurple />
               </S.EditButton>
-              <S.SettingsButton>
-                <SettingsIcon />
-              </S.SettingsButton>
+              <S.AccountDropdownContainer ref={accountDropdownRef}>
+                <S.SettingsButton onClick={handleAccountDropdown}>
+                  <SettingsIcon />
+                </S.SettingsButton>
+                {isAccountDropdownOpen && <AccountDropdown />}
+              </S.AccountDropdownContainer>
             </S.ProfileEditSettingsContainer>
           </S.ProfileNameContainer>
           <S.ProfileEmail>{profileInfos.email}</S.ProfileEmail>

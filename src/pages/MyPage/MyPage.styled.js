@@ -54,6 +54,8 @@ export const ProfileNameContainer = styled.div`
   margin-bottom: ${pxToRem(12)};
 
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: ${pxToRem(32)};
 `;
 
@@ -77,6 +79,13 @@ const EditSettingsButtonStyles = css`
 
 export const EditButton = styled.button`
   ${EditSettingsButtonStyles}
+`;
+
+export const AccountDropdownContainer = styled.div`
+  position: relative;
+
+  width: fit-content;
+  height: fit-content;
 `;
 
 export const SettingsButton = styled.button`
