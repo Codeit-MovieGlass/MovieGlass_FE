@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
 
+import useDisableScroll from '@hooks/useDisableScroll';
+
 import * as S from './ModalWrapper.styled';
 
 const ModalWrapper = ({ children }) => {
+  useDisableScroll();
+
   return (
     <>
       <S.ModalBackground />
@@ -14,6 +18,7 @@ const ModalWrapper = ({ children }) => {
 
 ModalWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };
 
 export default ModalWrapper;
