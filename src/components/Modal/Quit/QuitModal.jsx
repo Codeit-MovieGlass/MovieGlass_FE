@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { WithdrawlIcon } from '@icons/WithDrawl';
+import { WithdrawlIcon } from '@icons/MyPage';
 
 import * as S from './QuitModal.styled';
 

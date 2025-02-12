@@ -7,7 +7,7 @@ import DatePickerDropdown from '@components/Calendar/DatePicker/DatePickerDropdo
 import ModalWrapper from '@components/Modal/Wrapper/ModalWrapper';
 import QuitModal from '@components/Modal/Quit/QuitModal';
 
-import { LikeIcon, ReviewIcon, SettingsIcon } from '@icons/MyPage';
+import { CameraIcon, LikeIcon, ReviewIcon, SettingsIcon } from '@icons/MyPage';
 import { PencilIconPurple } from '@icons/EditDelete';
 import { DatePickerArrow } from '@icons/Arrow';
 
@@ -16,7 +16,7 @@ import defaultProfile from '@assets/images/profile.jpg';
 import * as S from './MyPage.styled';
 
 const Mypage = () => {
-  const profileInfos = {
+  const profileDummyData = {
     image: defaultProfile,
     name: '김철흥',
     email: 'keaikim77@gmail.com',
@@ -102,20 +102,66 @@ const Mypage = () => {
   const handleQuitModalOpen = () => setIsQuitModalOpen(true);
   const handleQuitModalClose = () => setIsQuitModalOpen(false);
 
+  // 프로필 수정 시 상태 관리
+  const [isProfileEditing, setIsProfileEditing] = useState(false);
+  const [profileInfos, setProfileInfos] = useState({
+    image: profileDummyData.image,
+    name: profileDummyData.name,
+  });
+
+  const imageInputRef = useRef(null);
+
+  const handleProfileEditClick = () => setIsProfileEditing(true);
+
+  const handleImageEditClick = () => {
+    if (!imageInputRef.current) return;
+
+    imageInputRef.current.click();
+  };
+
+  const handleProfileImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const newImage = e.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        setProfileInfos({ ...profileInfos, image: reader.result });
+      };
+      reader.readAsDataURL(newImage);
+    }
+  };
+
   return (
     <>
       <S.MyPageWrapper>
         <S.MyPageContainer>
           {/* Header */}
           <S.MyPageHeader>
-            <S.ProfileImageContainer>
+            <S.ProfileImageContainer $isProfileEditing={isProfileEditing}>
+              {isProfileEditing && (
+                <>
+                  <S.ProfileImageFileInput
+                    ref={imageInputRef}
+                    type="file"
+                    accept="image/jpg, image/jpeg, image/png"
+                    onChange={handleProfileImageChange}
+                  />
+                  <S.ProfileImageEditButton onClick={handleImageEditClick}>
+                    <S.ProfileImageEditContainer>
+                      <S.CameraIconBox>
+                        <CameraIcon />
+                      </S.CameraIconBox>
+                    </S.ProfileImageEditContainer>
+                  </S.ProfileImageEditButton>
+                </>
+              )}
               <S.ProfileImage src={profileInfos.image} alt="Profile Image" />
             </S.ProfileImageContainer>
             <S.ProfileInfoSection>
               <S.ProfileNameContainer>
-                <S.ProfileName>{profileInfos.name}</S.ProfileName>
+                <S.ProfileName>{profileDummyData.name}</S.ProfileName>
                 <S.ProfileEditSettingsContainer>
-                  <S.EditButton>
+                  <S.EditButton onClick={handleProfileEditClick}>
                     <PencilIconPurple />
                   </S.EditButton>
                   <S.AccountDropdownContainer ref={accountDropdownRef}>
@@ -131,7 +177,7 @@ const Mypage = () => {
                   </S.AccountDropdownContainer>
                 </S.ProfileEditSettingsContainer>
               </S.ProfileNameContainer>
-              <S.ProfileEmail>{profileInfos.email}</S.ProfileEmail>
+              <S.ProfileEmail>{profileDummyData.email}</S.ProfileEmail>
               <S.ReviewLikeButtonContainer>
                 <S.MyReviewLink to="review">
                   <ReviewIcon />

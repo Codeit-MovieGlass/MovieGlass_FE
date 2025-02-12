@@ -31,6 +31,8 @@ export const MyPageHeader = styled.section`
 
 // Profile Image
 export const ProfileImageContainer = styled.div`
+  position: relative;
+
   width: ${pxToRem(240)};
   height: ${pxToRem(240)};
 
@@ -38,6 +40,42 @@ export const ProfileImageContainer = styled.div`
   overflow: hidden;
 
   flex-shrink: 0;
+`;
+
+export const ProfileImageFileInput = styled.input`
+  display: none;
+`;
+
+export const ProfileImageEditButton = styled.button`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  width: 100%;
+  height: 100%;
+`;
+
+export const ProfileImageEditContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(16, 14, 16, 0.6);
+`;
+
+export const CameraIconBox = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: fit-content;
+  height: fit-content;
 `;
 
 export const ProfileImage = styled.img`

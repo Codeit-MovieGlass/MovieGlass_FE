@@ -18,7 +18,6 @@ const ModalWrapper = ({ children }) => {
 
 ModalWrapper.propTypes = {
   children: PropTypes.node.isRequired,
-  isOpen: PropTypes.bool.isRequired,
 };
 
 export default ModalWrapper;
