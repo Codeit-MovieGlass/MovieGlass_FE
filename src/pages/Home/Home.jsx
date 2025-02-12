@@ -6,7 +6,6 @@ import Curation from '@components/Curation/Curation';
 
 import * as S from './Home.styled';
 import SearchMoive from '@components/SearchMovie/SearchMovie';
-import { TopTenMovieList } from '@components/TopTenList/mock/TopTenMovieList';
 import { useCallback, useEffect, useState } from 'react';
 import {
   getCurationShuffleData,
@@ -22,21 +21,23 @@ const Home = ({ keyword }) => {
   const [selectedEmoji, setSelectedEmoji] = useState('');
   const [searchData, setSearchData] = useState([]);
   const [recommendCuration, setRecommendCuration] = useState([]);
+  const [topTenData, setTopTenData] = useState([]);
 
-  // //탑텐
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     try {
-  //       const result = await getTopTenData();
-  //       setCurationList(result);
-  //     } catch (err) {
-  //       console.error(err.message);
-  //     } finally {
-  //       //
-  //     }
-  //   };
-  //   getData();
-  // }, []);
+  //탑텐
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const result = await getTopTenData();
+        setTopTenData(result.result.top10Data.top10Movies);
+        console.log(result.result.top10Data.top10Movies);
+      } catch (err) {
+        console.error(err.message);
+      } finally {
+        //
+      }
+    };
+    getData();
+  }, []);
 
   //큐레이션 셔플
   useEffect(() => {
@@ -93,7 +94,7 @@ const Home = ({ keyword }) => {
     <S.HomeContatiner>
       {keyword === '' ? (
         <>
-          <TopTenList movieList={TopTenMovieList} />
+          {topTenData.length > 0 && <TopTenList movieList={topTenData} />}
           <S.CurationWrapper>
             {selectedEmoji === '' ? (
               <BallonSection selectedEmoji={selectedEmoji} setSelectedEmoji={setSelectedEmoji} />

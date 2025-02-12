@@ -39,7 +39,11 @@ export const getSearchData = async (keyword) => {
 
 export const getTopTenData = async () => {
   try {
-    const response = await api.get('/movies/top10');
+    const response = await api.get('/movies/top10', {
+      headers: {
+        Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJ0ZXN0MTFAZ21haWwuY29tIiwiaWF0IjoxNzM5Mzc1OTQ0LCJleHAiOjE3MzkzNzk1NDR9.MyFSX3ykggU_lg50FFbdzgCkn2XSgaNJ1za2y8BY6Ps'}`, // 토큰 추가
+      },
+    });
     console.log('탑텐 응답 데이터:', response);
     return response.data;
   } catch (error) {

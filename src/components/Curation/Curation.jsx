@@ -72,8 +72,15 @@ const Curation = ({ curationTitle, movieList = [] }) => {
           <S.RightArrowButton
             $endOfList={movieIndex === movieList.length - SHOWING_MOVIES}
             onClick={onClickNext}
+            disabled={movieList.length < SHOWING_MOVIES}
           >
-            <CurationRightArrow $endOfList={movieIndex === movieList.length - SHOWING_MOVIES} />
+            <CurationRightArrow
+              $endOfList={
+                movieList.length > SHOWING_MOVIES
+                  ? movieIndex === movieList.length - SHOWING_MOVIES
+                  : movieList.length
+              }
+            />
           </S.RightArrowButton>
         </S.MovieList>
       </S.MovieListContainer>
