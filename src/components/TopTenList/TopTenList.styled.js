@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 import pxToRem from '@utils/pxToRem';
 
 //전체 컨테이너 및 베경 이미지
 export const TopTenContainer = styled.div`
   position: relative;
-
   width: 100%;
-  min-width: 1440px;
+  min-width: ${pxToRem(1714)};
   height: ${pxToRem(840)};
   padding: ${pxToRem(56)} 0 ${pxToRem(48)};
 
@@ -51,14 +51,12 @@ export const CurrentMovieContainer = styled.div`
   height: fit-content;
 `;
 
-export const CurrentMoviePoster = styled.img`
+export const CurrentMoviePoster = styled(motion.img)`
   width: ${pxToRem(432)};
   height: ${pxToRem(576)};
-
   cursor: pointer;
-
-  user-select: none; /* 텍스트 선택 비활성화 */
-  -webkit-user-select: none; /* Safari */
+  user-select: none;
+  -webkit-user-select: none;
 `;
 
 export const CurrentMovieNumber = styled.span`
@@ -97,11 +95,11 @@ const sideMoviePosterStyles = css`
   -webkit-user-select: none;
 `;
 
-export const PreviousMoviePoster = styled.img`
+export const PreviousMoviePoster = styled(motion.img)`
   ${sideMoviePosterStyles}/* transform: rotateY(-20deg) translate(-50%, -50%); */
 `;
 
-export const NextMoviePoster = styled.img`
+export const NextMoviePoster = styled(motion.img)`
   ${sideMoviePosterStyles}/* transform:rotateY(20deg) translate(50%, -50%); */
 `;
 

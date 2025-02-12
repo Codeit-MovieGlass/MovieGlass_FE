@@ -34,11 +34,4 @@ MovieIntroBox.propTypes = {
   rating: PropTypes.number.isRequired,
 };
 
-// MovieIntroBox.defaultProps = {
-//   movieTitle: '해리포터와 마법사의 돌',
-//   genreList: ['판타지', '모험', '판타지', '모험', '판타지', '모험'],
-//   keywordList: ['해리포터', '마법사', '돌'],
-//   rating: 4.5,
-// };
-
 export default MovieIntroBox;
