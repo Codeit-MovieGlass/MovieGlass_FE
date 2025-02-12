@@ -97,6 +97,7 @@ export const ProfileEmail = styled.span`
   margin-bottom: ${pxToRem(24)};
 
   ${({ theme }) => theme.fontStyles.Body2}
+  letter-spacing: 0;
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_5};
 `;
 
@@ -185,12 +186,28 @@ const DatePickButtonStyles = css`
   color: ${({ theme }) => theme.colors.MG_Signature.Primary_Light};
 `;
 
+export const YearPickerContainer = styled.div`
+  position: relative;
+
+  width: fit-content;
+  height: fit-content;
+`;
+
 export const YearPickerButton = styled.button`
   ${DatePickButtonStyles}
 `;
 
+export const MonthPickerContainer = styled.div`
+  position: relative;
+
+  width: fit-content;
+  height: fit-content;
+`;
+
 export const MonthPickerButton = styled.button`
   ${DatePickButtonStyles}
+
+  min-width: ${pxToRem(94)};
 `;
 
 export const DatePickerArrowBox = styled.div`
