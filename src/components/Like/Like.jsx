@@ -3,7 +3,7 @@ import { useState } from 'react';
 import * as S from './Like.styled';
 
 const Like = () => {
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(true)
 
   const handleLikeClick = () => setIsLiked(!isLiked);
 
