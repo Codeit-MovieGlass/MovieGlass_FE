@@ -1,18 +1,21 @@
 import PropTypes from 'prop-types';
+import { useCallback, useEffect, useState } from 'react';
 
 import TopTenList from '@components/TopTenList/TopTenList';
 import BallonSection from '@components/Balloon/BallonSection';
 import Curation from '@components/Curation/Curation';
+import SearchMovie from '@components/SearchMovie/SearchMovie';
 
-import * as S from './Home.styled';
-import SearchMoive from '@components/SearchMovie/SearchMovie';
-import { useCallback, useEffect, useState } from 'react';
+// import { TopTenMovieList } from '@components/TopTenList/mock/TopTenMovieList';
+
 import {
   getCurationShuffleData,
   getEmotionCurationData,
   getSearchData,
   getTopTenData,
 } from '@api/homeApi';
+
+import * as S from './Home.styled';
 
 const Home = ({ keyword }) => {
   // const [TopTenMovieList, setTopTenMovieList] = useState(null);
@@ -39,7 +42,7 @@ const Home = ({ keyword }) => {
     getData();
   }, []);
 
-  //큐레이션 셔플
+  // 큐레이션 셔플
   useEffect(() => {
     const getData = async () => {
       try {
@@ -54,7 +57,7 @@ const Home = ({ keyword }) => {
     getData();
   }, []);
 
-  //감정 큐레이션 불러오기
+  // 감정 큐레이션 불러오기
   const fetchEmotionCuration = useCallback(async () => {
     if (selectedEmoji === '') return;
 
@@ -70,7 +73,7 @@ const Home = ({ keyword }) => {
     fetchEmotionCuration();
   }, [fetchEmotionCuration]);
 
-  //검색 데이터 불러오기
+  // 검색 데이터 불러오기
   useEffect(() => {
     if (keyword === '') return;
 
@@ -82,8 +85,6 @@ const Home = ({ keyword }) => {
         console.log(result.result.searchResults.recommendations);
       } catch (err) {
         console.error(err.message);
-      } finally {
-        //
       }
     };
 
@@ -91,7 +92,7 @@ const Home = ({ keyword }) => {
   }, [keyword]);
 
   return (
-    <S.HomeContatiner>
+    <S.HomeContainer>
       {keyword === '' ? (
         <>
           {topTenData.length > 0 && <TopTenList movieList={topTenData} />}
@@ -115,16 +116,14 @@ const Home = ({ keyword }) => {
         </>
       ) : (
         <S.SearchMovieWrapper>
-          <SearchMoive keyword={keyword} searchData={searchData} />
-          <Curation curationTitle={'비슷한 영화를 추천해드려요'} movieList={recommendCuration} />
+          <SearchMovie keyword={keyword} searchData={searchData} />
+          <Curation curationTitle="비슷한 영화를 추천해드려요" movieList={recommendCuration} />
         </S.SearchMovieWrapper>
       )}
-    </S.HomeContatiner>
+    </S.HomeContainer>
   );
 };
 
-Home.propTypes = {
-  keyword: PropTypes.string.isRequired,
-};
+Home.propTypes = { keyword: PropTypes.string.isRequired };
 
 export default Home;
