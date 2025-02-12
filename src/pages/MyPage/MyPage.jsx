@@ -14,6 +14,7 @@ import { DatePickerArrow } from '@icons/Arrow';
 import defaultProfile from '@assets/images/profile.jpg';
 
 import * as S from './MyPage.styled';
+import EditProfileName from '@components/EditProfileName/EditProfileName';
 
 const Mypage = () => {
   const profileDummyData = {
@@ -112,6 +113,7 @@ const Mypage = () => {
   const imageInputRef = useRef(null);
 
   const handleProfileEditClick = () => setIsProfileEditing(true);
+  const handleProfileEditCancel = () => setIsProfileEditing(false);
 
   const handleImageEditClick = () => {
     if (!imageInputRef.current) return;
@@ -129,6 +131,10 @@ const Mypage = () => {
       };
       reader.readAsDataURL(newImage);
     }
+  };
+
+  const handleProfileNameChange = (e) => {
+    setProfileInfos({ ...profileInfos, name: e.target.value });
   };
 
   return (
@@ -159,23 +165,33 @@ const Mypage = () => {
             </S.ProfileImageContainer>
             <S.ProfileInfoSection>
               <S.ProfileNameContainer>
-                <S.ProfileName>{profileDummyData.name}</S.ProfileName>
-                <S.ProfileEditSettingsContainer>
-                  <S.EditButton onClick={handleProfileEditClick}>
-                    <PencilIconPurple />
-                  </S.EditButton>
-                  <S.AccountDropdownContainer ref={accountDropdownRef}>
-                    <S.SettingsButton onClick={handleAccountDropdown}>
-                      <SettingsIcon />
-                    </S.SettingsButton>
-                    {isAccountDropdownOpen && (
-                      <AccountDropdown
-                        handleAccountDropdown={handleAccountDropdown}
-                        handleQuitModalOpen={handleQuitModalOpen}
-                      />
-                    )}
-                  </S.AccountDropdownContainer>
-                </S.ProfileEditSettingsContainer>
+                {isProfileEditing ? (
+                  <EditProfileName
+                    profileName={profileInfos.name}
+                    handleProfileNameChange={handleProfileNameChange}
+                    handleProfileEditCancel={handleProfileEditCancel}
+                  />
+                ) : (
+                  <S.ProfileName>{profileInfos.name}</S.ProfileName>
+                )}
+                {!isProfileEditing && (
+                  <S.ProfileEditSettingsContainer>
+                    <S.EditButton onClick={handleProfileEditClick}>
+                      <PencilIconPurple />
+                    </S.EditButton>
+                    <S.AccountDropdownContainer ref={accountDropdownRef}>
+                      <S.SettingsButton onClick={handleAccountDropdown}>
+                        <SettingsIcon />
+                      </S.SettingsButton>
+                      {isAccountDropdownOpen && (
+                        <AccountDropdown
+                          handleAccountDropdown={handleAccountDropdown}
+                          handleQuitModalOpen={handleQuitModalOpen}
+                        />
+                      )}
+                    </S.AccountDropdownContainer>
+                  </S.ProfileEditSettingsContainer>
+                )}
               </S.ProfileNameContainer>
               <S.ProfileEmail>{profileDummyData.email}</S.ProfileEmail>
               <S.ReviewLikeButtonContainer>

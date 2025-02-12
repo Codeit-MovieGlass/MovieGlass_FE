@@ -94,6 +94,7 @@ export const ProfileInfoSection = styled.div`
 export const ProfileNameContainer = styled.div`
   width: 100%;
   height: fit-content;
+  min-height: ${pxToRem(64)};
   margin-bottom: ${pxToRem(12)};
 
   display: flex;
