@@ -53,7 +53,6 @@ const bodyStyles = {
   Body2: css`
     ${bodyBaseFontStyles}
     font-size: ${pxToRem(24)};
-    letter-spacing: 0.72px;
   `,
   Body3: css`
     ${bodyBaseFontStyles}

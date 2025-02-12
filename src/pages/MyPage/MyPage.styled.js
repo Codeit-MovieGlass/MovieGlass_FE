@@ -3,10 +3,15 @@ import pxToRem from '@utils/pxToRem';
 
 import { Link } from 'react-router';
 
+export const MyPageWrapper = styled.div`
+  width: 100%;
+  height: fit-content;
+`;
+
 export const MyPageContainer = styled.div`
   width: 100%;
   height: fit-content;
-  padding: ${pxToRem(209)} ${pxToRem(348)} ${pxToRem(226)};
+  padding: ${pxToRem(150)} ${pxToRem(348)} ${pxToRem(226)};
 
   @media (max-width: 1440px) {
     padding: ${pxToRem(209)} ${pxToRem(240)} ${pxToRem(226)};

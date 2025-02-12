@@ -10,7 +10,7 @@ export const HeaderContainer = styled.header`
 
   position: fixed;
   top: 0;
-  z-index: 1000; // 마이페이지 모달 클릭 위해 추가
+  z-index: 100; // 마이페이지 모달 클릭 위해 추가
 
   display: flex;
   justify-content: space-between;
