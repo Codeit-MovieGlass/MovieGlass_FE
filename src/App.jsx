@@ -1,17 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 
-import OnBoardingLayout from '@layout/OnBoarding/OnBoardingLayout';
 import Layout from '@layout/Layout';
+import OnBoardingLayout from '@layout/OnBoarding/OnBoardingLayout';
 
 import Home from '@pages/Home/Home';
 import MyPage from "@pages/MyPage/MyPage";
-import MyReviewPage from "@pages/MyReviewPage"; // 
+import MyReviewPage from "@pages/ReviewPage/MyReviewPage"; // 
 
+import CollectionDetail from "@pages/Collection/CollectionDetail";
+import CollectionPage from "@pages/Collection/CollectionPage";
+import GenreSelect from '@pages/OnBoarding/GenreSelectionPage/GenreSelection';
 import LoginPage from '@pages/OnBoarding/Login/Login';
 import SignUp from '@pages/OnBoarding/SignUp/SignUp';
-import GenreSelect from '@pages/OnBoarding/GenreSelectionPage/GenreSelection';
-import CollectionPage from "@pages/Collection/CollectionPage";
-import CollectionDetail from "@pages/Collection/CollectionDetail";
 
 function App() {
   return (
