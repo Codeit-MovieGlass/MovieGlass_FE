@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { HomeIcon } from '@icons/HomeIcon';
+import BackToHome from '@components/BackToHome/BackToHome';
 
 import * as S from './NoSearchData.styled';
 
@@ -12,12 +12,8 @@ const NoSearchData = ({ keyword }) => {
         다른 단어로 검색해보세요.
       </S.SearchMovieText>
 
-      <S.BackToHomeLink href="/">
-        <S.HomeIconBox>
-          <HomeIcon />
-        </S.HomeIconBox>
-        <S.BackToHomeText>메인으로</S.BackToHomeText>
-      </S.BackToHomeLink>
+      {/* 메인으로 */}
+      <BackToHome />
     </S.NoSearchDataContainer>
   );
 };
