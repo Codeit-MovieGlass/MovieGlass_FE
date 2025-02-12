@@ -8,7 +8,12 @@ import * as S from './Home.styled';
 import SearchMoive from '@components/SearchMovie/SearchMovie';
 import { TopTenMovieList } from '@components/TopTenList/mock/TopTenMovieList';
 import { useCallback, useEffect, useState } from 'react';
-import { getCurationShuffleData, getEmotionCurationData, getSearchData } from '@api/homeApi';
+import {
+  getCurationShuffleData,
+  getEmotionCurationData,
+  getSearchData,
+  getTopTenData,
+} from '@api/homeApi';
 
 const Home = ({ keyword }) => {
   // const [TopTenMovieList, setTopTenMovieList] = useState(null);
@@ -17,6 +22,21 @@ const Home = ({ keyword }) => {
   const [selectedEmoji, setSelectedEmoji] = useState('');
   const [searchData, setSearchData] = useState([]);
   const [recommendCuration, setRecommendCuration] = useState([]);
+
+  // //탑텐
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const result = await getTopTenData();
+  //       setCurationList(result);
+  //     } catch (err) {
+  //       console.error(err.message);
+  //     } finally {
+  //       //
+  //     }
+  //   };
+  //   getData();
+  // }, []);
 
   //큐레이션 셔플
   useEffect(() => {

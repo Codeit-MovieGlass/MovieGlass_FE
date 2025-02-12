@@ -10,7 +10,6 @@ import { useState } from 'react';
 
 function App() {
   const [keyword, setKeyword] = useState('');
-  console.log(keyword);
 
   return (
     <BrowserRouter>

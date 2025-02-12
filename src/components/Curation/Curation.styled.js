@@ -98,7 +98,7 @@ export const MovieInfo = styled.div`
     transform 200ms;
 `;
 
-export const MoviePoster = styled.img`
+export const MoviePoster = styled(motion.img)`
   width: ${pxToRem(240)};
   height: ${pxToRem(360)};
 

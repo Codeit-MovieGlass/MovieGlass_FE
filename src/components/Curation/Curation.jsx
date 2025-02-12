@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { AnimatePresence } from 'framer-motion';
-
 import { CurationLeftArrow, CurationRightArrow } from '@icons/Arrow';
 
 import * as S from './Curation.styled';
@@ -21,9 +19,7 @@ const animationVariants = {
   }),
 };
 
-const Curation = ({ curationTitle, movieList }) => {
-  console.log(movieList);
-
+const Curation = ({ curationTitle, movieList = [] }) => {
   const [movieIndex, setMovieIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -51,28 +47,28 @@ const Curation = ({ curationTitle, movieList }) => {
           <S.LeftArrowButton $startOfList={movieIndex === 0} onClick={onClickPrevious}>
             <CurationLeftArrow $startOfList={movieIndex === 0} />
           </S.LeftArrowButton>
-          <AnimatePresence custom={direction} mode="wait">
-            {movieList.slice(movieIndex, movieIndex + SHOWING_MOVIES).map((movie) => (
-              <S.MovieInfoLink
-                key={movie.movie_id}
-                variants={animationVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                custom={direction}
-              >
-                <S.MoviePoster src={movie.poster_url} alt={movie.movie_name} />
-                <S.MovieInfo>
-                  <MovieIntroBox
-                    movieTitle={movie.movie_name}
-                    genreList={movie.genre}
-                    keywordList={movie.keyword}
-                    rating={movie.averageRating}
-                  />
-                </S.MovieInfo>
-              </S.MovieInfoLink>
-            ))}
-          </AnimatePresence>
+
+          {movieList.slice(movieIndex, movieIndex + SHOWING_MOVIES).map((movie) => (
+            <S.MovieInfoLink
+              key={movie.movie_id}
+              variants={animationVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              custom={direction}
+            >
+              <S.MoviePoster src={movie.poster_url} alt={movie.movie_name} />
+              <S.MovieInfo>
+                <MovieIntroBox
+                  movieTitle={movie.movie_name}
+                  genreList={movie.genre}
+                  keywordList={movie.keyword}
+                  rating={movie.averageRating}
+                />
+              </S.MovieInfo>
+            </S.MovieInfoLink>
+          ))}
+
           <S.RightArrowButton
             $endOfList={movieIndex === movieList.length - SHOWING_MOVIES}
             onClick={onClickNext}
@@ -88,10 +84,6 @@ const Curation = ({ curationTitle, movieList }) => {
 Curation.propTypes = {
   curationTitle: PropTypes.string.isRequired,
   movieList: PropTypes.array.isRequired,
-};
-
-Curation.defaultProps = {
-  movieList: [], // 기본값을 빈 배열로 설정
 };
 
 export default Curation;
