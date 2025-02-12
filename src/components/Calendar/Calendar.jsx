@@ -4,7 +4,7 @@ import generateCalendar from './generateCalender';
 
 import * as S from './Calendar.styled';
 
-const Calendar = ({ year = 2025, month = 2 }) => {
+const Calendar = ({ year, month }) => {
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   const calendarPoster = {
@@ -42,26 +42,28 @@ const Calendar = ({ year = 2025, month = 2 }) => {
 
       {/* Calendar Grid */}
       <S.CalendarGrid>
-        {generateCalendar(year, month).map((day, index) => {
-          const isPosterExist = calendarPoster[day.fullDate];
-          const posterUrl = isPosterExist ? isPosterExist[0].poster : null;
+        {year &&
+          month &&
+          generateCalendar(year, month).map((day, index) => {
+            const isPosterExist = calendarPoster[day.fullDate];
+            const posterUrl = isPosterExist ? isPosterExist[0].poster : null;
 
-          return (
-            <S.CalendarGridItem key={index}>
-              <S.CalendarUnit $posterUrl={posterUrl} $prevNextMonth={day.monthType !== 'current'}>
-                {day.date}
-              </S.CalendarUnit>
-            </S.CalendarGridItem>
-          );
-        })}
+            return (
+              <S.CalendarGridItem key={index}>
+                <S.CalendarUnit $posterUrl={posterUrl} $prevNextMonth={day.monthType !== 'current'}>
+                  {day.date}
+                </S.CalendarUnit>
+              </S.CalendarGridItem>
+            );
+          })}
       </S.CalendarGrid>
     </S.CalendarContainer>
   );
 };
 
 Calendar.propTypes = {
-  year: PropTypes.number,
-  month: PropTypes.number,
+  year: PropTypes.number.isRequired,
+  month: PropTypes.number.isRequired,
 };
 
 export default Calendar;

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { format, subYears } from 'date-fns';
 
 import Calendar from '@components/Calendar/Calendar';
 import DatePickerDropdown from '@components/Calendar/DatePicker/DatePickerDropdown';
@@ -18,7 +19,9 @@ const Mypage = () => {
     email: 'keaikim77@gmail.com',
   };
 
-  const yearList = ['2023', '2024', '2025'];
+  const yearList = Array.from({ length: 5 }, (_, index) => {
+    return format(subYears(new Date(), index), 'yyyy');
+  });
   const monthList = [
     'JAN',
     'FEB',
@@ -34,13 +37,23 @@ const Mypage = () => {
     'DEC',
   ];
 
-  const [selectedYear, setSelectedYear] = useState(yearList[0]);
+  // prop으로 넘겨줄 Month 값을 숫자로 변환하는 함수F
+  const convertMonthToNumber = (month) => {
+    const index = monthList.indexOf(month);
+    return index !== -1 ? index + 1 : undefined;
+  };
+
+  //  현재 날짜 기준으로 Date Picker 초기 값 설정
+  const currentYear = format(new Date(), 'yyyy'); // "2025"
+  const currentMonth = format(new Date(), 'MMM'); // "Feb"
+
+  const [selectedYear, setSelectedYear] = useState(currentYear);
   const [isYearPickerOpen, setIsYearPickerOpen] = useState(false);
 
   const handleSelectYear = (year) => setSelectedYear(year);
   const handleYearPicker = () => setIsYearPickerOpen(!isYearPickerOpen);
 
-  const [selectedMonth, setSelectedMonth] = useState(monthList[0]);
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth.toUpperCase());
   const [isMonthPickerOpen, setIsMonthPickerOpen] = useState(false);
 
   const handleSelectMonth = (month) => setSelectedMonth(month);
@@ -135,7 +148,7 @@ const Mypage = () => {
         </S.DatePickContainer>
 
         {/* Calendar Component */}
-        <Calendar />
+        <Calendar year={Number(selectedYear)} month={convertMonthToNumber(selectedMonth)} />
       </S.CalenaderContainer>
     </S.MyPageContainer>
   );
