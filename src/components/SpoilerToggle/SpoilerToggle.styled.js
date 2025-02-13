@@ -13,7 +13,7 @@ export const SpoilerToggleWrapper = styled.div`
 `;
 
 export const SpoilerToggleLabel = styled.label`
-  ${({ theme }) => theme.fontStyles.Body3}
+  ${({ theme }) => theme.fontStyles.Body4}
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
 
   white-space: nowrap;
