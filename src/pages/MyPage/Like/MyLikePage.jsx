@@ -1,22 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import BackToHomeOrMyPage from '@components/BackToHomeOrMyPage/BackToHomeOrMyPage';
 import Heart from '@components/Heart/Heart';
 import Rating from '@components/Rating/Rating';
 import { MagnifierBright } from '@icons/Magnifier';
 
-import { mockLikedMovies } from './mock/mockLikedMovies';
+import { getLikedMovies } from '../../../api/likeApi'; // 새 API 함수 import
 
 import * as S from './MyLikePage.styled';
 
 const MyLikePage = () => {
   const [query, setQuery] = useState('');
+  const [movies, setMovies] = useState([]); // mockLikedMovies 대신 API 데이터 저장
 
   const handleSearchChange = (e) => {
     setQuery(e.target.value);
   };
 
-  const filteredMovies = mockLikedMovies.filter((movie) => {
+  const filteredMovies = movies.filter((movie) => {
     const searchLower = query.toLowerCase();
     const titleMatch = movie.title.toLowerCase().includes(searchLower);
     const genreMatch = movie.genre.toLowerCase().includes(searchLower);
@@ -26,8 +27,16 @@ const MyLikePage = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // 검색 로직 추가
+    // 추가적인 검색 로직 필요 시 작성
   };
+
+  useEffect(() => {
+    const fetchLikedMovies = async () => {
+      const data = await getLikedMovies();
+      setMovies(data);
+    };
+    fetchLikedMovies();
+  }, []);
 
   return (
     <S.MyLikePageContainer>
@@ -36,10 +45,9 @@ const MyLikePage = () => {
         <BackToHomeOrMyPage type="mypage" />
       </S.MyPageRouteSection>
 
-      {/* 2) 기존 "상단 헤더(제목 + 검색창)" */}
+      {/* 2) 상단 헤더 (제목 + 검색창) */}
       <S.MyLikePageHeader>
         <S.PageTitle>내가 좋아요 한 작품</S.PageTitle>
-
         <S.SearchForm onSubmit={handleSearch}>
           <S.SearchInput
             type="text"
