@@ -7,6 +7,7 @@ import Curation from '@components/Curation/Curation';
 import { getCurationShuffleData, getEmotionCurationData, getTopTenData } from '@api/home';
 
 import * as S from './Home.styled';
+import ChatBot from '@components/ChatBot/ChatBot';
 
 const Home = () => {
   const [curationList, setCurationList] = useState([]);
@@ -60,6 +61,7 @@ const Home = () => {
 
   return (
     <S.HomeContainer>
+      <ChatBot />
       <>
         {topTenData.length > 0 && <TopTenList movieList={topTenData} />}
         <S.CurationWrapper>
