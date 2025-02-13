@@ -54,8 +54,12 @@ export const useMovies = () => {
     if (cachedMovies.current[id]) return cachedMovies.current[id]; 
 
     const newMovies = await getNewMovies(keyword);
-    cachedMovies.current[id]=newMovies; 
-    return newMovies;
+
+    const uniqueNewMovies = newMovies.filter(
+      (movie) => !displayMovies.some((displayedMovie) => displayedMovie.movie_id === movie.movie_id)
+    );
+    cachedMovies.current[id]=uniqueNewMovies; 
+    return uniqueNewMovies;
   };
 
   // 영화 선택/해제 함수
@@ -85,8 +89,11 @@ export const useMovies = () => {
       const index = prev.findIndex(({ movie_id }) => movie_id === id);
       if (index === -1) return prev;
     
+      // 현재 영화 리스트에서 선택한 영화가 속한 "줄"을 찾음 (한 줄에 3개씩)
       const rowIndex = Math.floor(index / 3);
-      const insertIndex = (rowIndex + 1) * 3; 
+    
+      // 선택한 영화의 다음 줄 위치를 구함
+      const insertIndex = (rowIndex + 1) * 3; // 다음 줄의 첫 번째 위치
     
       return [
         ...prev.slice(0, insertIndex), 
