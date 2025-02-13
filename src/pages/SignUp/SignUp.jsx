@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import * as S from './SignUp.styled';
 import { signup } from '@api/auth';
+
+import * as S from './SignUp.styled';
 
 const SignUp = () => {
   const navigate = useNavigate();
