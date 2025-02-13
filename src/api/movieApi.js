@@ -10,8 +10,20 @@ export const getLikedMovies = async () => {
     });
     console.log("응답 데이터:", response.data);
 
-
-    const movies = response.data.result.map((movie, index) => ({
+    // {
+    //   "isSuccess": true,
+    //   "code": 200,
+    //   "message": "성공",
+    //   "result": [ ... ]
+    // }
+    //  JSend 형식
+    // {
+    //   "status": "success",
+    //   "data": {
+    //     "result": [ ... ]
+    //   }
+    // }
+    const movies = response.data.data.result.map((movie, index) => ({
       id: index, // 고유 id가 없으면 인덱스 사용
       title: movie.movie_name,
       poster: movie.production_image,
