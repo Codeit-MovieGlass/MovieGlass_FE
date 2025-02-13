@@ -16,7 +16,8 @@ export const MyReviewPageContainer = styled.div`
 export const MyPageRouteSection = styled.section`
   width: 100%;
   height: fit-content;
-  margin-bottom: ${pxToRem(32)};
+  padding-right: ${pxToRem(8)};
+  margin-bottom: ${pxToRem(36)};
 
   display: flex;
   justify-content: flex-end;
@@ -27,7 +28,8 @@ export const MyPageRouteSection = styled.section`
 export const MyReviewHeaderSection = styled.section`
   width: 100%;
   height: fit-content;
-  margin-bottom: ${pxToRem(48)};
+  padding-right: ${pxToRem(32)};
+  margin-bottom: ${pxToRem(18)};
 
   display: flex;
   justify-content: space-between;
@@ -40,6 +42,8 @@ export const MyReviewPageTitle = styled.span`
 
   ${({ theme }) => theme.fontStyles.Header3};
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+
+  white-space: nowrap;
 `;
 
 export const ReviewSortOptionList = styled.ul`
@@ -67,7 +71,9 @@ export const ReviewSortOptionButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  ${({ theme }) => theme.fontStyles.Body2};
+  white-space: nowrap;
+
+  ${({ theme }) => theme.fontStyles.Body3};
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_3};
 
   ${({ $isActive }) =>
@@ -93,6 +99,15 @@ export const ReviewSortOptionButton = styled.button`
   }
 `;
 
+export const MainContentDivider = styled.div`
+  width: 100%;
+  height: 2px;
+  margin-bottom: ${pxToRem(32)};
+
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_2};
+`;
+
 // 리뷰 목록 컨테이너
 export const ReviewListContainer = styled.ul`
   width: 100%;
@@ -114,11 +129,13 @@ export const ReviewListItem = styled.li`
 `;
 
 export const Poster = styled.img`
-  width: ${pxToRem(280)};
+  width: 25%;
   height: fit-content;
   aspect-ratio: 280 / 375;
 
   border-radius: 2px;
+
+  flex-shrink: 0;
 `;
 
 // Main Section
@@ -147,6 +164,7 @@ export const ReviewItemHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: ${pxToRem(48)};
 `;
 
 // 영화 제목 및 평점 컨테이너
@@ -171,6 +189,8 @@ export const ReviewTitle = styled.span`
 
   ${({ theme }) => theme.fontStyles.Header3}
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+
+  white-space: nowrap;
 `;
 
 export const RatingContainer = styled.div`
@@ -222,6 +242,8 @@ const EditDeleteButtonStyles = css`
 
   ${({ theme }) => theme.fontStyles.Body3};
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_4};
+
+  white-space: nowrap;
 `;
 
 export const EditButton = styled.button`

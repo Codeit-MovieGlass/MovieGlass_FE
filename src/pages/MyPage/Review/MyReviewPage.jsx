@@ -143,6 +143,7 @@ const MyReviewPage = () => {
             </S.ReviewSortOptionItem>
           </S.ReviewSortOptionList>
         </S.MyReviewHeaderSection>
+        <S.MainContentDivider />
 
         {/* Main Section */}
         <S.ReviewListContainer>

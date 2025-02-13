@@ -45,11 +45,12 @@ function App() {
 
           <Route path="mypage">
             <Route index element={<MyPage />} />
-            <Route path="collection">
+            <Route path="review" element={<MyReviewPage />} />
+
+            <Route path="like">
               <Route index element={<CollectionPage />} />
               <Route path=":id" element={<CollectionDetail />} />
             </Route>
-            <Route path="review" element={<MyReviewPage />} />
           </Route>
         </Route>
 
