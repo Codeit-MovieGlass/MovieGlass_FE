@@ -33,8 +33,6 @@ body {
   background-color: v.$background-color;
   color: v.$font-base-color;
 
-  padding-top: 100px;
-
   @media (max-width: 480px) {
     padding-top: 80px;
   }

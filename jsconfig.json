@@ -3,8 +3,10 @@
     "baseUrl": ".",
     "paths": {
       "@api/*": ["src/api/*"],
+      "@auth/*": ["src/auth/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@icons/*": ["src/icons/*"],
       "@layout/*": ["src/layout/*"],
       "@pages/*": ["src/pages/*"],

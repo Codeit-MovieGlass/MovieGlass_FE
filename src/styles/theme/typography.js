@@ -4,13 +4,13 @@ import pxToRem from '@utils/pxToRem';
 const headerBaseFontStyles = css`
   font-family: 'NEXON Lv2 Gothic';
   font-weight: 700;
-  line-height: 100%;
+  line-height: 120%;
 `;
 
 const bodyBaseFontStyles = css`
   font-family: 'Pretendard Variable';
   font-weight: 500;
-  line-height: 100%;
+  line-height: 120%;
 `;
 
 const headerStyles = {
@@ -53,7 +53,6 @@ const bodyStyles = {
   Body2: css`
     ${bodyBaseFontStyles}
     font-size: ${pxToRem(24)};
-    letter-spacing: 0.72px;
   `,
   Body3: css`
     ${bodyBaseFontStyles}
@@ -62,7 +61,6 @@ const bodyStyles = {
   Body4: css`
     ${bodyBaseFontStyles}
     font-size: ${pxToRem(18)};
-    letter-spacing: 0.36px;
   `,
   Body5: css`
     ${bodyBaseFontStyles}
@@ -102,12 +100,13 @@ const ExtraStyles = {
     font-size: ${pxToRem(96)};
     font-weight: 900;
   `,
+  H_Regular: css`
+    ${bodyBaseFontStyles}
+    font-size: ${pxToRem(36)};
+    font-weight: 400;
+  `,
 };
 
-const fontStyles = {
-  ...headerStyles,
-  ...bodyStyles,
-  ...ExtraStyles,
-};
+const fontStyles = { ...headerStyles, ...bodyStyles, ...ExtraStyles };
 
 export default fontStyles;

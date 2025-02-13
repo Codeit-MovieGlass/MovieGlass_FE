@@ -4,9 +4,9 @@ import Rating from '@components/Rating/Rating';
 
 import * as S from './MovieIntroBox.styled';
 
-const MovieIntroBox = ({ movieTitle, genreList, keywordList, rating }) => {
+const MovieIntroBox = ({ movieTitle, genreList, keywordList, rating, isRendered }) => {
   return (
-    <S.MovieIntroBoxContainer>
+    <S.MovieIntroBoxContainer $isRendered={isRendered}>
       <S.InfoSection>
         <S.Title>{movieTitle}</S.Title>
         <S.GenreKeywordBox>
@@ -32,13 +32,7 @@ MovieIntroBox.propTypes = {
   genreList: PropTypes.array.isRequired,
   keywordList: PropTypes.array.isRequired,
   rating: PropTypes.number.isRequired,
+  isRendered: PropTypes.bool.isRequired,
 };
-
-// MovieIntroBox.defaultProps = {
-//   movieTitle: '해리포터와 마법사의 돌',
-//   genreList: ['판타지', '모험', '판타지', '모험', '판타지', '모험'],
-//   keywordList: ['해리포터', '마법사', '돌'],
-//   rating: 4.5,
-// };
 
 export default MovieIntroBox;
