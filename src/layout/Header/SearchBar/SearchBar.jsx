@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
@@ -29,10 +28,6 @@ const SearchBar = () => {
       </S.SearchButton>
     </S.SearchBarForm>
   );
-};
-
-SearchBar.propTypes = {
-  setKeyword: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

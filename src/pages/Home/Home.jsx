@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useCallback, useEffect, useState } from 'react';
 
 import TopTenList from '@components/TopTenList/TopTenList';
@@ -10,7 +9,6 @@ import { getCurationShuffleData, getEmotionCurationData, getTopTenData } from '@
 import * as S from './Home.styled';
 
 const Home = () => {
-  // const [TopTenMovieList, setTopTenMovieList] = useState(null);
   const [curationList, setCurationList] = useState([]);
   const [emotioncuration, setEmotionCuration] = useState([]);
   const [selectedEmoji, setSelectedEmoji] = useState('');
@@ -85,7 +83,5 @@ const Home = () => {
     </S.HomeContainer>
   );
 };
-
-Home.propTypes = { keyword: PropTypes.string.isRequired };
 
 export default Home;

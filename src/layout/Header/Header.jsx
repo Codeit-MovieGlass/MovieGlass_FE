@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import SearchBar from './SearchBar/SearchBar';
@@ -33,7 +32,5 @@ const Header = () => {
     </S.HeaderContainer>
   );
 };
-
-Header.propTypes = { setKeyword: PropTypes.func.isRequired };
 
 export default Header;
