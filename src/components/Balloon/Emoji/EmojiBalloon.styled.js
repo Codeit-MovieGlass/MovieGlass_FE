@@ -1,32 +1,13 @@
 import styled from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
-export const BalloonContainer = styled.div`
-  position: relative;
+import { BalloonContainerStyles } from '../BalloonSection.styled';
 
-  width: fit-content;
-  height: fit-content;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const EmojiBalloonContainer = styled.div`
+  ${BalloonContainerStyles}
+  align-self: flex-end;
 `;
 
-// TextBalloon.styled.js
-export const BallonText = styled.span`
-  position: absolute;
-  transform: translateY(-50%);
-  top: 50%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_1};
-  ${({ theme }) => theme.fontStyles.Body1};
-`;
-
-// EmojiBalloon.styled.js
 export const BalloonEmojiList = styled.ul`
   position: absolute;
   transform: translateY(-50%);
@@ -36,11 +17,22 @@ export const BalloonEmojiList = styled.ul`
   justify-content: center;
   align-items: center;
   gap: ${pxToRem(40)};
+
+  justify-self: flex-end;
 `;
 
+// Emojis
 export const Emoji = styled.li`
   width: ${pxToRem(54)};
   height: ${pxToRem(54)};
+
+  transition: 100ms;
+
+  &:hover {
+    cursor: pointer;
+    width: ${pxToRem(70)};
+    height: ${pxToRem(70)};
+  }
 `;
 
 export const LoveEmoji = styled(Emoji)`

@@ -10,6 +10,7 @@ import SignUp from '@pages/OnBoarding/SignUp/SignUp';
 import GenreSelect from '@pages/OnBoarding/GenreSelectionPage/GenreSelection';
 import MovieSelection from '@pages/OnBoarding/MovieSelection/MovieSelection';
 import MyPage from '@pages/MyPage/MyPage';
+import SearchPage from '@pages/Search/SearchPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="search" element={<SearchPage />} />
 
           <Route path="mypage">
             <Route index element={<MyPage />} />
