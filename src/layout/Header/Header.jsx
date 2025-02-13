@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <S.HeaderContainer>
-      <S.Logos>
+      <S.Logos href="/">
         <L.LogoSymbol />
         <L.LogoTypo />
       </S.Logos>
