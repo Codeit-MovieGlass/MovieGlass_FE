@@ -25,7 +25,7 @@ const gernes = [
   { id: 9, name: '액션/자극' },
 ];
 
-const GerneSelectionPage = () => {
+const GenreSelectionPage = () => {
   const navigate = useNavigate();
 
   const [selectedGenres, setSelectedGenres] = useState([]);
@@ -69,4 +69,4 @@ const GerneSelectionPage = () => {
   );
 };
 
-export default GerneSelectionPage;
+export default GenreSelectionPage;

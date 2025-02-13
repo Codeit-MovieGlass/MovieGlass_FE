@@ -1,17 +1,17 @@
-// C:\Users\ntt68\MovieGlass_FE\src\pages\Collection\CollectionPage.jsx
-import React, { useState } from 'react';
-import * as S from './CollectionPage.styled';
-import { Magnifier } from '@icons/Magnifier';
+import { useState } from 'react';
+
 import Like from '@components/Like/Like';
 import Rating from '@components/Rating/Rating';
-import { HomeIcon } from '@icons/HomeIcon.js';
+import { Magnifier } from '@icons/Magnifier';
+import { HomeIcon } from '@icons/Home.js';
+
+import * as S from './MyLikePage.styled';
 
 const mockLikedMovies = [
   {
     id: 1,
     title: '암리킬',
-    poster:
-      'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
+    poster: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
     rating: 4,
     genre: '액션',
     cast: ['박지성'],
@@ -19,8 +19,7 @@ const mockLikedMovies = [
   {
     id: 2,
     title: '(영화입니다)',
-    poster:
-      'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
+    poster: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
     rating: 5,
     genre: '드라마',
     cast: ['손흥민'],
@@ -28,8 +27,7 @@ const mockLikedMovies = [
   {
     id: 3,
     title: '(안녕)',
-    poster:
-      'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
+    poster: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
     rating: 3,
     genre: '코미디',
     cast: ['김민제'],
@@ -37,8 +35,7 @@ const mockLikedMovies = [
   {
     id: 4,
     title: '(사과)',
-    poster:
-      'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
+    poster: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
     rating: 2,
     genre: '스릴러',
     cast: ['이강인'],
@@ -46,15 +43,14 @@ const mockLikedMovies = [
   {
     id: 5,
     title: '(바나나)',
-    poster:
-      'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
+    poster: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
     rating: 4.5,
     genre: '로맨스',
     cast: ['이승우'],
   },
 ];
 
-const CollectionPage = () => {
+const MyLikePage = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchChange = (e) => {
@@ -65,9 +61,7 @@ const CollectionPage = () => {
     const searchLower = searchValue.toLowerCase();
     const titleMatch = movie.title.toLowerCase().includes(searchLower);
     const genreMatch = movie.genre.toLowerCase().includes(searchLower);
-    const castMatch = movie.cast.some((actor) =>
-      actor.toLowerCase().includes(searchLower)
-    );
+    const castMatch = movie.cast.some((actor) => actor.toLowerCase().includes(searchLower));
     return titleMatch || genreMatch || castMatch;
   });
 
@@ -75,8 +69,9 @@ const CollectionPage = () => {
     <S.CollectionContainer>
       {/* 1) 마이페이지 (상단 우측) */}
       <S.TopBar>
-        <S.MypageLink to="/mypage" >
-        <HomeIcon />        마이페이지</S.MypageLink>
+        <S.MypageLink to="/mypage">
+          <HomeIcon /> 마이페이지
+        </S.MypageLink>
       </S.TopBar>
 
       {/* 2) 기존 "상단 헤더(제목 + 검색창)" */}
@@ -116,4 +111,4 @@ const CollectionPage = () => {
   );
 };
 
-export default CollectionPage;
+export default MyLikePage;
