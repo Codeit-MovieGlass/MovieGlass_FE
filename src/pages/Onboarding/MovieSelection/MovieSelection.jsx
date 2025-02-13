@@ -8,11 +8,11 @@
 import { useMovies } from '@api/movieSelect';
 
 import { CheckIcon } from '@icons/Check';
-
+import { MovieData, GetMovieData } from '@pages/Onboarding/MovieSelection/SelectMovieData';
 import * as S from './MovieSelection.styled';
 
 const MovieSelection = () => {
-  const { displayMovies, selectedMovies, selectMovie } = useMovies();
+  const { displayMovies, selectedMovies, selectMovie, submitSelectedMovies } = useMovies(MovieData);
 
   return (
     <S.MovieSelectionFrame>
@@ -21,12 +21,12 @@ const MovieSelection = () => {
 
         <S.MovieList>
           {displayMovies.map((movie) => (
-            <S.MovieItem key={movie.id} onClick={() => selectMovie(movie.id)}>
-              <S.CheckButton $checked={selectedMovies.includes(movie.id)}>
-                <CheckIcon $checked={selectedMovies.includes(movie.id)} />
+            <S.MovieItem key={movie.movie_id} onClick={() => selectMovie(movie.movie_id,movie.keyword)}>
+              <S.CheckButton $checked={selectedMovies.includes(movie.movie_id)}>
+                <CheckIcon $checked={selectedMovies.includes(movie.movie_id)} />
               </S.CheckButton>
               <S.MoviePosterButton>
-                <S.MoviePoster src={movie.poster} alt={movie.title} />
+                <S.MoviePoster src={movie.poster_url} alt={movie.title} />
               </S.MoviePosterButton>
             </S.MovieItem>
           ))}
@@ -36,6 +36,7 @@ const MovieSelection = () => {
           <S.CompleteButton
             $selected={selectedMovies.length >= 3}
             $active={selectedMovies.length >= 3}
+            onClick={()=>submitSelectedMovies()}
           >
             완료
           </S.CompleteButton>
