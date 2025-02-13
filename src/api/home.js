@@ -17,23 +17,22 @@ export const getEmotionCurationData = async (emotion) => {
   try {
     const response = await api.get('/curations/emotions', { params });
     // console.log('감정 큐레이션 응답 데이터:', response);
-    return response.data;
+    return response.result;
   } catch (error) {
     console.error('감정 데이터 가져오기 실패:', error);
     return null;
   }
 };
 
-export const getSearchData = async (keyword) => {
-  const params = { query: keyword };
+// 검색 API
+export const getSearchData = async (query) => {
+  const queryParams = { query: query };
 
   try {
-    const response = await api.get('/movies/search', { params });
-    // console.log('검색 응답 데이터:', response);
-    return response.data;
+    const response = await api.get('/movies/search', { params: queryParams });
+    return response.data.result.searchResults;
   } catch (error) {
     console.error('검색 데이터 가져오기 실패:', error);
-    return null;
   }
 };
 

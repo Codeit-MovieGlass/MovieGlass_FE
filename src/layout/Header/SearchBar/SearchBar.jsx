@@ -1,27 +1,31 @@
-import * as M from '@icons/Magnifier';
-
-import * as S from './SearchBar.styled';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
-const SearchBar = ({ setKeyword }) => {
-  const [searchword, setSearchword] = useState('');
+import { Magnifier } from '@icons/Magnifier';
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // 기본 동작(페이지 새로고침) 방지
-    setKeyword(searchword); // ✅ searchword를 setKeyword에 반영
+import * as S from './SearchBar.styled';
+
+const SearchBar = () => {
+  const navigate = useNavigate();
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim() !== '') navigate(`/search/?query=${encodeURIComponent(searchQuery)}`);
   };
 
   return (
-    <S.SearchBarForm onSubmit={handleSubmit}>
+    <S.SearchBarForm onSubmit={handleSearch}>
       <S.SearchInput
-        value={searchword}
-        onChange={(e) => setSearchword(e.target.value)}
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
         type="text"
         placeholder="제목, 인물, 장르를 검색하세요!"
       />
       <S.SearchButton type="submit">
-        <M.Magnifier />
+        <Magnifier />
       </S.SearchButton>
     </S.SearchBarForm>
   );

@@ -17,7 +17,7 @@ export const SearchMovieText = styled.span`
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
   text-align: center;
 
-  .keyword {
+  .query {
     ${({ theme }) => theme.fontStyles.Header3};
   }
 `;

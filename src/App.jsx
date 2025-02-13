@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router';
 
 import OnBoardingLayout from '@layout/OnBoarding/OnBoardingLayout';
@@ -6,7 +7,7 @@ import Layout from '@layout/Layout';
 import Home from '@pages/Home/Home';
 import LoginPage from '@pages/OnBoarding/Login/Login';
 import SignUp from '@pages/OnBoarding/SignUp/SignUp';
-import { useState } from 'react';
+import SearchPage from '@pages/Search/SearchPage';
 
 function App() {
   const [keyword, setKeyword] = useState('');
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route element={<Layout setKeyword={setKeyword} />}>
           <Route index element={<Home keyword={keyword} />} />
+          <Route path="search" element={<SearchPage />} />
         </Route>
 
         <Route element={<OnBoardingLayout />}>

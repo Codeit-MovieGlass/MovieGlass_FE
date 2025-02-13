@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import SearchBar from './SearchBar/SearchBar';
@@ -7,9 +8,8 @@ import * as L from '@icons/Logo';
 import * as M from '@icons/Magnifier';
 
 import * as S from './Header.styled';
-import PropTypes from 'prop-types';
 
-const Header = ({ setKeyword }) => {
+const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleProfileClick = () => {
@@ -18,12 +18,12 @@ const Header = ({ setKeyword }) => {
 
   return (
     <S.HeaderContainer>
-      <S.Logos>
+      <S.Logos href="/">
         <L.LogoSymbol />
         <L.LogoTypo />
       </S.Logos>
       <S.SearchProfile>
-        <SearchBar setKeyword={setKeyword} />
+        <SearchBar />
         <M.MagnifierSolo />
         <S.ProfileButton onClick={handleProfileClick}>
           <S.DefaultProfile />
@@ -34,8 +34,6 @@ const Header = ({ setKeyword }) => {
   );
 };
 
-Header.propTypes = {
-  setKeyword: PropTypes.func.isRequired,
-};
+Header.propTypes = { setKeyword: PropTypes.func.isRequired };
 
 export default Header;

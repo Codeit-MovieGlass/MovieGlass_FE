@@ -4,11 +4,11 @@ import BackToHome from '@components/BackToHome/BackToHome';
 
 import * as S from './NoSearchData.styled';
 
-const NoSearchData = ({ keyword }) => {
+const NoSearchData = ({ query }) => {
   return (
     <S.NoSearchDataContainer>
       <S.SearchMovieText>
-        <span className="keyword">‘{keyword}’</span> 에 대한 검색 내용이 없습니다. <br />
+        <span className="query">‘{query}’</span> 에 대한 검색 내용이 없습니다. <br />
         다른 단어로 검색해보세요.
       </S.SearchMovieText>
 
@@ -18,6 +18,6 @@ const NoSearchData = ({ keyword }) => {
   );
 };
 
-NoSearchData.propTypes = { keyword: PropTypes.string.isRequired };
+NoSearchData.propTypes = { query: PropTypes.string.isRequired };
 
 export default NoSearchData;
