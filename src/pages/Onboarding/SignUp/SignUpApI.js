@@ -15,6 +15,11 @@ export function useSignup() {
       const response = await axios.post('', formData);
       console.log(response);
 
+      const userId = response.data.result.userId;
+      console.log(userId);
+      
+      localStorage.setItem('userId', userId);
+
       alert(`회원가입에 성공하셨습니다!`); 
       if(onSuccess) onSuccess();
       
