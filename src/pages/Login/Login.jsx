@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
+import { login } from '@api/auth';
+
 import * as S from './Login.styled';
 
-// 나중에 해야 할 일
-// - 로그인, 소셜 로그인, 회원가입 백엔드와 연동 로직
-// - 이메일, 닉네임 중복검사?
-
 const LoginPage = () => {
+  // [남은 작업]
+  // - 로그인, 소셜 로그인, 회원가입 백엔드와 연동 로직
+
   const navigate = useNavigate();
 
-  // 사이트 자체 로그인 데이터
+  // 자체 로그인 데이터
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -18,7 +19,7 @@ const LoginPage = () => {
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  //폼 데이터 변경 핸들러
+  // 폼 데이터 변경 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -28,10 +29,10 @@ const LoginPage = () => {
     });
   };
 
-  // 임시 로그인 로직 추후에 구현
-  const handleSubmit = async (e) => {
+  // 로그인 로직
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Login Form Data: ', formData);
+    await login(formData, navigate);
   };
 
   // 비밀번호 토글
@@ -39,37 +40,25 @@ const LoginPage = () => {
 
   const handleSignupClick = () => navigate('/signup');
 
-  // // 구글 로그인 로직(프론트에서 자체적으로 가능 추후에 백엔드와 연동)
-  // const handleGoogleLogin = async () => {
-  //   window.location.href = getGoogleLoginUrl();
-  // };
+  //소셜 로그인 핸들러
+  const handleGoogleLogin = () => {
+    window.location.href = '';
+  };
 
-  // useEffect(() => {
-  //   const params = new URLSearchParams(window.location.search);
-  //   const code = params.get('code');
-  //   if (code) {
-  //     (async () => {
-  //       try {
-  //         const tokenResponse = await fetchAccessToken(code);
-  //         const userInfo = await fetchGoogleUserInfo(tokenResponse.access_token);
-  //       } catch (error) {
-  //         console.error('Google Login Failed:', error);
-  //       }
-  //     })();
-  //   }
-  // }, []);
-
-  /*카카오 로그인 로직(추후에 구현)*/
+  const handleKakaoLogin = () => {
+    window.location.href = '';
+  };
 
   return (
     <S.LoginContainer>
-      <S.LoginForm onSubmit={handleSubmit}>
+      <S.LoginForm onSubmit={handleLogin}>
         <S.EmailInput
           type="email"
           name="email"
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
+          autoComplete="on"
           required
         />
         <S.PasswordContainer>
@@ -79,6 +68,7 @@ const LoginPage = () => {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
+            autoComplete="current-password"
             required
           />
           <S.EyeIcon
@@ -90,11 +80,11 @@ const LoginPage = () => {
       </S.LoginForm>
       <S.SocialDivider />
       <S.SocialLoginContainer>
-        <S.GoogleLoginBtn>
+        <S.GoogleLoginBtn onClick={handleGoogleLogin}>
           <S.GoogleLogo />
           <S.SocialLoginText>구글로 로그인하기</S.SocialLoginText>
         </S.GoogleLoginBtn>
-        <S.KakaoLoginBtn>
+        <S.KakaoLoginBtn onClick={handleKakaoLogin}>
           <S.KakaoLogo />
           <S.SocialLoginText>카카오로 로그인하기</S.SocialLoginText>
         </S.KakaoLoginBtn>
