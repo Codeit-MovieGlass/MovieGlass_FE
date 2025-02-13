@@ -62,7 +62,7 @@ const MyLikePage = () => {
               <S.PosterImageContainer>
                 <S.PosterImage src={movie.poster} alt={movie.title} />
                 <S.LikeButtonContainer>
-                  <Heart />
+                  <Heart initialLiked={true} />
                 </S.LikeButtonContainer>
               </S.PosterImageContainer>
 

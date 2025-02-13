@@ -1,3 +1,4 @@
+import pxToRem from '@utils/pxToRem';
 import styled from 'styled-components';
 
 export const OTTLinkContainer = styled.div`
@@ -6,40 +7,42 @@ export const OTTLinkContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: flex-end;
+  gap: ${pxToRem(16)};
 `;
 
-export const OTTLinkTitle = styled.h2`
-  ${({ theme }) => theme.fontStyles.Body1}
-  font-weight: 400;
+export const OTTLinkTitle = styled.span`
+  ${({ theme }) => theme.fontStyles.Body2}
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+
+  white-space: nowrap;
 `;
 
-export const OTTIconContainer = styled.div`
-  position: relative;
+export const OTTIconList = styled.ul`
+  width: fit-content;
+  height: fit-content;
 
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: ${pxToRem(16)};
 `;
 
-export const OTTLinkIcon = styled.img`
-  width: 48px;
-  height: 48px;
+export const OTTIconListItem = styled.li`
+  width: fit-content;
+  height: fit-content;
 
-  border-radius: 4px;
-  cursor: pointer;
+  flex-shrink: 0;
 `;
 
-export const MoreModalWrapper = styled.button`
-  position: relative;
-
+export const OTTLink = styled.a`
   width: fit-content;
   height: fit-content;
 `;
 
-export const MoreOTTIcon = styled.img`
-  width: 32px;
-  height: 32px;
+export const OTTLinkIcon = styled.img`
+  width: ${pxToRem(48)};
+  height: ${pxToRem(48)};
+
+  border-radius: 4px;
 `;
