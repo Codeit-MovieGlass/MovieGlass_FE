@@ -1,5 +1,7 @@
-import pxToRem from '@utils/pxToRem';
 import styled from 'styled-components';
+import pxToRem from '@utils/pxToRem';
+
+import { Link } from 'react-router';
 
 export const DropdownContainer = styled.div`
   position: absolute;
@@ -31,6 +33,12 @@ export const OptionList = styled.ul`
 
 export const Options = styled.li`
   width: 100%;
+  height: fit-content;
+`;
+
+export const OptionLink = styled(Link)`
+  width: 100%;
+  height: fit-content;
   padding: 1rem;
 
   display: flex;
@@ -40,8 +48,6 @@ export const Options = styled.li`
   border-radius: 4px;
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
   ${({ theme }) => theme.fontStyles.Body4}
-
-  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_3};
