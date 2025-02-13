@@ -41,7 +41,7 @@ const TopTenList = ({ movieList }) => {
 
   return (
     <S.TopTenContainer>
-      <S.BackgroundImg src={movieList.posterImageURL} alt="poster-bg" />
+      <S.BackgroundImg src={currentMovieInfo.productionImage} alt="poster-bg" />
 
       <LeftArrow onClick={handlePreviousClick} />
       <S.MovieCarouselContainer>
