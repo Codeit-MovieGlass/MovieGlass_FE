@@ -1,16 +1,16 @@
-import * as B from '@icons/Balloon';
-
-import * as S from './EmojiBalloon.styled';
 import PropTypes from 'prop-types';
 
+import { EmojiBalloonIcon } from '@icons/Balloon';
+
+import * as S from './EmojiBalloon.styled';
+
 const EmojiBalloon = ({ selectedEmoji, setSelectedEmoji }) => {
-  const handleEmojiClick = (emoji) => {
-    setSelectedEmoji(emoji);
-  };
+  // 사랑, 평온, 눈물, 웃음, 긴장
+  const handleEmojiClick = (emoji) => setSelectedEmoji(emoji);
 
   return (
     <S.EmojiBalloonContainer>
-      <B.EmojiBalloonIcon />
+      <EmojiBalloonIcon />
       <S.BalloonEmojiList>
         {selectedEmoji === '' ? (
           <>
@@ -40,4 +40,3 @@ EmojiBalloon.propTypes = {
 };
 
 export default EmojiBalloon;
-//사랑, 평온, 눈물, 웃음, 긴장
