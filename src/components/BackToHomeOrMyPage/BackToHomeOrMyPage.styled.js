@@ -23,4 +23,6 @@ export const BackToHomeText = styled.span`
   ${({ theme }) => theme.fontStyles.Body3};
   font-weight: 600;
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_5};
+
+  white-space: nowrap;
 `;

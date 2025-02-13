@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { HomeIcon } from '@icons/HomeIcon';
+import { HomeIcon } from '@icons/Home';
 
 import * as S from './BackToHomeOrMyPage.styled';
 
