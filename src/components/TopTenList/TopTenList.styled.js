@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
-import { motion } from 'framer-motion';
 import pxToRem from '@utils/pxToRem';
+
+import { motion } from 'framer-motion';
 
 //전체 컨테이너 및 베경 이미지
 export const TopTenContainer = styled.div`

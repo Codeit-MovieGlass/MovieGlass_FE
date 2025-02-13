@@ -1,20 +1,15 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+
 import MovieIntroBox from '@components/MovieIntroBox/MovieIntroBox';
 import { LeftArrow, RightArrow } from '@icons/Arrow';
+
 import * as S from './TopTenList.styled';
-import PropTypes from 'prop-types';
 
 const animationVariants = {
-  enter: (direction) => ({
-    opacity: 0,
-    x: direction > 0 ? 100 : -100,
-  }),
-  center: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.1 },
-  },
+  enter: (direction) => ({ opacity: 0, x: direction > 0 ? 100 : -100 }),
+  center: { opacity: 1, x: 0, transition: { duration: 0.1 } },
   exit: (direction) => ({
     opacity: 0,
     x: direction > 0 ? -100 : 100,
@@ -46,7 +41,7 @@ const TopTenList = ({ movieList }) => {
 
   return (
     <S.TopTenContainer>
-      <S.BackgroundImg src={currentMovieInfo.productionImage} alt="poster-bg" />
+      <S.BackgroundImg src={movieList.posterImageURL} alt="poster-bg" />
 
       <LeftArrow onClick={handlePreviousClick} />
       <S.MovieCarouselContainer>
@@ -116,8 +111,6 @@ const TopTenList = ({ movieList }) => {
   );
 };
 
-TopTenList.propTypes = {
-  movieList: PropTypes.array.isRequired,
-};
+TopTenList.propTypes = { movieList: PropTypes.array.isRequired };
 
 export default TopTenList;
