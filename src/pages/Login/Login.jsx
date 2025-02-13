@@ -30,7 +30,7 @@ const LoginPage = () => {
   };
 
   // 로그인 로직
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     await login(formData, navigate);
   };
@@ -51,13 +51,14 @@ const LoginPage = () => {
 
   return (
     <S.LoginContainer>
-      <S.LoginForm onSubmit={handleSubmit}>
+      <S.LoginForm onSubmit={handleLogin}>
         <S.EmailInput
           type="email"
           name="email"
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
+          autoComplete="on"
           required
         />
         <S.PasswordContainer>
@@ -67,6 +68,7 @@ const LoginPage = () => {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
+            autoComplete="current-password"
             required
           />
           <S.EyeIcon

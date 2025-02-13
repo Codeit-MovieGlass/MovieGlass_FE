@@ -11,6 +11,9 @@ export const signup = async (userData, onSuccess) => {
       case 200:
         onSuccess();
         break;
+      case 201:
+        onSuccess();
+        break;
       case 400:
         alert('이미 존재하는 닉네임입니다.');
         break;
@@ -29,15 +32,22 @@ export const login = async (userData, navigate) => {
     const response = await api.post('/auth/login', userData);
     console.log(response);
 
-    if (response.data.isSuccess) {
-      const { accesstoken, refreshtoken } = response.data.result;
-      localStorage.setItem('accessToken', accesstoken);
-      localStorage.setItem('refreshToken', refreshtoken);
-      navigate('/');
-    } else {
-      alert('Login Failed');
+    switch (response.data.code) {
+      case 200: {
+        const { accesstoken, refreshtoken } = response.data.result;
+
+        localStorage.setItem('accessToken', accesstoken);
+        localStorage.setItem('refreshToken', refreshtoken);
+
+        navigate('/'); // 로그인 성공 시 메인 페이지로 이동
+        break;
+      }
+
+      default:
+        alert('로그인 실패!');
+        return;
     }
   } catch (error) {
-    console.error('Login Failed: ', error);
+    console.error('로그인 실패: ', error);
   }
 };

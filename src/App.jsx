@@ -3,10 +3,12 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import OnBoardingLayout from '@layout/OnBoarding/OnBoardingLayout';
 import Layout from '@layout/Layout';
 
-import LoginPage from '@pages/OnBoarding/Login/Login';
-import SignUp from '@pages/OnBoarding/SignUp/SignUp';
-import KakaoCallback from './auth/redirects/KakaoRedirect';
-import GoogleCallback from './auth/redirects/GoogleRedirect';
+import GoogleCallback from '@auth/redirects/GoogleRedirect';
+import KakaoCallback from '@auth/redirects/KakaoRedirect';
+
+import LoginPage from '@pages/Login/Login';
+import SignUp from '@pages/SignUp/SignUp';
+
 import GenreSelect from '@pages/OnBoarding/GenreSelectionPage/GenreSelection';
 import MovieSelection from '@pages/OnBoarding/MovieSelection/MovieSelection';
 
