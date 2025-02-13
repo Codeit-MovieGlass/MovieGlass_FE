@@ -15,6 +15,8 @@ const KakaoCallback = () => {
   const isFirstRender = useRef(true);
 
   const queryParams = new URLSearchParams(location.search);
+  console.log("현재 URL 쿼리 문자열:", location.search);
+
   const KAKAO_AUTH_CODE = queryParams.get('code');
 
   useEffect(() => {
@@ -27,8 +29,8 @@ const KakaoCallback = () => {
 
         const sendAuthCodeToserver = async () => {
             try{
-                const response = await axios.post('',{
-                    code: KAKAO_AUTH_CODE,
+                const response = await axios.get('',{
+                    params:{code: KAKAO_AUTH_CODE},
                 });
                 console.log(response.data);
                 //로그인 성공 시 로컬 스토리지에 저장할 요소 나중에 수정
@@ -54,7 +56,7 @@ const KakaoCallback = () => {
                     navigate('/login');
                 }
             }catch(error){
-                console.error('Fetching access token failed: ', error);
+                console.error('Fetching access token failed: ', error.response);
             };
         };
         sendAuthCodeToserver();

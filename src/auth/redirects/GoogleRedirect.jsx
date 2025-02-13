@@ -26,8 +26,8 @@ const GoogleCallback = () => {
 
         const sendAuthCodeToserver = async () => {
             try{
-                const response = await axios.post('',{
-                    code: GOOGLE_AUTH_CODE,
+                const response = await axios.get('',{
+                    params:{code: GOOGLE_AUTH_CODE},
                 });
                 console.log(response);
                 //로그인 성공 시 로컬 스토리지에 저장할 요소 나중에 수정
