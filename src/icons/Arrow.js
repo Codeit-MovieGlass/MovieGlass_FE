@@ -22,6 +22,11 @@ const topTenArrowStyles = css`
   }
 `;
 
+const curationArrowStyles = css`
+  width: ${pxToRem(20)};
+  height: fit-content;
+`;
+
 export const LeftArrow = styled(leftArrow)`
   ${topTenArrowStyles}
   left: 5%;
@@ -38,6 +43,26 @@ export const RightArrow = styled(rightArrow)`
   &:hover {
     transform: translateX(3px) scale(1.1);
   }
+`;
+
+export const CurationLeftArrow = styled(leftArrow)`
+  ${curationArrowStyles}
+
+  ${({ $startOfList }) =>
+    $startOfList &&
+    css`
+      opacity: 0.2;
+    `}
+`;
+
+export const CurationRightArrow = styled(rightArrow)`
+  ${curationArrowStyles}
+
+  ${({ $endOfList }) =>
+    $endOfList &&
+    css`
+      opacity: 0.2;
+    `}
 `;
 
 export const ViewCountDropdownArrow = styled(dropdownArrow)``;

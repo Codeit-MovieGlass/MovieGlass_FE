@@ -1,4 +1,4 @@
-export const TopTenMovieList = [
+export const SearchMovieData = [
   {
     id: 1,
     title: '노트북(Notebook)',
@@ -18,7 +18,8 @@ export const TopTenMovieList = [
   {
     id: 3,
     title: '기생충(Parasite)',
-    posterImgURL: 'https://i.pinimg.com/736x/8b/c0/1e/8bc01eb013248cc42cf2f001618d22e2.jpg',
+    posterImgURL:
+      'https://i.namu.wiki/i/iASYAw04PRYnkNkieYSOymxXCW5i6Qp0tpFMCwE-xj_mV39AoUzxyJvgR4SrnSOSC7afn_ILGQ5pMi4yNBLs06-aWIG7CAEQJVdiMdFIbwB53ujrNUP1OwC8y-VEey51R4NuYiioy2XHDI59DEBaog.webp',
     keywordList: ['가족'],
     genreList: ['스릴러', '서스펜스', '드라마'],
     rating: 5.0,
