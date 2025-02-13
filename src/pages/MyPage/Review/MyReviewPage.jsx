@@ -1,60 +1,61 @@
-import { useState, useRef } from "react";
-import { useNavigate } from "react-router";
+import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+
+import RatingInput from '@components/RatingInput/RatingInput';
+import Rating from '@components/Rating/Rating';
+import SpoilerToggle from '@components/SpoilerToggle/SpoilerToggle';
+import { PencilIcon, TrashIcon } from '@icons/EditDelete';
 import { HomeIcon } from '@icons/HomeIcon';
-import { PencilIcon, TrashIcon } from "@icons/EditDelete";
-import CancelModal from "../../components/Cancel/CancelModal";
 
-import * as S from "./MyReviewPage.styled";
-
-// 수정 불가능한 컴포넌트들
-import HalfStarRating from "../../components/RatingInput/RatingInput";
-import SpoilerToggle from "../../components/SpoilerToggle/SpoilerToggle";
-import Rating from "../../components/Rating/Rating";
+import * as S from './MyReviewPage.styled';
+import QuitOrDeleteModal from '@components/Modal/Quit/QuitOrDeleteModal';
+import ModalWrapper from '@components/Modal/Wrapper/ModalWrapper';
 
 const MyReviewPage = () => {
   const navigate = useNavigate();
+
   const [reviews, setReviews] = useState([
     {
       id: 1,
-      title: "영화 제목",
+      title: '영화 제목',
       rating: 4.5,
-      content: "이 영화는 정말 감동적이었습니다!",
-      imageUrl: "https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg",
-      date: "2025.01.16",
+      content: '이 영화는 정말 감동적이었습니다!',
+      imageUrl: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
+      date: '2025.01.16',
       spoiler: false,
     },
     {
       id: 2,
-      title: "영화 제목",
+      title: '영화 제목',
       rating: 3.0,
-      content: "나쁘진 않았지만 아쉬운 부분도 있었어요.",
-      imageUrl: "https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg",
-      date: "2025.01.20",
+      content: '나쁘진 않았지만 아쉬운 부분도 있었어요.',
+      imageUrl: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
+      date: '2025.01.20',
       spoiler: true,
     },
   ]);
 
-  const [sortBy, setSortBy] = useState("별점순");
+  const [sortBy, setSortBy] = useState('별점순');
   const [isEditing, setIsEditing] = useState({});
   const [editedContent, setEditedContent] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [deleteTarget, setDeleteTarget] = useState(null);
+
+  // const [deleteTarget, setDeleteTarget] = useState(null);
   const ratingRefs = useRef({});
   const spoilerRefs = useRef({});
 
   const sortedReviews = [...reviews].sort((a, b) =>
-    sortBy === "별점순" ? b.rating - a.rating : new Date(b.date) - new Date(a.date)
+    sortBy === '별점순' ? b.rating - a.rating : new Date(b.date) - new Date(a.date)
   );
 
-  const handleDelete = (id) => {
-    setDeleteTarget(id);
-    setIsModalOpen(true);
-  };
+  // const handleDelete = (id) => {
+  //   setDeleteTarget(id);
+  //   setIsDeleteModalOpen(true);
+  // };
 
-  const confirmDelete = () => {
-    setReviews((prev) => prev.filter((review) => review.id !== deleteTarget));
-    setIsModalOpen(false);
-  };
+  // const confirmDelete = () => {
+  //   setReviews((prev) => prev.filter((review) => review.id !== deleteTarget));
+  //   setIsDeleteModalOpen(false);
+  // };
 
   const handleEdit = (id) => {
     const target = reviews.find((review) => review.id === id);
@@ -67,7 +68,7 @@ const MyReviewPage = () => {
     let newRating = 0;
     const ratingContainer = ratingRefs.current[id];
     if (ratingContainer) {
-      const spanElements = ratingContainer.querySelectorAll("span");
+      const spanElements = ratingContainer.querySelectorAll('span');
       if (spanElements.length > 0) {
         newRating = parseFloat(spanElements[0].textContent) || 0;
       }
@@ -75,27 +76,53 @@ const MyReviewPage = () => {
     let newSpoiler = false;
     const spoilerContainer = spoilerRefs.current[id];
     if (spoilerContainer) {
-      newSpoiler = spoilerContainer.innerText.includes("ON");
+      newSpoiler = spoilerContainer.innerText.includes('ON');
     }
 
     setReviews((prevReviews) =>
       prevReviews.map((review) =>
         review.id !== id
           ? review
-          : { ...review, content: editedContent[id] || "", rating: newRating, spoiler: newSpoiler }
+          : { ...review, content: editedContent[id] || '', rating: newRating, spoiler: newSpoiler }
       )
     );
     setIsEditing((prev) => ({ ...prev, [id]: false }));
   };
 
+  const deleteModalRef = useRef(null);
+
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleDeleteModalOpen = () => setIsDeleteModalOpen(true);
+  const handleDeleteModalClose = () => setIsDeleteModalOpen(false);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (deleteModalRef.current && !deleteModalRef.current.contains(e.target)) {
+        setIsDeleteModalOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
-    <S.ReviewPageWrapper>
-      <CancelModal isOpen={isModalOpen} onConfirm={confirmDelete} onCancel={() => setIsModalOpen(false)} />
+    <>
+      {isDeleteModalOpen && (
+        <ModalWrapper>
+          <QuitOrDeleteModal
+            type="삭제"
+            topRef={deleteModalRef}
+            handleModalClose={handleDeleteModalClose}
+          />
+        </ModalWrapper>
+      )}
 
       <S.ReviewPageContainer>
         <S.HeaderContainer>
           <S.HeaderTopRow>
-            <S.ReviewPageButton onClick={() => navigate("/mypage")}>
+            <S.ReviewPageButton onClick={() => navigate('/mypage')}>
               <HomeIcon />
               마이페이지
             </S.ReviewPageButton>
@@ -103,10 +130,10 @@ const MyReviewPage = () => {
           <S.HeaderBottomRow>
             <S.ReviewPageTitle>내가 남긴 댓글</S.ReviewPageTitle>
             <S.ReviewSortOptions>
-              <S.ReviewSortButton $active={sortBy === "별점순"} onClick={() => setSortBy("별점순")}>
+              <S.ReviewSortButton $active={sortBy === '별점순'} onClick={() => setSortBy('별점순')}>
                 별점순
               </S.ReviewSortButton>
-              <S.ReviewSortButton $active={sortBy === "최신순"} onClick={() => setSortBy("최신순")}>
+              <S.ReviewSortButton $active={sortBy === '최신순'} onClick={() => setSortBy('최신순')}>
                 최신순
               </S.ReviewSortButton>
             </S.ReviewSortOptions>
@@ -129,7 +156,11 @@ const MyReviewPage = () => {
                           <S.RatingText>{review.rating.toFixed(1)}/5.0</S.RatingText>
                         </S.StarRating>
                       )}
-                      {editing && <div ref={(el) => (ratingRefs.current[review.id] = el)}><HalfStarRating /></div>}
+                      {editing && (
+                        <div ref={(el) => (ratingRefs.current[review.id] = el)}>
+                          <RatingInput rating={review.rating} />
+                        </div>
+                      )}
                     </S.ReviewLeft>
                     <S.ReviewRight>
                       {!editing && (
@@ -138,12 +169,14 @@ const MyReviewPage = () => {
                             <S.EditButton onClick={() => handleEdit(review.id)}>
                               수정하기 <PencilIcon />
                             </S.EditButton>
-                            <S.DeleteButton onClick={() => handleDelete(review.id)}>
+                            <S.DeleteButton onClick={handleDeleteModalOpen}>
                               삭제하기 <TrashIcon />
                             </S.DeleteButton>
                           </S.ButtonGroup>
                           <S.InfoLine>
-                            <S.SpoilerBadge>{review.spoiler ? "스포일러 있음" : "스포일러 없음"}</S.SpoilerBadge>
+                            <S.SpoilerBadge>
+                              {review.spoiler ? '스포일러 있음' : '스포일러 없음'}
+                            </S.SpoilerBadge>
                             <S.ReviewDate>{review.date}</S.ReviewDate>
                           </S.InfoLine>
                         </>
@@ -162,10 +195,14 @@ const MyReviewPage = () => {
                     <>
                       <S.EditContainer>
                         <S.CommentBox
-                          value={editedContent[review.id] || ""}
-                          onChange={(e) => setEditedContent((prev) => ({ ...prev, [review.id]: e.target.value }))}
+                          value={editedContent[review.id] || ''}
+                          onChange={(e) =>
+                            setEditedContent((prev) => ({ ...prev, [review.id]: e.target.value }))
+                          }
                         />
-                        <S.SubmitButton onClick={() => handleSubmit(review.id)}>수정하기</S.SubmitButton>
+                        <S.SubmitButton onClick={() => handleSubmit(review.id)}>
+                          수정하기
+                        </S.SubmitButton>
                       </S.EditContainer>
                     </>
                   )}
@@ -175,7 +212,7 @@ const MyReviewPage = () => {
           })}
         </S.ReviewListContainer>
       </S.ReviewPageContainer>
-    </S.ReviewPageWrapper>
+    </>
   );
 };
 

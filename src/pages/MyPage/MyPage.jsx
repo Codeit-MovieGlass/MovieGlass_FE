@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { format, subYears } from 'date-fns';
 
+import EditProfileName from '@components/EditProfileName/EditProfileName';
 import AccountDropdown from '@components/AccountDropdown/AccountDropdown';
 import Calendar from '@components/Calendar/Calendar';
 import DatePickerDropdown from '@components/Calendar/DatePicker/DatePickerDropdown';
 import ModalWrapper from '@components/Modal/Wrapper/ModalWrapper';
-import QuitModal from '@components/Modal/Quit/QuitModal';
+import QuitOrDeleteModal from '@components/Modal/Quit/QuitOrDeleteModal';
 
 import { CameraIcon, LikeIcon, ReviewIcon, SettingsIcon } from '@icons/MyPage';
 import { PencilIconPurple } from '@icons/EditDelete';
@@ -14,7 +15,6 @@ import { DatePickerArrow } from '@icons/Arrow';
 import defaultProfile from '@assets/images/profile.jpg';
 
 import * as S from './MyPage.styled';
-import EditProfileName from '@components/EditProfileName/EditProfileName';
 
 const Mypage = () => {
   const profileDummyData = {
@@ -252,7 +252,11 @@ const Mypage = () => {
       {/* 탈퇴 모달 */}
       {isQuitModalOpen && (
         <ModalWrapper>
-          <QuitModal topRef={quitModalRef} handleQuitModalClose={handleQuitModalClose} />
+          <QuitOrDeleteModal
+            type="탈퇴"
+            topRef={quitModalRef}
+            handleModalClose={handleQuitModalClose}
+          />
         </ModalWrapper>
       )}
     </>

@@ -3,20 +3,21 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import Layout from '@layout/Layout';
 import OnBoardingLayout from '@layout/OnBoarding/OnBoardingLayout';
 
-import Home from '@pages/Home/Home';
-import MyPage from '@pages/MyPage/MyPage';
-import MyReviewPage from '@pages/ReviewPage/MyReviewPage'; //
-
-import CollectionDetail from '@pages/Collection/CollectionDetail';
-import CollectionPage from '@pages/Collection/CollectionPage';
-
-import LoginPage from '@pages/OnBoarding/Login/Login';
-import SignUp from '@pages/OnBoarding/SignUp/SignUp';
 import GoogleCallback from '@auth/redirects/GoogleRedirect';
 import KakaoCallback from '@auth/redirects/KakaoRedirect';
 
+import LoginPage from '@pages/Login/Login';
+import SignUp from '@pages/SignUp/SignUp';
+
 import GenreSelect from '@pages/OnBoarding/GenreSelectionPage/GenreSelection';
 import MovieSelection from '@pages/OnBoarding/MovieSelection/MovieSelection';
+
+import Home from '@pages/Home/Home';
+import MyPage from '@pages/MyPage/MyPage';
+import MyReviewPage from '@pages/MyPage/Review/MyReviewPage';
+
+import CollectionDetail from '@pages/Collection/CollectionDetail';
+import CollectionPage from '@pages/Collection/CollectionPage';
 
 import SearchPage from '@pages/Search/SearchPage';
 

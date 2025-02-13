@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 /* 전체 페이지 Wrapper */
 export const ReviewPageWrapper = styled.div`
@@ -49,8 +49,7 @@ export const HeaderBottomRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-    margin-top: 10px;
-
+  margin-top: 10px;
 `;
 
 /* 제목 */
@@ -265,7 +264,7 @@ export const ReviewContent = styled.div`
   height: 77px;
   border-radius: 8px;
   padding: 24px;
-  border: 2px solid #965AFF;
+  border: 2px solid #965aff;
   font-size: 15px;
   color: #ddd;
   line-height: 1.5;
@@ -279,7 +278,7 @@ export const CommentBox = styled.textarea`
   height: 156px;
   border-radius: 8px;
   padding: 24px;
-  border: 2px solid #A8A5A8;
+  border: 2px solid #a8a5a8;
   background: #000;
   color: #fff;
   resize: vertical;
@@ -294,7 +293,7 @@ export const SubmitButton = styled.button`
   height: 50px;
   padding: 16px 20px;
   border-radius: 8px;
-  background: #965AFF;
+  background: #965aff;
   color: #fff;
   border: none;
   cursor: pointer;
