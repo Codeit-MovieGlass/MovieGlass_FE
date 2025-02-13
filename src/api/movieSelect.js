@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router';
 
 import { MovieData, GetMovieData } from '@pages/Onboarding/MovieSelection/SelectMovieData';
 import axios from 'axios';
@@ -7,7 +8,7 @@ import axios from 'axios';
 const getNewMovies = async (keyword) => {
   try {
     console.log(keyword);
-    const response = await axios.get('', { params: { keyword } })
+    const response = await axios.get('http://3.35.55.17/moviechoice/keyword', { params: { keyword } })
     
     if(response.data.success){
       let movies =response.data.data;
@@ -29,6 +30,8 @@ const getNewMovies = async (keyword) => {
 };
 
 export const useMovies = () => {
+  const location = useLocation();
+  const initialMovies = location.state?.movies || [];
 
   const [displayMovies, setDisplayMovies] = useState([]);
   const [selectedMovies, setSelectedMovies] = useState([]);
@@ -42,15 +45,12 @@ export const useMovies = () => {
 
   //새로고침 시 초기화
   useEffect(() => {
-    const fetchInitialMovies = async () => {
-      try {
-        setDisplayMovies(MovieData);
-      } catch (error) {
-        console.error('영화 데이터를 불러오는 중 오류 발생', error);
-      }
-    };
-    fetchInitialMovies();
-  }, []);
+    const initialSelectedMovies = displayMovies
+      .filter(movie => selectedMovies.includes(movie.movie_id))
+      .map(movie => movie.movie_id);
+
+    setSelectedMovies(initialSelectedMovies);
+  }, [displayMovies]); 
 
   const fetchNewMovies = async (id,keyword) => {
     if (cachedMovies.current[id]) return cachedMovies.current[id]; 
@@ -77,7 +77,6 @@ export const useMovies = () => {
     // 새로운 영화 추가
     const newMovies = await fetchNewMovies(id,keyword);
     setSelectedMovies((prev) => [...prev, id]);
-
    //새로 받아온 영화가 중복인지 아닌지
     const filteredNewMovies = newMovies.filter(
       (movie) => !displayMovies.some((displayedMovie) => displayedMovie.movie_id === movie.movie_id)
@@ -102,7 +101,7 @@ export const useMovies = () => {
   
     try {
       console.log(selectedMovies);
-      const response = await axios.post('http://3.35.55.17/moviechoice/select', { 
+      const response = await axios.post('', { 
         user_id: '',  
         movie_id: selectedMovies,
       });
