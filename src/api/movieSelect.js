@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import axios from 'axios';
+
+import api from './api';
 
 // 영화 선택 시 4개의 영화 데이터를 받아오는 로직 
 const getNewMovies = async (keyword) => {
   try {
     console.log(keyword);
-    const response = await axios.get('', { params: { keyword } })
+    const response = await api.get('/moviechoice/keyword', { params: { keyword } })
     
     if(response.data.success){
       let movies =response.data.data;
@@ -104,7 +105,7 @@ export const useMovies = () => {
   const submitSelectedMovies = async () => {
     try {
     //const user_id=localstorage.getItem('user_id') 회원가입 시에 유저 id 저장
-      const response = await axios.post('', { 
+      const response = await api.post('/moviechoice/select', { 
         user_id: '',  
         movie_id: selectedMovies,
       });

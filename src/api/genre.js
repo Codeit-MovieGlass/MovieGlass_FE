@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from "./api";
 
 export const handleNext = async (selectedGenres, genres, navigate) => {
   if (selectedGenres.length === 2) {
@@ -10,7 +10,7 @@ export const handleNext = async (selectedGenres, genres, navigate) => {
     console.log(selectedGenreNames);
 
     try {
-      const response = await axios.get('', {
+      const response = await api.get('/moviechoice/genre', {
         params: { genre: selectedGenreNames },
       });
 
