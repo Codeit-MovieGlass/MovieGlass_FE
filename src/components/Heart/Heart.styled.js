@@ -3,13 +3,25 @@ import pxToRem from '@utils/pxToRem';
 
 import heartIcon from '@assets/svgs/icons//heart.svg?react';
 
+export const HeartButton = styled.button`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    transform: translateY(-2px) scale(1.1);
+    transition: transform 0.2s ease-out;
+  }
+
+  transition: transform 0.12s ease-in;
+`;
+
 export const HeartIcon = styled(heartIcon)`
-  position: relative;
-
-  width: ${pxToRem(50)};
-  height: ${pxToRem(47)};
-
-  cursor: pointer;
+  width: ${pxToRem(48)};
+  height: fit-content;
 
   #heart-outline {
     position: absolute;
@@ -24,12 +36,7 @@ export const HeartIcon = styled(heartIcon)`
         : css``}
 
     transition:
-      fill 0.2s ease-in-out,
-      transform 0.18s ease;
-
-    &:hover {
-      transform: translateY(-3px);
-    }
+      fill 0.2s ease-out,
   }
 
   #heart-fill {
@@ -46,6 +53,6 @@ export const HeartIcon = styled(heartIcon)`
           `
         : css``}
 
-    transition: clip-path 0.2s ease-in-out;
+    transition: clip-path 0.2s ease-out;
   }
 `;
