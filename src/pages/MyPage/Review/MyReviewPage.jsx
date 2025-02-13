@@ -10,49 +10,37 @@ import { PencilIconGray, TrashIconGray } from '@icons/EditDelete';
 
 import * as S from './MyReviewPage.styled';
 
-const MyReviewPage = () => {
-  const [reviews, setReviews] = useState([
-    {
-      id: 1,
-      title: '노트북 (Notebook)',
-      rating: 4.5,
-      content: '이 영화는 정말 감동적이었습니다!',
-      imageUrl: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
-      date: '2025.01.16',
-      spoiler: false,
-    },
-    {
-      id: 2,
-      title: '노트북 (Notebook)',
-      rating: 3.0,
-      content: '나쁘진 않았지만 아쉬운 부분도 있었어요.',
-      imageUrl: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
-      date: '2025.01.20',
-      spoiler: true,
-    },
-  ]);
+// API 함수 임포트
+import { getUserReviews, createOrUpdateReview, deleteReview } from '../../../api/reviewApi';
 
+const MyReviewPage = () => {
+  const [reviews, setReviews] = useState([]); // 초기 데이터를 빈 배열로 변경
   const [sortBy, setSortBy] = useState('별점순');
   const [isEditing, setIsEditing] = useState({});
   const [editedContent, setEditedContent] = useState({});
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState(null);
 
-  // const [deleteTarget, setDeleteTarget] = useState(null);
   const ratingRefs = useRef({});
   const spoilerRefs = useRef({});
+  const deleteModalRef = useRef(null);
+
+  // API를 통해 리뷰 데이터를 불러옴
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const data = await getUserReviews();
+        setReviews(data);
+      } catch (error) {
+        console.error('리뷰 데이터 로드 실패:', error);
+      }
+    };
+    fetchReviews();
+  }, []);
 
   const sortedReviews = [...reviews].sort((a, b) =>
     sortBy === '별점순' ? b.rating - a.rating : new Date(b.date) - new Date(a.date)
   );
-
-  // const handleDelete = (id) => {
-  //   setDeleteTarget(id);
-  //   setIsDeleteModalOpen(true);
-  // };
-
-  // const confirmDelete = () => {
-  //   setReviews((prev) => prev.filter((review) => review.id !== deleteTarget));
-  //   setIsDeleteModalOpen(false);
-  // };
 
   const handleEdit = (id) => {
     const target = reviews.find((review) => review.id === id);
@@ -61,45 +49,65 @@ const MyReviewPage = () => {
     setEditedContent((prev) => ({ ...prev, [id]: target.content }));
   };
 
-  const handleSubmit = (id) => {
-    let newRating = 0;
+  const handleSubmit = async (review) => {
+    const { id, movieId } = review;
+    let newRating = review.rating;
     const ratingContainer = ratingRefs.current[id];
     if (ratingContainer) {
       const spanElements = ratingContainer.querySelectorAll('span');
       if (spanElements.length > 0) {
-        newRating = parseFloat(spanElements[0].textContent) || 0;
+        newRating = parseFloat(spanElements[0].textContent) || review.rating;
       }
     }
-    let newSpoiler = false;
+    let newSpoiler = review.spoiler;
     const spoilerContainer = spoilerRefs.current[id];
     if (spoilerContainer) {
       newSpoiler = spoilerContainer.innerText.includes('ON');
     }
-
-    setReviews((prevReviews) =>
-      prevReviews.map((review) =>
-        review.id !== id
-          ? review
-          : { ...review, content: editedContent[id] || '', rating: newRating, spoiler: newSpoiler }
-      )
-    );
-    setIsEditing((prev) => ({ ...prev, [id]: false }));
+    const updatedData = {
+      rating: newRating,
+      review_comment: editedContent[id] || review.content,
+      // 필요 시 view_count 등 추가 필드 포함
+    };
+    try {
+      await createOrUpdateReview(movieId, updatedData);
+      setReviews((prevReviews) =>
+        prevReviews.map((r) =>
+          r.id !== id ? r : { ...r, ...updatedData }
+        )
+      );
+      setIsEditing((prev) => ({ ...prev, [id]: false }));
+    } catch (error) {
+      console.error('리뷰 업데이트 실패:', error);
+    }
   };
 
-  const deleteModalRef = useRef(null);
+  const handleDeleteModalOpen = (review) => {
+    setDeleteTarget(review);
+    setIsDeleteModalOpen(true);
+  };
 
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
-  const handleDeleteModalOpen = () => setIsDeleteModalOpen(true);
   const handleDeleteModalClose = () => setIsDeleteModalOpen(false);
 
+  const confirmDelete = async () => {
+    try {
+      const { id, movieId } = deleteTarget;
+      await deleteReview(movieId, id);
+      setReviews((prev) => prev.filter((review) => review.id !== id));
+    } catch (error) {
+      console.error('리뷰 삭제 실패:', error);
+    } finally {
+      setIsDeleteModalOpen(false);
+    }
+  };
+
+  // 클릭 외부 감지하여 삭제 모달 닫기
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (deleteModalRef.current && !deleteModalRef.current.contains(e.target)) {
         setIsDeleteModalOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
@@ -112,6 +120,7 @@ const MyReviewPage = () => {
             type="삭제"
             topRef={deleteModalRef}
             handleModalClose={handleDeleteModalClose}
+            onConfirm={confirmDelete}
           />
         </ModalWrapper>
       )}
@@ -132,7 +141,6 @@ const MyReviewPage = () => {
                 별점순
               </S.ReviewSortOptionButton>
             </S.ReviewSortOptionItem>
-
             <S.ReviewSortOptionItem>
               <S.ReviewSortOptionButton
                 $isActive={sortBy === '최신순'}
@@ -145,19 +153,14 @@ const MyReviewPage = () => {
         </S.MyReviewHeaderSection>
         <S.MainContentDivider />
 
-        {/* Main Section */}
         <S.ReviewListContainer>
           {sortedReviews.map((review) => {
             const editing = !!isEditing[review.id];
-
             return (
               <S.ReviewListItem key={review.id}>
                 <S.Poster src={review.imageUrl} alt={review.title} />
-
-                {/* 리뷰 아이템  */}
                 <S.ReviewItemContainer $isEditing={editing}>
                   <S.ReviewItemHeader>
-                    {/* 영화 제목 및 평점 */}
                     <S.RatingMovieTitleContainer $isEditing={editing}>
                       <S.ReviewTitle>{review.title}</S.ReviewTitle>
                       {editing ? (
@@ -175,7 +178,6 @@ const MyReviewPage = () => {
                       )}
                     </S.RatingMovieTitleContainer>
 
-                    {/* 리뷰 관련 정보 */}
                     <S.ReviewInfoSection>
                       {editing ? (
                         <S.InfoLine>
@@ -189,21 +191,20 @@ const MyReviewPage = () => {
                             <S.EditButton onClick={() => handleEdit(review.id)}>
                               수정하기 <PencilIconGray />
                             </S.EditButton>
-                            <S.DeleteButton onClick={handleDeleteModalOpen}>
+                            <S.DeleteButton onClick={() => handleDeleteModalOpen(review)}>
                               삭제하기 <TrashIconGray />
                             </S.DeleteButton>
                           </S.EditDeleteButtonContainer>
-
-                          <S.SpoilerText>
-                            {review.spoiler ? '스포일러 있음' : '스포일러 없음'}
-                          </S.SpoilerText>
-                          <S.ReviewDate>{review.date}</S.ReviewDate>
+                          <S.InfoLine>
+                            <S.SpoilerText>
+                              {review.spoiler ? '스포일러 있음' : '스포일러 없음'}
+                            </S.SpoilerText>
+                            <S.ReviewDate>{review.date}</S.ReviewDate>
+                          </S.InfoLine>
                         </>
                       )}
                     </S.ReviewInfoSection>
                   </S.ReviewItemHeader>
-
-                  {/* 리뷰 내용 */}
                   {editing ? (
                     <S.CommentEditForm>
                       <S.CommentBox
@@ -212,7 +213,7 @@ const MyReviewPage = () => {
                           setEditedContent((prev) => ({ ...prev, [review.id]: e.target.value }))
                         }
                       />
-                      <S.ModifyButton onClick={() => handleSubmit(review.id)}>
+                      <S.ModifyButton onClick={() => handleSubmit(review)}>
                         수정하기
                       </S.ModifyButton>
                     </S.CommentEditForm>
