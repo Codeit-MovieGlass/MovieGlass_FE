@@ -1,23 +1,20 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router';
 
+import BackToHomeOrMyPage from '@components/BackToHomeOrMyPage/BackToHomeOrMyPage';
 import RatingInput from '@components/RatingInput/RatingInput';
 import Rating from '@components/Rating/Rating';
 import SpoilerToggle from '@components/SpoilerToggle/SpoilerToggle';
-import { PencilIcon, TrashIcon } from '@icons/EditDelete';
-import { HomeIcon } from '@icons/HomeIcon';
+import ModalWrapper from '@components/Modal/Wrapper/ModalWrapper';
+import QuitOrDeleteModal from '@components/Modal/Quit/QuitOrDeleteModal';
+import { PencilIconGray, TrashIconGray } from '@icons/EditDelete';
 
 import * as S from './MyReviewPage.styled';
-import QuitOrDeleteModal from '@components/Modal/Quit/QuitOrDeleteModal';
-import ModalWrapper from '@components/Modal/Wrapper/ModalWrapper';
 
 const MyReviewPage = () => {
-  const navigate = useNavigate();
-
   const [reviews, setReviews] = useState([
     {
       id: 1,
-      title: '영화 제목',
+      title: '노트북 (Notebook)',
       rating: 4.5,
       content: '이 영화는 정말 감동적이었습니다!',
       imageUrl: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
@@ -26,7 +23,7 @@ const MyReviewPage = () => {
     },
     {
       id: 2,
-      title: '영화 제목',
+      title: '노트북 (Notebook)',
       rating: 3.0,
       content: '나쁘진 않았지만 아쉬운 부분도 있었어요.',
       imageUrl: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
@@ -119,99 +116,114 @@ const MyReviewPage = () => {
         </ModalWrapper>
       )}
 
-      <S.ReviewPageContainer>
-        <S.HeaderContainer>
-          <S.HeaderTopRow>
-            <S.ReviewPageButton onClick={() => navigate('/mypage')}>
-              <HomeIcon />
-              마이페이지
-            </S.ReviewPageButton>
-          </S.HeaderTopRow>
-          <S.HeaderBottomRow>
-            <S.ReviewPageTitle>내가 남긴 댓글</S.ReviewPageTitle>
-            <S.ReviewSortOptions>
-              <S.ReviewSortButton $active={sortBy === '별점순'} onClick={() => setSortBy('별점순')}>
-                별점순
-              </S.ReviewSortButton>
-              <S.ReviewSortButton $active={sortBy === '최신순'} onClick={() => setSortBy('최신순')}>
-                최신순
-              </S.ReviewSortButton>
-            </S.ReviewSortOptions>
-          </S.HeaderBottomRow>
-        </S.HeaderContainer>
+      <S.MyReviewPageContainer>
+        <S.MyPageRouteSection>
+          <BackToHomeOrMyPage type="mypage" />
+        </S.MyPageRouteSection>
 
+        <S.MyReviewHeaderSection>
+          <S.MyReviewPageTitle>내가 남긴 댓글</S.MyReviewPageTitle>
+          <S.ReviewSortOptionList>
+            <S.ReviewSortOptionItem>
+              <S.ReviewSortOptionButton
+                $isActive={sortBy === '별점순'}
+                onClick={() => setSortBy('별점순')}
+              >
+                별점순
+              </S.ReviewSortOptionButton>
+            </S.ReviewSortOptionItem>
+
+            <S.ReviewSortOptionItem>
+              <S.ReviewSortOptionButton
+                $isActive={sortBy === '최신순'}
+                onClick={() => setSortBy('최신순')}
+              >
+                최신순
+              </S.ReviewSortOptionButton>
+            </S.ReviewSortOptionItem>
+          </S.ReviewSortOptionList>
+        </S.MyReviewHeaderSection>
+
+        {/* Main Section */}
         <S.ReviewListContainer>
           {sortedReviews.map((review) => {
             const editing = !!isEditing[review.id];
+
             return (
-              <S.ReviewItem key={review.id}>
+              <S.ReviewListItem key={review.id}>
                 <S.Poster src={review.imageUrl} alt={review.title} />
-                <S.ReviewInfo>
+
+                {/* 리뷰 아이템  */}
+                <S.ReviewItemContainer $isEditing={editing}>
                   <S.ReviewItemHeader>
-                    <S.ReviewLeft>
+                    {/* 영화 제목 및 평점 */}
+                    <S.RatingMovieTitleContainer $isEditing={editing}>
                       <S.ReviewTitle>{review.title}</S.ReviewTitle>
-                      {!editing && (
-                        <S.StarRating>
-                          <Rating rating={review.rating} />
-                          <S.RatingText>{review.rating.toFixed(1)}/5.0</S.RatingText>
-                        </S.StarRating>
-                      )}
-                      {editing && (
+                      {editing ? (
                         <div ref={(el) => (ratingRefs.current[review.id] = el)}>
                           <RatingInput rating={review.rating} />
                         </div>
+                      ) : (
+                        <S.RatingContainer>
+                          <Rating rating={review.rating} />
+                          <S.RatingText>
+                            {review.rating.toFixed(1)}
+                            <span className="total-rating">/5.0</span>
+                          </S.RatingText>
+                        </S.RatingContainer>
                       )}
-                    </S.ReviewLeft>
-                    <S.ReviewRight>
-                      {!editing && (
-                        <>
-                          <S.ButtonGroup>
-                            <S.EditButton onClick={() => handleEdit(review.id)}>
-                              수정하기 <PencilIcon />
-                            </S.EditButton>
-                            <S.DeleteButton onClick={handleDeleteModalOpen}>
-                              삭제하기 <TrashIcon />
-                            </S.DeleteButton>
-                          </S.ButtonGroup>
-                          <S.InfoLine>
-                            <S.SpoilerBadge>
-                              {review.spoiler ? '스포일러 있음' : '스포일러 없음'}
-                            </S.SpoilerBadge>
-                            <S.ReviewDate>{review.date}</S.ReviewDate>
-                          </S.InfoLine>
-                        </>
-                      )}
-                      {editing && (
+                    </S.RatingMovieTitleContainer>
+
+                    {/* 리뷰 관련 정보 */}
+                    <S.ReviewInfoSection>
+                      {editing ? (
                         <S.InfoLine>
                           <div ref={(el) => (spoilerRefs.current[review.id] = el)}>
                             <SpoilerToggle />
                           </div>
                         </S.InfoLine>
+                      ) : (
+                        <>
+                          <S.EditDeleteButtonContainer>
+                            <S.EditButton onClick={() => handleEdit(review.id)}>
+                              수정하기 <PencilIconGray />
+                            </S.EditButton>
+                            <S.DeleteButton onClick={handleDeleteModalOpen}>
+                              삭제하기 <TrashIconGray />
+                            </S.DeleteButton>
+                          </S.EditDeleteButtonContainer>
+
+                          <S.SpoilerText>
+                            {review.spoiler ? '스포일러 있음' : '스포일러 없음'}
+                          </S.SpoilerText>
+                          <S.ReviewDate>{review.date}</S.ReviewDate>
+                        </>
                       )}
-                    </S.ReviewRight>
+                    </S.ReviewInfoSection>
                   </S.ReviewItemHeader>
-                  {!editing && <S.ReviewContent>{review.content}</S.ReviewContent>}
-                  {editing && (
-                    <>
-                      <S.EditContainer>
-                        <S.CommentBox
-                          value={editedContent[review.id] || ''}
-                          onChange={(e) =>
-                            setEditedContent((prev) => ({ ...prev, [review.id]: e.target.value }))
-                          }
-                        />
-                        <S.SubmitButton onClick={() => handleSubmit(review.id)}>
-                          수정하기
-                        </S.SubmitButton>
-                      </S.EditContainer>
-                    </>
+
+                  {/* 리뷰 내용 */}
+                  {editing ? (
+                    <S.CommentEditForm>
+                      <S.CommentBox
+                        value={editedContent[review.id] || ''}
+                        onChange={(e) =>
+                          setEditedContent((prev) => ({ ...prev, [review.id]: e.target.value }))
+                        }
+                      />
+                      <S.ModifyButton onClick={() => handleSubmit(review.id)}>
+                        수정하기
+                      </S.ModifyButton>
+                    </S.CommentEditForm>
+                  ) : (
+                    <S.ReviewContent>{review.content}</S.ReviewContent>
                   )}
-                </S.ReviewInfo>
-              </S.ReviewItem>
+                </S.ReviewItemContainer>
+              </S.ReviewListItem>
             );
           })}
         </S.ReviewListContainer>
-      </S.ReviewPageContainer>
+      </S.MyReviewPageContainer>
     </>
   );
 };
