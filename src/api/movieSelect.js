@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import axios from 'axios';
 
 // 영화 선택 시 4개의 영화 데이터를 받아오는 로직 
@@ -28,6 +28,7 @@ const getNewMovies = async (keyword) => {
 };
 
 export const useMovies = () => {
+  const navigate =useNavigate();
   const location = useLocation();
   const initialMovies = location.state?.movies || [];
 
@@ -49,7 +50,7 @@ export const useMovies = () => {
     setSelectedMovies(initialSelectedMovies);
   }, [displayMovies]); 
 
-  // 중복 API 방지
+  // 중복된 영화 화면에 표시 방지
   const fetchNewMovies = async (id,keyword) => {
     if (cachedMovies.current[id]) return cachedMovies.current[id]; 
 
@@ -67,11 +68,11 @@ export const useMovies = () => {
     const isSelected = selectedMovies.includes(id);
 
     if (isSelected) {
-      // 선택 해제 → 추가된 영화 삭제
+      // 선택 해제 → 추가된 영화 화면에서 삭제
       setSelectedMovies((prev) => prev.filter((movieId) => movieId !== id));
       setDisplayMovies((prev) =>
         prev.filter((movie) => !cachedMovies.current[id]?.some((m) => m.movie_id === movie.movie_id)|| 
-      selectedMovies.includes(movie.movie_id))
+      selectedMovies.includes(movie.movie_id))// 선택 하고 있는 영화는 화면에서 유지
       );
       return; 
     }
@@ -88,11 +89,7 @@ export const useMovies = () => {
     setDisplayMovies((prev) => {
       const index = prev.findIndex(({ movie_id }) => movie_id === id);
       if (index === -1) return prev;
-    
-      // 현재 영화 리스트에서 선택한 영화가 속한 "줄"을 찾음 (한 줄에 3개씩)
       const rowIndex = Math.floor(index / 3);
-    
-      // 선택한 영화의 다음 줄 위치를 구함
       const insertIndex = (rowIndex + 1) * 3; // 다음 줄의 첫 번째 위치
     
       return [
@@ -103,32 +100,25 @@ export const useMovies = () => {
     });
   };
 
-  //완료 버튼 눌렀을 때 선택한 영화 id 서버로 전달
+
   const submitSelectedMovies = async () => {
-    if (selectedMovies.length < 3) {
-      alert("최소 3개의 영화를 선택해야 합니다."); 
-      return;
-    }
-  
     try {
-      console.log(selectedMovies);
+    //const user_id=localstorage.getItem('user_id') 회원가입 시에 유저 id 저장
       const response = await axios.post('', { 
         user_id: '',  
         movie_id: selectedMovies,
       });
       
       if (response.data.success) {
-        console.log(' 영화 선택이 성공적으로 저장되었습니다.');
-        alert("영화 선택이 완료되었습니다!");
+        alert('영화 선택이 완료되었습니다!');
+        navigate('/login');
+        
       } else {
-        console.log(response.data)
-        console.error("오류 발생:", response.data.message);
-        alert(response.data.message); 
+        alert('다시 시도해주세요.'); 
       }
     } catch (error) {
-      console.log(error.message);
-      console.error("❌ 서버 요청 중 오류 발생:", error);
-      alert("서버에 요청하는 중 문제가 발생했습니다. 다시 시도해 주세요.");
+      console.error('영화 선택 실패:', error);
+      alert('영화 선택에 실패하셨습니다.');
     }
   };
   
