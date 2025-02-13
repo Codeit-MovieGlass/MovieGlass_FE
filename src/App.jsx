@@ -23,10 +23,9 @@ function App() {
         </Route>
 
         <Route path="oauth">
-          <Route path="google" element={<GoogleCallback/>}/>
-          <Route path="kakao" element={<KakaoCallback/>}/>
+          <Route path="google" element={<GoogleCallback />} />
+          <Route path="kakao" element={<KakaoCallback />} />
         </Route>
-
       </Routes>
     </BrowserRouter>
   );

@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
+import { login } from '@api/auth';
+
 import * as S from './Login.styled';
-import axios from 'axios';
-
-import { useLogin } from './LoginApI';
-
-// 나중에 해야 할 일
-// - 로그인, 소셜 로그인, 회원가입 백엔드와 연동 로직
 
 const LoginPage = () => {
+  // [남은 작업]
+  // - 로그인, 소셜 로그인, 회원가입 백엔드와 연동 로직
+
   const navigate = useNavigate();
-  const {login, error}=useLogin();
 
   // 자체 로그인 데이터
   const [formData, setFormData] = useState({
@@ -21,7 +19,7 @@ const LoginPage = () => {
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  //폼 데이터 변경 핸들러
+  // 폼 데이터 변경 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -31,10 +29,10 @@ const LoginPage = () => {
     });
   };
 
-  // 로그인 로직 
+  // 로그인 로직
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(formData);
+    await login(formData, navigate);
   };
 
   // 비밀번호 토글

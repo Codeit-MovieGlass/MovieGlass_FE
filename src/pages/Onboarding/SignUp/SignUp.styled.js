@@ -26,13 +26,16 @@ export const SignUpForm = styled.form`
 export const InputContainer = styled.div`
   width: 100%;
   height: fit-content;
+`;
+
+export const InputLabel = styled.label`
+  width: 100%;
+  height: fit-content;
 
   display: flex;
   flex-direction: column;
   gap: ${pxToRem(10)};
-`;
 
-export const InputLabel = styled.label`
   ${({ theme }) => theme.fontStyles.Body4};
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_5};
 `;
