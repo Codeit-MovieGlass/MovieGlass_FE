@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import BackToHome from '@components/BackToHome/BackToHome';
+import BackToHomeOrMyPage from '@components/BackToHomeOrMyPage/BackToHomeOrMyPage';
 import NoSearchData from './NoSearchData/NoSearchData';
 
 import * as S from './SearchMovie.styled';
@@ -17,7 +17,7 @@ const SearchMovie = ({ query, searchedResult }) => {
             <S.SearchMovieText>
               <span className="query">‘{query}’</span> 에 대한 검색 내용이에요
             </S.SearchMovieText>
-            <BackToHome />
+            <BackToHomeOrMyPage type="home" />
           </S.SearchMovieHeader>
 
           {/* Poster Grid */}

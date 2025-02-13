@@ -20,7 +20,7 @@ export const HomeIconBox = styled.div`
 `;
 
 export const BackToHomeText = styled.span`
-  ${({ theme }) => theme.fontStyles.Body2};
-  font-weight: 700;
+  ${({ theme }) => theme.fontStyles.Body3};
+  font-weight: 600;
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_5};
 `;

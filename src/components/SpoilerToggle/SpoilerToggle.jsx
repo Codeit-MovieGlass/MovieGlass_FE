@@ -9,7 +9,7 @@ const SpoilerToggle = () => {
 
   return (
     <S.SpoilerToggleWrapper>
-      <S.SpoilerToggleLabel>스포일러 여부</S.SpoilerToggleLabel>
+      <S.SpoilerToggleLabel>스포일러</S.SpoilerToggleLabel>
       <S.SpoilerToggleContainer onClick={toggleSwitch} $isOn={isOn}>
         {isOn && <S.OnOff>ON</S.OnOff>}
         <S.Toggle layout transition={{ type: 'spring', visualDuration: 0.2, bounce: 0.2 }} />

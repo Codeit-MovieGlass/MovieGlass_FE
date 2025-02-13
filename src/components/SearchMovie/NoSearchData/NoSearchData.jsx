@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import BackToHome from '@components/BackToHome/BackToHome';
+import BackToHomeOrMyPage from '@components/BackToHomeOrMyPage/BackToHomeOrMyPage';
 
 import * as S from './NoSearchData.styled';
 
@@ -13,7 +13,7 @@ const NoSearchData = ({ query }) => {
       </S.SearchMovieText>
 
       {/* 메인으로 */}
-      <BackToHome />
+      <BackToHomeOrMyPage type="home" />
     </S.NoSearchDataContainer>
   );
 };
