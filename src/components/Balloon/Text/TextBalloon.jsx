@@ -1,12 +1,13 @@
-import * as S from './Balloon.styled';
 import * as B from '@icons/Balloon';
+
+import * as S from './TextBalloon.styled';
 
 const TextBalloon = () => {
   return (
-    <S.BalloonContainer>
+    <S.TextBalloonContainer>
       <S.BallonText>어떤 기분의 영화를 보고 싶으신가요?</S.BallonText>
       <B.MessageBalloonIcon />
-    </S.BalloonContainer>
+    </S.TextBalloonContainer>
   );
 };
 

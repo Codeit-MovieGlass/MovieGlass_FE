@@ -1,21 +1,33 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
 export const MovieIntroBoxContainer = styled.div`
   position: absolute;
   bottom: 8%;
   right: -20%;
+  z-index: 10;
 
   width: ${pxToRem(320)};
-  height: ${pxToRem(160)};
+  height: fit-content;
   padding: ${pxToRem(20)};
 
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
 
-  user-select: none; /* 텍스트 선택 비활성화 */
-  -webkit-user-select: none; /* Safari */
+  user-select: none;
+  -webkit-user-select: none;
+
+  ${({ $isRendered }) =>
+    $isRendered
+      ? css`
+          opacity: 1;
+          transition: opacity 0.2s ease-in;
+        `
+      : css`
+          opacity: 0;
+          transition: opacity 0.2s ease-out;
+        `}
 `;
 
 export const InfoSection = styled.section`

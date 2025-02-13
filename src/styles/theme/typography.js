@@ -61,7 +61,6 @@ const bodyStyles = {
   Body4: css`
     ${bodyBaseFontStyles}
     font-size: ${pxToRem(18)};
-    letter-spacing: 0.36px;
   `,
   Body5: css`
     ${bodyBaseFontStyles}
@@ -101,12 +100,13 @@ const ExtraStyles = {
     font-size: ${pxToRem(96)};
     font-weight: 900;
   `,
+  H_Regular: css`
+    ${bodyBaseFontStyles}
+    font-size: ${pxToRem(36)};
+    font-weight: 400;
+  `,
 };
 
-const fontStyles = {
-  ...headerStyles,
-  ...bodyStyles,
-  ...ExtraStyles,
-};
+const fontStyles = { ...headerStyles, ...bodyStyles, ...ExtraStyles };
 
 export default fontStyles;
