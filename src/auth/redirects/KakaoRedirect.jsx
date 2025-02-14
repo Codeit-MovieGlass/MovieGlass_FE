@@ -24,25 +24,24 @@ const KakaoRedirect = () => {
     if (KAKAO_AUTH_CODE) {
       console.log('Kakao Authorization Code: ', KAKAO_AUTH_CODE);
 
-      const sendAuthCodeToserver = async () => {
+      const postAuthCodeToserver = async () => {
         try {
-          const response = await api.get('/auth/kakao', {
+          const response = await api.post('/auth/kakao', {
             code: KAKAO_AUTH_CODE,
           });
+
           console.log(response.data);
 
-          //로그인 성공 시 로컬 스토리지에 저장할 요소 나중에 수정
           if (response.data.isSuccess) {
             const userId = response.data.result.userId;
             localStorage.setItem('userId', userId);
 
-            //상태 코드에 따른 리다이렉트 처리리
             if (response.status === 201) {
-              // 최초 회원가입 -> 장르 선택 페이지로 이동
+              // 최초 회원가입
 
               navigate('/select/genre');
             } else if (response.status === 200) {
-              // 기존 로그인 -> 홈페이지로 이동
+              // 기존 로그인
               localStorage.setItem('accessToken', response.data.accessToken);
               localStorage.setItem('refreshToken', response.data.refreshToken);
               navigate('/');
@@ -55,7 +54,8 @@ const KakaoRedirect = () => {
           console.error('Fetching access token failed: ', error);
         }
       };
-      sendAuthCodeToserver();
+
+      postAuthCodeToserver();
     }
   }, [KAKAO_AUTH_CODE, navigate]);
 
