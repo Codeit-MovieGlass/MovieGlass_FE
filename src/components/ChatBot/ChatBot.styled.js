@@ -26,6 +26,8 @@ export const ChatBoxContainer = styled.div`
   overflow: auto;
 
   padding: ${pxToRem(32)};
+  border-radius: 8px;
+  border: 2px solid ${({ theme }) => theme.colors.MG_Grayscale.Gray_5}
 `;
 
 export const ChatBoxClose = styled(ChatBotArrow)`
@@ -61,6 +63,11 @@ export const ChatWindow = styled.div`
   &::-webkit-scrollbar-track {
     background: ${({ theme }) => theme.colors.MG_Grayscale.Gray_2}; /* 스크롤 바 배경 */
   }
+`;
+
+export const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Message = styled.div`
