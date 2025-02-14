@@ -5,9 +5,9 @@ import Heart from '@components/Heart/Heart';
 import ViewCount from '@components/ViewCount/ViewCount';
 import OTTLink from '@components/OTTLink/OTTLink';
 import MovieInfoTab from './InfoTab/MovieInfoTab';
+import MovieReviewTab from './ReviewTab/MovieReviewTab';
 
 import * as S from './MovieModal.styled';
-import MovieReviewTab from './ReviewTab/MovieReviewTab';
 
 const movieInfos = {
   rating: 4.5,
@@ -16,7 +16,7 @@ const movieInfos = {
   infos: {
     title: '탑건: 매버릭',
     genre: ['액션', '드라마'],
-    keyword: ['힝공', '전투기', '파일럿'],
+    keyword: ['항공', '전투기', '파일럿'],
     director: '조셉 코신스키',
     actor:
       '톰 크루즈, 마일스 텔러, 제니퍼 코넬리,존 햄, 글렌 포웰, 루이스 풀먼,에드 해리스, 발 킬머',

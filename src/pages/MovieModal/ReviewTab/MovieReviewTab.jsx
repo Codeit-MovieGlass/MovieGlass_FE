@@ -59,13 +59,26 @@ const MovieReviewTab = () => {
     setSortOption(option);
   };
 
+  // 리뷰 수정 상태 관리
+  const [isReviewEditing, setIsReviewEditing] = useState(false);
+
+  const handleReviewEditing = () => setIsReviewEditing(!isReviewEditing);
+
   // 현재 로그인된 유저가 작성한 리뷰 찾기
   const myReview = reviewDummyData.find((review) => review.username === myUserName) ?? null;
 
   return (
     <S.MovieReviewTabContainer>
       <S.ReviewWriteSection>
-        {myReview ? <Review myReview={true} reviewInfos={myReview} /> : <WriteReview />}
+        {myReview && !isReviewEditing ? (
+          <Review
+            myReview={true}
+            reviewInfos={myReview}
+            handleReviewEditing={handleReviewEditing}
+          />
+        ) : (
+          <WriteReview />
+        )}
       </S.ReviewWriteSection>
       <S.ReviewSortOptionSection>
         <ReviewSortOption sortOption={sortOption} handleSortOption={handleSortOption} />

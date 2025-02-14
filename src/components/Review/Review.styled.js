@@ -33,6 +33,33 @@ export const RatingDateContainer = styled.div`
   gap: ${pxToRem(12)};
 `;
 
+export const MyReviewRatingSpoilerContainer = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: ${pxToRem(16)};
+`;
+
+export const SpoilerDivider = styled.div`
+  align-self: stretch;
+
+  width: 1.5px;
+  height: 100%;
+
+  border-radius: 8px;
+
+  background-color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_2};
+`;
+
+export const MyReviewSpoilerText = styled.span`
+  ${({ theme }) => theme.fontStyles.Body3}
+  color: ${({ theme }) => theme.colors.MG_Signature.Light1};
+
+  white-space: nowrap;
+`;
+
 export const RatingBox = styled.div`
   flex-grow: 1;
 
@@ -55,6 +82,24 @@ export const Date = styled.span`
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
 
   white-space: nowrap;
+`;
+
+// 내 리뷰일 경우 수정, 삭제
+
+export const EditDeleteButtonContainer = styled.div`
+  position: relative;
+
+  width: fit-content;
+  height: fit-content;
+`;
+
+export const QuitOrDeleteModalContainer = styled.div`
+  position: absolute;
+  top: 180%;
+  right: 0;
+
+  width: fit-content;
+  height: fit-content;
 `;
 
 // Profile & View

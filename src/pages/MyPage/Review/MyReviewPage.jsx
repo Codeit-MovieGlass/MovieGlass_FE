@@ -7,7 +7,7 @@ import Rating from '@components/Rating/Rating';
 import SpoilerToggle from '@components/SpoilerToggle/SpoilerToggle';
 import ModalWrapper from '@components/Modal/Wrapper/ModalWrapper';
 import QuitOrDeleteModal from '@components/Modal/Quit/QuitOrDeleteModal';
-import { PencilIconGray, TrashIconGray } from '@icons/EditDelete';
+import { PencilIcon, TrashIcon } from '@icons/EditDelete';
 
 import * as S from './MyReviewPage.styled';
 
@@ -174,10 +174,10 @@ const MyReviewPage = () => {
                         <>
                           <S.EditDeleteButtonContainer>
                             <S.EditButton onClick={() => handleEdit(review.id)}>
-                              수정하기 <PencilIconGray />
+                              수정하기 <PencilIcon />
                             </S.EditButton>
                             <S.DeleteButton onClick={handleDeleteModalOpen}>
-                              삭제하기 <TrashIconGray />
+                              삭제하기 <TrashIcon />
                             </S.DeleteButton>
                           </S.EditDeleteButtonContainer>
 

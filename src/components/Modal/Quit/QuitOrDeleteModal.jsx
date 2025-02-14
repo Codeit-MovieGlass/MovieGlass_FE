@@ -13,7 +13,7 @@ const QuitOrDeleteModal = ({ type, topRef, handleModalClose }) => {
         </S.QuitIconBox>
         <S.QuitText>
           정말 {type}하시겠어요? <br />
-          탈퇴한 후에는 되돌릴 수 없어요.
+          {type}한 후에는 되돌릴 수 없어요.
         </S.QuitText>
       </S.QuitIconTextSection>
 
