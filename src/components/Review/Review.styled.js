@@ -167,6 +167,50 @@ export const MyReviewBorderHighlight = styled.div`
   overflow: scroll;
 `;
 
+// 스포일러 댓글 Blur
+export const SpoilerBlurContainer = styled.div`
+  position: relative;
+
+  width: fit-content;
+  height: fit-content;
+  padding: ${pxToRem(24)} ${pxToRem(32)};
+`;
+
+export const SpoilerReviewBlur = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 4px;
+
+  background-color: rgba(229, 221, 255, 0.1);
+  backdrop-filter: blur(10px);
+`;
+
+export const SpoilerText = styled.span`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+
+  width: fit-content;
+  height: fit-content;
+
+  ${({ theme }) => theme.fontStyles.Body2}
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.MG_Signature.Light1};
+
+  .spoiler {
+    color: ${({ theme }) => theme.colors.MG_Grayscale.White};
+  }
+`;
+
+// 리뷰 내용
 export const ReviewContent = styled.p`
   ${({ theme }) => theme.fontStyles.Body2}
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};

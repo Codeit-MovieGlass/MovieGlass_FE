@@ -96,6 +96,14 @@ const Review = ({ myReview = false, reviewInfos, handleReviewEditing }) => {
           <S.MyReviewBorderHighlight>
             <S.ReviewContent>{reviewInfos.comment}</S.ReviewContent>
           </S.MyReviewBorderHighlight>
+        ) : reviewInfos.spoiler ? (
+          <S.SpoilerBlurContainer>
+            <S.SpoilerReviewBlur />
+            <S.SpoilerText>
+              <span className="spoiler">스포일러</span>가 포함된 댓글이라 가려졌어요.
+            </S.SpoilerText>
+            <S.ReviewContent>{reviewInfos.comment}</S.ReviewContent>
+          </S.SpoilerBlurContainer>
         ) : (
           <S.ReviewContent>{reviewInfos.comment}</S.ReviewContent>
         )}
