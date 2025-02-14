@@ -32,7 +32,13 @@ const LoginPage = () => {
   // 로그인 로직
   const handleLogin = async (e) => {
     e.preventDefault();
-    await login(formData, navigate);
+    const isLogin = await login(formData, navigate);
+
+    if (isLogin) {
+      navigate('/');
+    } else {
+      alert('로그인에 실패했습니다.');
+    }
   };
 
   // 비밀번호 토글

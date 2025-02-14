@@ -11,10 +11,14 @@ const whiteColorEye = css`
 
 export const EyeIcon = styled(eyeIcon)`
   ${whiteColorEye}
+
   width: ${pxToRem(20)};
   height: ${pxToRem(20)};
 `;
 
 export const ViewCountEyeIcon = styled(eyeIcon)`
   ${whiteColorEye}
+
+  width: ${pxToRem(42)};
+  height: fit-content;
 `;

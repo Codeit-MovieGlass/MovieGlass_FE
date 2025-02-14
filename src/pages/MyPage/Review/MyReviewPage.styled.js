@@ -1,7 +1,6 @@
-import pxToRem from '@utils/pxToRem';
 import styled, { css } from 'styled-components';
+import pxToRem from '@utils/pxToRem';
 
-/* 내부 Container – ReviewPageContainer는 전체 페이지 폭(예: 1384px)으로 유지 */
 export const MyReviewPageContainer = styled.div`
   width: 100%;
   height: fit-content;
@@ -10,8 +9,6 @@ export const MyReviewPageContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-/* 헤더 영역 컨테이너: 두 행으로 구성 */
 
 export const MyPageRouteSection = styled.section`
   width: 100%;
@@ -44,59 +41,6 @@ export const MyReviewPageTitle = styled.span`
   color: ${({ theme }) => theme.colors.MG_Grayscale.White};
 
   white-space: nowrap;
-`;
-
-export const ReviewSortOptionList = styled.ul`
-  width: fit-content;
-  height: fit-content;
-
-  display: flex;
-  align-items: center;
-  gap: ${pxToRem(12)};
-`;
-
-export const ReviewSortOptionItem = styled.li`
-  width: fit-content;
-  height: fit-content;
-`;
-
-export const ReviewSortOptionButton = styled.button`
-  position: relative;
-
-  width: fit-content;
-  height: fit-content;
-  padding: ${pxToRem(12)};
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  white-space: nowrap;
-
-  ${({ theme }) => theme.fontStyles.Body3};
-  color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_3};
-
-  ${({ $isActive }) =>
-    $isActive &&
-    css`
-      color: ${({ theme }) => theme.colors.MG_Signature.Primary};
-      font-weight: 600;
-    `}
-
-  transition: color 0.18s ease, font-weight 0.15s ease;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: ${({ $isActive }) => ($isActive ? '60%' : '0px')};
-    height: 3px;
-    border-radius: 2px;
-    background-color: ${({ theme }) => theme.colors.MG_Signature.Primary};
-    transition: width 0.18s ease;
-  }
 `;
 
 export const MainContentDivider = styled.div`

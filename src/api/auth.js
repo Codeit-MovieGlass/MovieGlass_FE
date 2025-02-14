@@ -25,7 +25,7 @@ export const signup = async (userData, onSuccess) => {
   }
 };
 
-export const login = async (userData, navigate) => {
+export const login = async (userData) => {
   console.log('Login Form Data: ', userData);
 
   try {
@@ -38,14 +38,12 @@ export const login = async (userData, navigate) => {
 
         localStorage.setItem('accessToken', accesstoken);
         localStorage.setItem('refreshToken', refreshtoken);
-
-        navigate('/'); // 로그인 성공 시 메인 페이지로 이동
-        break;
+        return true;
       }
 
       default:
         alert('로그인 실패!');
-        return;
+        return false;
     }
   } catch (error) {
     console.error('로그인 실패: ', error);
