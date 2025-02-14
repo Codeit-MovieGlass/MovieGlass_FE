@@ -32,6 +32,7 @@ export const editUserProfile = async (profileData) => {
 export const getUserReviews = async () => {
   try {
     const response = await api.get('/mypage/reviews');
+    console.log('내가 작성한 리뷰 조회: ', response.data);
 
     if (response.status === 200) {
       return response.data.result;
@@ -39,7 +40,7 @@ export const getUserReviews = async () => {
       return null;
     }
   } catch (error) {
-    console.error('리뷰 조회 실패: ', error);
+    console.error('내가 작성한 리뷰 조회 실패: ', error);
   }
 };
 

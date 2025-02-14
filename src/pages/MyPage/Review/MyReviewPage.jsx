@@ -10,28 +10,10 @@ import QuitOrDeleteModal from '@components/Modal/Quit/QuitOrDeleteModal';
 import { PencilIcon, TrashIcon } from '@icons/EditDelete';
 
 import * as S from './MyReviewPage.styled';
+import { getUserReviews } from '@api/mypage';
 
 const MyReviewPage = () => {
-  const [reviews, setReviews] = useState([
-    {
-      id: 1,
-      title: '노트북 (Notebook)',
-      rating: 4.5,
-      content: '이 영화는 정말 감동적이었습니다!',
-      imageUrl: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
-      date: '2025.01.16',
-      spoiler: false,
-    },
-    {
-      id: 2,
-      title: '노트북 (Notebook)',
-      rating: 3.0,
-      content: '나쁘진 않았지만 아쉬운 부분도 있었어요.',
-      imageUrl: 'https://i.pinimg.com/736x/c1/e0/bb/c1e0bb8f0e87ab4a551691229f4db6e9.jpg',
-      date: '2025.01.20',
-      spoiler: true,
-    },
-  ]);
+  const [reviews, setReviews] = useState([]);
 
   const [sortOption, setSortOption] = useState('별점순');
   const [isEditing, setIsEditing] = useState({});
@@ -107,6 +89,22 @@ const MyReviewPage = () => {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // 내 리뷰 리스트 조회
+  useEffect(() => {
+    const getReviews = async () => {
+      const reviewList = await getUserReviews();
+      console.log(reviewList);
+
+      if (reviewList.length > 0) {
+        setReviews(reviewList);
+      } else {
+        setReviews([]);
+      }
+    };
+
+    getReviews();
   }, []);
 
   return (
