@@ -39,9 +39,11 @@ export const getSearchData = async (query) => {
 export const getTopTenData = async () => {
   try {
     const response = await api.get('/movies/top10');
-    console.log('Top 10 Movie List:', response.data);
 
-    return response.data;
+    return {
+      topTenMovieList: response.data.result.top10Data.top10Movies,
+      username: response.data.result.nickname,
+    };
   } catch (error) {
     console.error('탑텐 데이터 가져오기 실패:', error);
     return null;

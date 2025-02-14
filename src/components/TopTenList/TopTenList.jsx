@@ -17,9 +17,7 @@ const animationVariants = {
   }),
 };
 
-const TopTenList = ({ movieList }) => {
-  const username = localStorage.getItem('nickname');
-
+const TopTenList = ({ movieList, username }) => {
   const [currentMovieID, setCurrentMovieID] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -112,6 +110,9 @@ const TopTenList = ({ movieList }) => {
   );
 };
 
-TopTenList.propTypes = { movieList: PropTypes.array.isRequired };
+TopTenList.propTypes = {
+  movieList: PropTypes.array.isRequired,
+  username: PropTypes.string.isRequired,
+};
 
 export default TopTenList;
