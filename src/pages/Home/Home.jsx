@@ -69,7 +69,7 @@ const Home = () => {
     <S.HomeContainer>
       {topTenMovieList.length > 0 && <TopTenList movieList={topTenMovieList} username={username} />}
       <S.CurationEmojiContainer>
-        {selectedEmoji === '' ? (
+        {emotioncuration.length === 0 ? (
           <BallonSection selectedEmoji={selectedEmoji} setSelectedEmoji={setSelectedEmoji} />
         ) : (
           <Curation

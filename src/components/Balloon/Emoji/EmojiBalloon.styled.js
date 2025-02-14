@@ -16,41 +16,40 @@ export const BalloonEmojiList = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: ${pxToRem(40)};
+  gap: ${pxToRem(36)};
 
   justify-self: flex-end;
 `;
 
-// Emojis
-export const Emoji = styled.li`
-  width: ${pxToRem(54)};
-  height: ${pxToRem(54)};
+export const BalloonEmojiListItem = styled.li`
+  width: fit-content;
+  height: fit-content;
+`;
 
-  transition: 100ms;
+// Emojis
+export const EmojiButton = styled.button`
+  width: fit-content;
+  height: fit-content;
 
   &:hover {
-    cursor: pointer;
-    width: ${pxToRem(70)};
-    height: ${pxToRem(70)};
+    transform: translateY(-3px) scale(1.4);
+    transition: transform 0.18s ease;
   }
+
+  transition: transform 0.2s ease;
 `;
 
-export const LoveEmoji = styled(Emoji)`
-  background: url('/emoji/love.svg') no-repeat center/cover;
+export const Emoji = styled.img`
+  width: ${pxToRem(54)};
+  height: ${pxToRem(54)};
 `;
 
-export const SosoEmoji = styled(Emoji)`
-  background: url('/emoji/soso.svg') no-repeat center/cover;
-`;
+export const LoveEmoji = styled(Emoji)``;
 
-export const SadEmoji = styled(Emoji)`
-  background: url('/emoji/sad.svg') no-repeat center/cover;
-`;
+export const SosoEmoji = styled(Emoji)``;
 
-export const HappyEmoji = styled(Emoji)`
-  background: url('/emoji/happy.svg') no-repeat center/cover;
-`;
+export const SadEmoji = styled(Emoji)``;
 
-export const ToughEmoji = styled(Emoji)`
-  background: url('/emoji/tough.svg') no-repeat center/cover;
-`;
+export const HappyEmoji = styled(Emoji)``;
+
+export const ToughEmoji = styled(Emoji)``;

@@ -12,12 +12,14 @@ export const getCurationShuffleData = async () => {
 };
 
 export const getEmotionCurationData = async (emotion) => {
+  console.log(emotion);
+
   const params = { emotion: emotion };
 
   try {
     const response = await api.get('/curations/emotions', { params });
-    // console.log('감정 큐레이션 응답 데이터:', response);
-    return response.result;
+    console.log('감정 큐레이션 응답 데이터:', response);
+    return response.data;
   } catch (error) {
     console.error('감정 데이터 가져오기 실패:', error);
     return null;
