@@ -7,6 +7,7 @@ import OTTLink from '@components/OTTLink/OTTLink';
 import MovieInfoTab from './InfoTab/MovieInfoTab';
 
 import * as S from './MovieModal.styled';
+import MovieReviewTab from './ReviewTab/MovieReviewTab';
 
 const movieInfos = {
   rating: 4.5,
@@ -82,7 +83,7 @@ const MovieModal = () => {
       </S.InfoTabSection>
 
       {/* 영화 정보 표시 영역 */}
-      {selectedTab === '정보' ? <MovieInfoTab movieInfos={movieInfos.infos} /> : <></>}
+      {selectedTab === '정보' ? <MovieInfoTab movieInfos={movieInfos.infos} /> : <MovieReviewTab />}
     </S.MovieModalContainer>
   );
 };

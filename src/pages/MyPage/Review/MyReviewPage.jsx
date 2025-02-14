@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 import BackToHomeOrMyPage from '@components/BackToHomeOrMyPage/BackToHomeOrMyPage';
+import ReviewSortOption from '@components/ReviewSortOption/ReviewSortOption';
 import RatingInput from '@components/RatingInput/RatingInput';
 import Rating from '@components/Rating/Rating';
 import SpoilerToggle from '@components/SpoilerToggle/SpoilerToggle';
@@ -32,7 +33,7 @@ const MyReviewPage = () => {
     },
   ]);
 
-  const [sortBy, setSortBy] = useState('별점순');
+  const [sortOption, setSortOption] = useState('별점순');
   const [isEditing, setIsEditing] = useState({});
   const [editedContent, setEditedContent] = useState({});
 
@@ -41,8 +42,12 @@ const MyReviewPage = () => {
   const spoilerRefs = useRef({});
 
   const sortedReviews = [...reviews].sort((a, b) =>
-    sortBy === '별점순' ? b.rating - a.rating : new Date(b.date) - new Date(a.date)
+    sortOption === '별점순' ? b.rating - a.rating : new Date(b.date) - new Date(a.date)
   );
+
+  const handleSortOption = (option) => {
+    setSortOption(option);
+  };
 
   // const handleDelete = (id) => {
   //   setDeleteTarget(id);
@@ -123,25 +128,7 @@ const MyReviewPage = () => {
 
         <S.MyReviewHeaderSection>
           <S.MyReviewPageTitle>내가 남긴 댓글</S.MyReviewPageTitle>
-          <S.ReviewSortOptionList>
-            <S.ReviewSortOptionItem>
-              <S.ReviewSortOptionButton
-                $isActive={sortBy === '별점순'}
-                onClick={() => setSortBy('별점순')}
-              >
-                별점순
-              </S.ReviewSortOptionButton>
-            </S.ReviewSortOptionItem>
-
-            <S.ReviewSortOptionItem>
-              <S.ReviewSortOptionButton
-                $isActive={sortBy === '최신순'}
-                onClick={() => setSortBy('최신순')}
-              >
-                최신순
-              </S.ReviewSortOptionButton>
-            </S.ReviewSortOptionItem>
-          </S.ReviewSortOptionList>
+          <ReviewSortOption sortOption={sortOption} handleSortOption={handleSortOption} />
         </S.MyReviewHeaderSection>
         <S.MainContentDivider />
 
