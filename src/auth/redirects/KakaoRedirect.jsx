@@ -1,8 +1,3 @@
-// [수정할 부분]
-//   - 로그인 성공 시 로컬 스토리지에 저장할 부분
-//   - 리다이렉트 주소
-//   - access 토큰 만료시 refresh 토큰을 활용해서 새로운 access 토큰 재발급 로직
-
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -27,14 +22,16 @@ const KakaoRedirect = () => {
 
       const handleKakaoAuth = async () => {
         try {
-          const response = await postAuthCodeToServer(KAKAO_AUTH_CODE);
+          const response = await postAuthCodeToServer('kakao', KAKAO_AUTH_CODE);
+          console.log('Kakao Login Response: ', response);
 
           switch (response.status) {
             case 200:
-              localStorage.setItem('accessToken', response.data.accessToken);
+              localStorage.setItem('accessToken', response.accessToken);
               navigate('/');
               break;
             case 201:
+              localStorage.setItem('accessToken', response.accessToken);
               navigate('/select/genre');
               break;
             default:

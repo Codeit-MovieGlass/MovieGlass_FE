@@ -21,10 +21,10 @@ const useAuth = () => {
       const response = await api.post('/auth/logout');
 
       if (response.data.code === 200) {
-        console.log('Refresh Token Removed, 로그아웃 성공: ', response.data);
+        // console.log('Refresh Token Removed, 로그아웃 성공: ', response.data);
         localStorage.clear();
         setIsAuthenticated(false);
-        window.location.href = '/';
+        window.location.href = '/login';
       }
 
       return response.data.code;

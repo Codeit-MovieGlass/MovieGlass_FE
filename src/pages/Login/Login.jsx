@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { login } from '@api/auth';
+import { login } from '@auth/utils/authHelper';
 
 import SocialLogin from './Social/SocialLogin';
 
@@ -28,7 +28,7 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const isLogin = await login(formData, navigate);
+    const isLogin = await login(formData);
 
     if (isLogin) {
       navigate('/');
