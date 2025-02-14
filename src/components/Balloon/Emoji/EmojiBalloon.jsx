@@ -5,7 +5,29 @@ import { EmojiBalloonIcon } from '@icons/Balloon';
 import * as S from './EmojiBalloon.styled';
 
 const EmojiBalloon = ({ selectedEmoji, setSelectedEmoji }) => {
-  // 사랑, 평온, 눈물, 웃음, 긴장
+  const emojiList = [
+    {
+      emoji_KO: '사랑',
+      emoji_EN: 'love',
+    },
+    {
+      emoji_KO: '평온',
+      emoji_EN: 'soso',
+    },
+    {
+      emoji_KO: '눈물',
+      emoji_EN: 'sad',
+    },
+    {
+      emoji_KO: '웃음',
+      emoji_EN: 'happy',
+    },
+    {
+      emoji_KO: '긴장',
+      emoji_EN: 'tough',
+    },
+  ];
+
   const handleEmojiClick = (emoji) => setSelectedEmoji(emoji);
 
   return (
@@ -14,11 +36,13 @@ const EmojiBalloon = ({ selectedEmoji, setSelectedEmoji }) => {
       <S.BalloonEmojiList>
         {selectedEmoji === '' ? (
           <>
-            <S.LoveEmoji onClick={() => handleEmojiClick('사랑')} />
-            <S.SosoEmoji onClick={() => handleEmojiClick('평온')} />
-            <S.SadEmoji onClick={() => handleEmojiClick('눈물')} />
-            <S.HappyEmoji onClick={() => handleEmojiClick('웃음')} />
-            <S.ToughEmoji onClick={() => handleEmojiClick('긴장')} />
+            {emojiList.map((emoji) => (
+              <S.BalloonEmojiListItem key={emoji.emoji_KO}>
+                <S.EmojiButton onClick={() => handleEmojiClick(emoji.emoji_KO)}>
+                  <S.Emoji src={`/emoji/${emoji.emoji_EN}.svg`} />
+                </S.EmojiButton>
+              </S.BalloonEmojiListItem>
+            ))}
           </>
         ) : (
           <>

@@ -12,12 +12,14 @@ export const getCurationShuffleData = async () => {
 };
 
 export const getEmotionCurationData = async (emotion) => {
+  console.log(emotion);
+
   const params = { emotion: emotion };
 
   try {
     const response = await api.get('/curations/emotions', { params });
-    // console.log('감정 큐레이션 응답 데이터:', response);
-    return response.result;
+    console.log('감정 큐레이션 응답 데이터:', response);
+    return response.data;
   } catch (error) {
     console.error('감정 데이터 가져오기 실패:', error);
     return null;
@@ -39,9 +41,11 @@ export const getSearchData = async (query) => {
 export const getTopTenData = async () => {
   try {
     const response = await api.get('/movies/top10');
-    console.log('Top 10 Movie List:', response.data);
 
-    return response.data;
+    return {
+      topTenMovieList: response.data.result.top10Data.top10Movies,
+      username: response.data.result.nickname,
+    };
   } catch (error) {
     console.error('탑텐 데이터 가져오기 실패:', error);
     return null;

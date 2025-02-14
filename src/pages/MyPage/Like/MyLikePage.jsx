@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { getUserLikedMovies } from '@api/mypage';
 
 import BackToHomeOrMyPage from '@components/BackToHomeOrMyPage/BackToHomeOrMyPage';
 import Heart from '@components/Heart/Heart';
 import Rating from '@components/Rating/Rating';
 import { MagnifierBright } from '@icons/Magnifier';
-
-import { mockLikedMovies } from './mock/mockLikedMovies';
 
 import * as S from './MyLikePage.styled';
 
@@ -16,7 +16,16 @@ const MyLikePage = () => {
     setQuery(e.target.value);
   };
 
-  const filteredMovies = mockLikedMovies.filter((movie) => {
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // 검색 로직 추가
+  };
+
+  // 좋아요한 영화 목록 가져오기
+  const [likedMovies, setLikedMovies] = useState([]);
+
+  // 검색 필터링
+  const filteredMovies = likedMovies.filter((movie) => {
     const searchLower = query.toLowerCase();
     const titleMatch = movie.title.toLowerCase().includes(searchLower);
     const genreMatch = movie.genre.toLowerCase().includes(searchLower);
@@ -24,10 +33,25 @@ const MyLikePage = () => {
     return titleMatch || genreMatch || castMatch;
   });
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // 검색 로직 추가
-  };
+  useEffect(() => {
+    const getLikedMovies = async () => {
+      try {
+        const likedMovieList = await getUserLikedMovies('/api/liked-movies');
+        console.log(likedMovieList);
+
+        if (likedMovieList.length > 0) {
+          setLikedMovies(likedMovieList);
+        } else {
+          setLikedMovies([]);
+        }
+      } catch (error) {
+        console.error('Error fetching liked movies:', error);
+        setLikedMovies([]);
+      }
+    };
+
+    getLikedMovies();
+  }, []);
 
   return (
     <S.MyLikePageContainer>
