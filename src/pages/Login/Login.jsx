@@ -28,7 +28,7 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const isLogin = await login(formData, navigate);
+    const isLogin = await login(formData);
 
     if (isLogin) {
       navigate('/');

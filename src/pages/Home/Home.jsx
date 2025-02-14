@@ -9,6 +9,7 @@ import { getCurationShuffleData, getEmotionCurationData, getTopTenData } from '@
 import * as S from './Home.styled';
 
 const Home = () => {
+  const [username, setUsername] = useState('');
   const [topTenMovieList, setTopTenMovieList] = useState([]);
   const [curationList, setCurationList] = useState([]);
 
@@ -19,9 +20,11 @@ const Home = () => {
   useEffect(() => {
     const fetchTopTenMovieList = async () => {
       try {
-        const response = await getTopTenData();
+        const { topTenMovieList, username } = await getTopTenData();
+        console.log('Top 10 List: ', topTenMovieList);
 
-        setTopTenMovieList(response.result.top10Data.top10Movies);
+        setTopTenMovieList(topTenMovieList);
+        setUsername(username);
       } catch (error) {
         console.error('Top 10 List fetch failed: ', error);
       }
@@ -64,7 +67,7 @@ const Home = () => {
 
   return (
     <S.HomeContainer>
-      {topTenMovieList.length > 0 && <TopTenList movieList={topTenMovieList} />}
+      {topTenMovieList.length > 0 && <TopTenList movieList={topTenMovieList} username={username} />}
       <S.CurationEmojiContainer>
         {selectedEmoji === '' ? (
           <BallonSection selectedEmoji={selectedEmoji} setSelectedEmoji={setSelectedEmoji} />

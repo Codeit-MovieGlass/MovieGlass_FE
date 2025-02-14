@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { format, subYears } from 'date-fns';
 
+import { editUserProfile, getUserCalendar, getUserProfile } from '@api/mypage';
+
 import EditProfileName from '@components/EditProfileName/EditProfileName';
 import AccountDropdown from '@components/AccountDropdown/AccountDropdown';
 import Calendar from '@components/Calendar/Calendar';
@@ -12,20 +14,13 @@ import { CameraIcon, LikeIcon, ReviewIcon, SettingsIcon } from '@icons/MyPage';
 import { PencilIconPurple } from '@icons/EditDelete';
 import { DatePickerArrow } from '@icons/Arrow';
 
-import defaultProfile from '@assets/images/profile.jpg';
-
 import * as S from './MyPage.styled';
 
 const Mypage = () => {
-  const profileDummyData = {
-    image: defaultProfile,
-    name: '김철흥',
-    email: 'keaikim77@gmail.com',
-  };
-
   const yearList = Array.from({ length: 5 }, (_, index) => {
     return format(subYears(new Date(), index), 'yyyy');
   });
+
   const monthList = [
     'JAN',
     'FEB',
@@ -106,8 +101,9 @@ const Mypage = () => {
   // 프로필 수정 시 상태 관리
   const [isProfileEditing, setIsProfileEditing] = useState(false);
   const [profileInfos, setProfileInfos] = useState({
-    image: profileDummyData.image,
-    name: profileDummyData.name,
+    nickname: '',
+    email: '',
+    profile_image_url: '',
   });
 
   const imageInputRef = useRef(null);
@@ -127,15 +123,69 @@ const Mypage = () => {
       const reader = new FileReader();
 
       reader.onload = () => {
-        setProfileInfos({ ...profileInfos, image: reader.result });
+        console.log(reader.result);
+        setProfileInfos({ ...profileInfos, profile_image_url: reader.result });
       };
       reader.readAsDataURL(newImage);
     }
   };
 
   const handleProfileNameChange = (e) => {
-    setProfileInfos({ ...profileInfos, name: e.target.value });
+    setProfileInfos({ ...profileInfos, nickname: e.target.value });
   };
+
+  // 유저 정보 가져오기
+  useEffect(() => {
+    const getUserProfileInfo = async () => {
+      try {
+        const userProfile = await getUserProfile();
+
+        setProfileInfos(userProfile?.result);
+      } catch (error) {
+        console.error('Error fetching profile info:', error);
+      }
+    };
+
+    getUserProfileInfo();
+  }, []);
+
+  // 프로필 수정하기
+  const handleProfileEditSubmit = async () => {
+    try {
+      const isEditSuccess = await editUserProfile(profileInfos);
+      console.log(isEditSuccess);
+
+      if (isEditSuccess) {
+        setIsProfileEditing(false);
+        alert('프로필 정보 수정 완료!');
+      } else {
+        alert('프로필 정보 수정 실패');
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
+
+  // 캘린더 정보 가져오기
+  const [myMovieCalendar, setMyMovieCalendar] = useState({});
+
+  const selectedYearNumber = Number(selectedYear);
+  const selectedMonthNumber = convertMonthToNumber(selectedMonth);
+
+  useEffect(() => {
+    const getMyMovieCalendar = async () => {
+      try {
+        const myCalendar = await getUserCalendar(selectedYearNumber, selectedMonthNumber);
+        console.log('내 캘린더: ', myCalendar);
+
+        setMyMovieCalendar(myCalendar);
+      } catch (error) {
+        console.error('Error fetching calendar:', error);
+      }
+    };
+
+    getMyMovieCalendar();
+  }, [selectedYearNumber, selectedMonthNumber]);
 
   return (
     <>
@@ -161,18 +211,22 @@ const Mypage = () => {
                   </S.ProfileImageEditButton>
                 </>
               )}
-              <S.ProfileImage src={profileInfos.image} alt="Profile Image" />
+              <S.ProfileImage
+                src={profileInfos?.profile_image_url || '/Profile/profile.jpg'}
+                alt="Profile Image"
+              />
             </S.ProfileImageContainer>
             <S.ProfileInfoSection>
               <S.ProfileNameContainer>
                 {isProfileEditing ? (
                   <EditProfileName
-                    profileName={profileInfos.name}
+                    profileName={profileInfos?.nickname}
                     handleProfileNameChange={handleProfileNameChange}
+                    handleProfileEdit={handleProfileEditSubmit}
                     handleProfileEditCancel={handleProfileEditCancel}
                   />
                 ) : (
-                  <S.ProfileName>{profileInfos.name}</S.ProfileName>
+                  <S.ProfileName>{profileInfos?.nickname}</S.ProfileName>
                 )}
                 {!isProfileEditing && (
                   <S.ProfileEditSettingsContainer>
@@ -193,7 +247,7 @@ const Mypage = () => {
                   </S.ProfileEditSettingsContainer>
                 )}
               </S.ProfileNameContainer>
-              <S.ProfileEmail>{profileDummyData.email}</S.ProfileEmail>
+              <S.ProfileEmail>{profileInfos?.email}</S.ProfileEmail>
               <S.ReviewLikeButtonContainer>
                 <S.MyReviewLink to="review">
                   <ReviewIcon />
@@ -245,7 +299,11 @@ const Mypage = () => {
             </S.DatePickContainer>
 
             {/* Calendar Component */}
-            <Calendar year={Number(selectedYear)} month={convertMonthToNumber(selectedMonth)} />
+            <Calendar
+              year={Number(selectedYear)}
+              month={convertMonthToNumber(selectedMonth)}
+              movieCalendar={myMovieCalendar}
+            />
           </S.CalenaderContainer>
         </S.MyPageContainer>
       </S.MyPageWrapper>
