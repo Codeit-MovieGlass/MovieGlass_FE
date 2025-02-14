@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { format, subYears } from 'date-fns';
 
+import { editUserProfile, getUserCalendar, getUserProfile } from '@api/mypage';
+
 import EditProfileName from '@components/EditProfileName/EditProfileName';
 import AccountDropdown from '@components/AccountDropdown/AccountDropdown';
 import Calendar from '@components/Calendar/Calendar';
@@ -13,7 +15,6 @@ import { PencilIconPurple } from '@icons/EditDelete';
 import { DatePickerArrow } from '@icons/Arrow';
 
 import * as S from './MyPage.styled';
-import { editUserProfile, getUserProfile } from '@api/mypage';
 
 const Mypage = () => {
   const yearList = Array.from({ length: 5 }, (_, index) => {
@@ -165,6 +166,27 @@ const Mypage = () => {
     }
   };
 
+  // 캘린더 정보 가져오기
+  const [myMovieCalendar, setMyMovieCalendar] = useState({});
+
+  const selectedYearNumber = Number(selectedYear);
+  const selectedMonthNumber = convertMonthToNumber(selectedMonth);
+
+  useEffect(() => {
+    const getMyMovieCalendar = async () => {
+      try {
+        const myCalendar = await getUserCalendar(selectedYearNumber, selectedMonthNumber);
+        console.log('내 캘린더: ', myCalendar);
+
+        setMyMovieCalendar(myCalendar);
+      } catch (error) {
+        console.error('Error fetching calendar:', error);
+      }
+    };
+
+    getMyMovieCalendar();
+  }, [selectedYearNumber, selectedMonthNumber]);
+
   return (
     <>
       <S.MyPageWrapper>
@@ -277,7 +299,11 @@ const Mypage = () => {
             </S.DatePickContainer>
 
             {/* Calendar Component */}
-            <Calendar year={Number(selectedYear)} month={convertMonthToNumber(selectedMonth)} />
+            <Calendar
+              year={Number(selectedYear)}
+              month={convertMonthToNumber(selectedMonth)}
+              movieCalendar={myMovieCalendar}
+            />
           </S.CalenaderContainer>
         </S.MyPageContainer>
       </S.MyPageWrapper>

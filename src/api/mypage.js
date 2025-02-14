@@ -29,10 +29,28 @@ export const editUserProfile = async (profileData) => {
   }
 };
 
+export const getUserCalendar = async (year, month) => {
+  try {
+    const response = await api.get('/mypage/calendar', {
+      params: {
+        year: year,
+        month: month,
+      },
+    });
+
+    if (response.status === 200) {
+      return response.data.result.calendar;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('내 캘린더 조회 실패: ', error);
+  }
+};
+
 export const getUserReviews = async () => {
   try {
     const response = await api.get('/mypage/reviews');
-    console.log('내가 작성한 리뷰 조회: ', response.data);
 
     if (response.status === 200) {
       return response.data.result;
