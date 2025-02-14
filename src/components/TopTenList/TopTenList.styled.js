@@ -94,6 +94,9 @@ const sideMoviePosterStyles = css`
   filter: blur(5px);
 
   cursor: pointer;
+
+  user-select: none;
+  -webkit-user-select: none;
   -webkit-user-drag: none;
 `;
 
