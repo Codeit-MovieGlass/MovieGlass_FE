@@ -34,11 +34,26 @@ export const getUserReviews = async () => {
     const response = await api.get('/mypage/reviews');
 
     if (response.status === 200) {
-      return response.data;
+      return response.data.result;
     } else {
       return null;
     }
   } catch (error) {
     console.error('리뷰 조회 실패: ', error);
+  }
+};
+
+export const getUserLikedMovies = async () => {
+  try {
+    const response = await api.get('/mypage/liked-movies');
+    console.log('좋아요한 영화 목록: ', response.data);
+
+    if (response.status === 200) {
+      return response.data.result;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('내가 좋아요한 영화 리스트 조회 실패: ', error);
   }
 };
