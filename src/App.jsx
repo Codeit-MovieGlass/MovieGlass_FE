@@ -30,8 +30,8 @@ function App() {
           <Route path="signup" element={<SignUp />} />
         </Route>
         <Route path="oauth">
-          <Route path="google" element={<GoogleCallback />} />
           <Route path="kakao" element={<KakaoCallback />} />
+          <Route path="google" element={<GoogleCallback />} />
         </Route>
         <Route path="select">
           <Route path="genre" element={<GenreSelectionPage />} />

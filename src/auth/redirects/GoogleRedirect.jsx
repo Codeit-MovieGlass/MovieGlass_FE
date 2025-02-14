@@ -1,11 +1,8 @@
-/*수정할 부분 
-로그인 성공 시 로컬 스토리지에 저장할 부분
-리다이렉트 주소
-*/
-
 import api from '@api/api';
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+
+import LoadingFullScreen from '@pages/LoadingFullScreen/LoadingFullScreen';
 
 const GoogleCallback = () => {
   const location = useLocation();
@@ -13,23 +10,20 @@ const GoogleCallback = () => {
 
   const isFirstRender = useRef(true);
 
-  const queryParams = new URLSearchParams(location.search);
-  const GOOGLE_AUTH_CODE = queryParams.get('code');
+  const GOOGLE_AUTH_CODE = new URLSearchParams(location.search).get('code');
 
   useEffect(() => {
     if (!isFirstRender.current) return;
     isFirstRender.current = false;
 
     if (GOOGLE_AUTH_CODE) {
-      console.log('Authorization Code:', GOOGLE_AUTH_CODE);
+      console.log('Google Authorization Code:', GOOGLE_AUTH_CODE);
 
       const sendAuthCodeToserver = async () => {
         try {
-          const response = await api.get('/auth/google', {
-            params: { code: GOOGLE_AUTH_CODE },
-          });
+          const response = await api.get('/auth/google', { code: GOOGLE_AUTH_CODE });
           console.log(response);
-          //로그인 성공 시 로컬 스토리지에 저장할 요소 나중에 수정
+
           if (response.data.isSuccess) {
             const userId = response.data.result.userId;
             localStorage.setItem('userId', userId);
@@ -56,7 +50,7 @@ const GoogleCallback = () => {
     }
   }, [GOOGLE_AUTH_CODE, navigate]);
 
-  return <h1>Google 로그인 중...</h1>;
+  return <LoadingFullScreen />;
 };
 
 export default GoogleCallback;
