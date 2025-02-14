@@ -1,5 +1,5 @@
-import pxToRem from '@utils/pxToRem';
 import styled from 'styled-components';
+import pxToRem from '@utils/pxToRem';
 
 export const OTTLinkContainer = styled.div`
   width: fit-content;
