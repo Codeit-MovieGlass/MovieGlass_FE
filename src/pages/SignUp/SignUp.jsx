@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { signup } from '@api/auth';
+import { signup } from '@auth/utils/authHelper';
 
 import * as S from './SignUp.styled';
 

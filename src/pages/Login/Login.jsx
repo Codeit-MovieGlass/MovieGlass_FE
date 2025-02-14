@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { login } from '@api/auth';
+import { login } from '@auth/utils/authHelper';
 
 import SocialLogin from './Social/SocialLogin';
 
