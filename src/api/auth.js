@@ -5,7 +5,7 @@ export const signup = async (userData, onSuccess) => {
     const response = await api.post('/auth/signUp', userData);
     console.log(response);
 
-    localStorage.setItem('nickname', userData.nickname);
+    localStorage.setItem('userId', response.data.result.userId);
 
     switch (response.code) {
       case 200:
@@ -27,7 +27,7 @@ export const signup = async (userData, onSuccess) => {
 
 export const login = async (userData, navigate) => {
   console.log('Login Form Data: ', userData);
-  
+
   try {
     const response = await api.post('/auth/login', userData);
     console.log(response);

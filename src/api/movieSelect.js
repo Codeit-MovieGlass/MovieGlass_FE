@@ -104,7 +104,7 @@ export const useMovies = () => {
 
   const submitSelectedMovies = async () => {
     try {
-    //const user_id=localstorage.getItem('user_id') 회원가입 시에 유저 id 저장
+    //const user_id=localStorage.getItem('userId') 회원가입 시에 유저 id 저장
       const response = await api.post('/moviechoice/select', { 
         user_id: '',  
         movie_id: selectedMovies,
