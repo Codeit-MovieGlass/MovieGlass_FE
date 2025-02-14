@@ -5,6 +5,7 @@ export const ViewCountDropdownContainer = styled.ul`
   position: absolute;
   top: 130%;
   left: 0;
+  z-index: 10000;
 
   width: fit-content;
   height: calc(${pxToRem(75)} * 4);
@@ -13,14 +14,15 @@ export const ViewCountDropdownContainer = styled.ul`
   border-radius: 16px;
 
   overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
-export const CountItem = styled.li`
-  width: ${pxToRem(128)};
+export const ViewCountItem = styled.li`
+  width: fit-content;
+  height: fit-content;
+`;
+
+export const ViewCountButton = styled.button`
+  width: ${pxToRem(132)};
   height: ${pxToRem(75)};
   padding: ${pxToRem(24)} 0;
 
@@ -30,15 +32,14 @@ export const CountItem = styled.li`
 
   ${({ theme }) => theme.fontStyles.Body1};
   font-size: ${pxToRem(28)};
-
   color: ${({ theme }) => theme.colors.MG_Grayscale.Gray_1};
-
-  transition:
-    color 0.1s ease,
-    background-color 0.12s ease;
 
   &:hover {
     color: ${({ theme }) => theme.colors.MG_Grayscale.White};
     background-color: ${({ theme }) => theme.colors.MG_Signature.Primary};
   }
+
+  transition:
+    color 0.1s ease,
+    background-color 0.1s ease;
 `;

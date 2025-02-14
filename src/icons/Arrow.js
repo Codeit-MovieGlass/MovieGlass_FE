@@ -65,7 +65,10 @@ export const CurationRightArrow = styled(rightArrow)`
     `}
 `;
 
-export const ViewCountDropdownArrow = styled(dropdownArrow)``;
+export const ViewCountDropdownArrow = styled(dropdownArrow)`
+  width: ${pxToRem(20)};
+  height: fit-content;
+`;
 
 export const NextArrow = styled(genreSelectArrow)`
   width: ${pxToRem(39)};
