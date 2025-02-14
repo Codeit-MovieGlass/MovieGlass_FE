@@ -1,12 +1,13 @@
-import api from '@api/api';
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
+import { postAuthCodeToServer } from '@auth/utils/authHelper';
+
 import LoadingFullScreen from '@pages/LoadingFullScreen/LoadingFullScreen';
 
-const GoogleCallback = () => {
-  const location = useLocation();
+const GoogleRedirect = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const isFirstRender = useRef(true);
 
@@ -19,38 +20,31 @@ const GoogleCallback = () => {
     if (GOOGLE_AUTH_CODE) {
       console.log('Google Authorization Code:', GOOGLE_AUTH_CODE);
 
-      const sendAuthCodeToserver = async () => {
+      const handleGoogleAuth = async () => {
         try {
-          const response = await api.get('/auth/google', { code: GOOGLE_AUTH_CODE });
-          console.log(response);
+          const response = await postAuthCodeToServer('google', GOOGLE_AUTH_CODE);
+          console.log('Google Login Response: ', response);
 
-          if (response.data.isSuccess) {
-            const userId = response.data.result.userId;
-            localStorage.setItem('userId', userId);
-
-            //상태 코드에 따른 리다이렉트 처리
-            if (response.status === 201) {
-              // 최초 회원가입 -> 장르 선택 페이지로 이동
-              navigate('/select/genre');
-            } else if (response.status === 200) {
-              // 기존 로그인 -> 홈페이지로 이동
-              localStorage.setItem('accessToken', response.data.accessToken);
-              localStorage.setItem('refreshToken', response.data.refreshToken);
+          switch (response.status) {
+            case 200:
+              localStorage.setItem('accessToken', response.accessToken);
               navigate('/');
-            }
-          } else {
-            console.warn('Authorization Code POST fail');
-            navigate('/login');
+              break;
+            case 201:
+              localStorage.setItem('accessToken', response.accessToken);
+              navigate('/select/genre');
+              break;
           }
         } catch (error) {
-          console.error('Fetching access token failed: ', error);
+          console.error('Google Login failed: ', error);
         }
       };
-      sendAuthCodeToserver();
+
+      handleGoogleAuth();
     }
   }, [GOOGLE_AUTH_CODE, navigate]);
 
   return <LoadingFullScreen />;
 };
 
-export default GoogleCallback;
+export default GoogleRedirect;
