@@ -4,11 +4,11 @@ import Rating from '@components/Rating/Rating';
 import Heart from '@components/Heart/Heart';
 import ViewCount from '@components/ViewCount/ViewCount';
 import OTTLink from '@components/OTTLink/OTTLink';
+import MovieInfoTab from './InfoTab/MovieInfoTab';
 
 import * as S from './MovieModal.styled';
 
 const movieInfos = {
-  title: '탑건: 매버릭',
   rating: 4.5,
   like: true,
   viewCount: 1000,
@@ -65,7 +65,6 @@ const MovieModal = () => {
         {/* OTT Link */}
         <OTTLink />
       </S.MetaDataSection>
-
       {/* 정보, 관람평 선택 탭 */}
       <S.InfoTabSection>
         <S.InfoTabList>
@@ -83,56 +82,7 @@ const MovieModal = () => {
       </S.InfoTabSection>
 
       {/* 영화 정보 표시 영역 */}
-      <S.MovieInfoSection>
-        {/* 영화 제목, 러닝타임, 개봉일 정보 */}
-        <S.MovieTitleInfoSection>
-          <S.MovieTitle>{movieInfos.title}</S.MovieTitle>
-          <S.MovieRunningTimeReleaseDateContainer>
-            <S.MovieRunningTime>러닝타임 {movieInfos.infos.runtime}</S.MovieRunningTime>
-            <S.MovieReleaseDate>{movieInfos.infos.releaseDate}</S.MovieReleaseDate>
-          </S.MovieRunningTimeReleaseDateContainer>
-        </S.MovieTitleInfoSection>
-
-        {/* 출연진, 장르, 등급, 키워드 */}
-        <S.CastGenreSection>
-          {/* 출연진 */}
-          <S.CastContainer>
-            <S.CastTitle>출연진</S.CastTitle>
-            <S.CastActors>{movieInfos.infos.actor}</S.CastActors>
-          </S.CastContainer>
-
-          {/* 관람 등급, 장르 및 키워드 */}
-          <S.AgeRatingGenreContainer>
-            <S.AgeRatingIcon
-              src={`/AgeRating/${movieInfos.infos.ageLimit}.svg`}
-              alt={`${movieInfos.infos.ageLimit}세 이상 관람가`}
-            />
-            <S.GenreKeywordContainer>
-              <S.GenreKeywordList>
-                {movieInfos.infos.genre.map((genre) => (
-                  <S.GenreKeywordItem key={genre}>
-                    <S.GenreInfo>#{genre}</S.GenreInfo>
-                  </S.GenreKeywordItem>
-                ))}
-              </S.GenreKeywordList>
-
-              <S.GenreKeywordList>
-                {movieInfos.infos.keyword.map((keyword) => (
-                  <S.GenreKeywordItem key={keyword}>
-                    <S.KeywordInfo>#{keyword}</S.KeywordInfo>
-                  </S.GenreKeywordItem>
-                ))}
-              </S.GenreKeywordList>
-            </S.GenreKeywordContainer>
-          </S.AgeRatingGenreContainer>
-        </S.CastGenreSection>
-
-        {/* 영화 줄거리 */}
-        <S.SynopsisSection>
-          <S.SynopsisTitle>줄거리</S.SynopsisTitle>
-          <S.SynopsisContent>{movieInfos.infos.synopsis}</S.SynopsisContent>
-        </S.SynopsisSection>
-      </S.MovieInfoSection>
+      {selectedTab === '정보' ? <MovieInfoTab movieInfos={movieInfos.infos} /> : <></>}
     </S.MovieModalContainer>
   );
 };
