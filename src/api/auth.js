@@ -27,7 +27,7 @@ export const signup = async (userData, onSuccess) => {
 
 export const login = async (userData, navigate) => {
   console.log('Login Form Data: ', userData);
-
+  
   try {
     const response = await api.post('/auth/login', userData);
     console.log(response);

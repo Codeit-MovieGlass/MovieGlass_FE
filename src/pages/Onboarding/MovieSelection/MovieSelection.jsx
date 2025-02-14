@@ -1,18 +1,10 @@
-/* 수정할 부분 
--MovieLogic파일
-초기 영화 데이터 받아오는 로직, 
-영화 선택 시 4개 영화 받아오는 로직
-완료 버튼 클릭 시 취향 분석 페이지 이동하는 이벤트 핸들러 구현
-*/
-
 import { useMovies } from '@api/movieSelect';
 
 import { CheckIcon } from '@icons/Check';
-import { MovieData, GetMovieData } from '@pages/Onboarding/MovieSelection/SelectMovieData';
 import * as S from './MovieSelection.styled';
 
 const MovieSelection = () => {
-  const { displayMovies, selectedMovies, selectMovie, submitSelectedMovies } = useMovies(MovieData);
+  const { displayMovies, selectedMovies, selectMovie, submitSelectedMovies } = useMovies();
 
   return (
     <S.MovieSelectionFrame>
