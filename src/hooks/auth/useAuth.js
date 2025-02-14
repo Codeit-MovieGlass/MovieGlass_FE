@@ -24,7 +24,10 @@ const useAuth = () => {
         console.log('Refresh Token Removed, 로그아웃 성공: ', response.data);
         localStorage.clear();
         setIsAuthenticated(false);
+        window.location.href = '/';
       }
+
+      return response.data.code;
     } catch (error) {
       console.error('로그아웃 실패: ', error);
     }
