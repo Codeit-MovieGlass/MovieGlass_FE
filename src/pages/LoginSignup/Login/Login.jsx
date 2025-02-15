@@ -32,7 +32,7 @@ const Login = ({ handleSignupClick }) => {
     const isLogin = await login(formData);
 
     if (isLogin) {
-      navigate('/');
+      navigate('/browse');
     } else {
       alert('로그인에 실패했습니다.');
     }
