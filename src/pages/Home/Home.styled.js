@@ -15,3 +15,15 @@ export const CurationEmojiContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export const CurationShuffleContainer = styled.div`
+  display: flex;
+  width: 100%;
+  cursor: pointer;
+`;
+
+export const CurationShuffleText = styled.p`
+  ${({ theme }) => theme.fontStyles.Body1};
+  margin-left: auto;
+  margin-right: ${pxToRem(15)};
+`;
