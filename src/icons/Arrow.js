@@ -3,6 +3,7 @@ import pxToRem from '@utils/pxToRem';
 
 import leftArrow from '@assets/svgs/icons/left-arrow.svg?react';
 import rightArrow from '@assets/svgs/icons/right-arrow.svg?react';
+import downArrow from '@assets/svgs/icons/down-arrow.svg?react';
 
 import dropdownArrow from '@assets/svgs/icons/dropdown-arrow.svg?react';
 import genreSelectArrow from '@assets/svgs/icons/purple-arrow.svg?react';
@@ -79,4 +80,16 @@ export const NextArrow = styled(genreSelectArrow)`
 export const DatePickerArrow = styled(datePickerArrow)`
   width: ${pxToRem(12)};
   height: fit-content;
+`;
+
+export const ChatBotArrow = styled(downArrow)`
+  width: ${pxToRem(60)};
+  height: ${pxToRem(60)};
+
+  transition: transform 0.2s ease;
+  cursor: pointer;
+
+  path {
+    fill-opacity: 0.8;
+  }
 `;

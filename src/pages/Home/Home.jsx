@@ -5,6 +5,7 @@ import TopTenList from '@components/TopTenList/TopTenList';
 import BallonSection from '@components/Balloon/BallonSection';
 import Curation from '@components/Curation/Curation';
 import MovieModal from '@pages/MovieModal/MovieModal';
+import ChatBot from '@components/ChatBot/ChatBot';
 
 import { getCurationShuffleData, getEmotionCurationData, getTopTenData } from '@api/home';
 
@@ -82,12 +83,22 @@ const Home = () => {
   return (
     <>
       <S.HomeContainer>
+        <ChatBot />
         {topTenMovieList.length > 0 && (
           <TopTenList
             movieList={topTenMovieList}
             username={username}
             handleMovieModalOpen={handleMovieModalOpen}
             handleMovieModalData={handleMovieModalData}
+          />
+        )}
+
+        {emotionCuration.length === 0 ? (
+          <BallonSection selectedEmoji={selectedEmoji} setSelectedEmoji={setSelectedEmoji} />
+        ) : (
+          <Curation
+            curationTitle={emotionCuration.curation_name}
+            movieList={emotionCuration.movies}
           />
         )}
         <S.CurationEmojiContainer>
