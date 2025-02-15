@@ -17,12 +17,16 @@ const ViewCount = () => {
 
   return (
     <S.ViewCountContainer>
-      <ViewCountEyeIcon />
+      <S.EyeIconBox>
+        <ViewCountEyeIcon />
+      </S.EyeIconBox>
       <S.CountBox onClick={handleDropdown}>
         <S.SelectedCount>{viewCount}</S.SelectedCount>
         <ViewCountDropdownArrow />
-        {isDropdownOpen && <ViewCountDropdown handleCountClick={handleCountClick} />}
       </S.CountBox>
+      {isDropdownOpen && (
+        <ViewCountDropdown handleCountClick={handleCountClick} handleDropdown={handleDropdown} />
+      )}
     </S.ViewCountContainer>
   );
 };

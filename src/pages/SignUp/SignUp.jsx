@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { signup } from '@api/auth';
+import { signup } from '@auth/utils/authHelper';
 
 import * as S from './SignUp.styled';
 
@@ -21,7 +21,14 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    await signup(userFormData, navigate('/select/genre'));
+
+    const response = await signup(userFormData);
+
+    if (response.status === 201) {
+      navigate('/select/genre');
+    } else {
+      alert('회원가입에 실패했습니다.');
+    }
   };
 
   const handleLoginClick = () => navigate('/login');

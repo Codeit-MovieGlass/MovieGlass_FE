@@ -12,12 +12,14 @@ export const getCurationShuffleData = async () => {
 };
 
 export const getEmotionCurationData = async (emotion) => {
+  console.log(emotion);
+
   const params = { emotion: emotion };
 
   try {
     const response = await api.get('/curations/emotions', { params });
-    // console.log('감정 큐레이션 응답 데이터:', response);
-    return response.result;
+    console.log('감정 큐레이션 응답 데이터:', response);
+    return response.data;
   } catch (error) {
     console.error('감정 데이터 가져오기 실패:', error);
     return null;
@@ -38,13 +40,12 @@ export const getSearchData = async (query) => {
 
 export const getTopTenData = async () => {
   try {
-    const response = await api.get('/movies/top10', {
-      headers: {
-        Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJ0ZXN0MTFAZ21haWwuY29tIiwiaWF0IjoxNzM5NDcxNzA4LCJleHAiOjE3Mzk0NzUzMDh9.SOWE3UyUT2XRKDcvt7wCIaTYVF0v-1EXIPmh8pD4U94'}`, // 토큰 추가
-      },
-    });
-    console.log('탑텐 응답 데이터:', response);
-    return response.data;
+    const response = await api.get('/movies/top10');
+
+    return {
+      topTenMovieList: response.data.result.top10Data.top10Movies,
+      username: response.data.result.nickname,
+    };
   } catch (error) {
     console.error('탑텐 데이터 가져오기 실패:', error);
     return null;

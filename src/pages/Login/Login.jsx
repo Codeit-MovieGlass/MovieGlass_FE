@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import { login } from '@api/auth';
+import { login } from '@auth/utils/authHelper';
+
+import SocialLogin from './Social/SocialLogin';
 
 import * as S from './Login.styled';
 
 const LoginPage = () => {
-  // [남은 작업]
-  // - 로그인, 소셜 로그인, 회원가입 백엔드와 연동 로직
-
   const navigate = useNavigate();
 
-  // 자체 로그인 데이터
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -19,7 +17,6 @@ const LoginPage = () => {
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  // 폼 데이터 변경 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -29,25 +26,20 @@ const LoginPage = () => {
     });
   };
 
-  // 로그인 로직
   const handleLogin = async (e) => {
     e.preventDefault();
-    await login(formData, navigate);
+    const isLogin = await login(formData);
+
+    if (isLogin) {
+      navigate('/');
+    } else {
+      alert('로그인에 실패했습니다.');
+    }
   };
 
-  // 비밀번호 토글
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
 
   const handleSignupClick = () => navigate('/signup');
-
-  //소셜 로그인 핸들러
-  const handleGoogleLogin = () => {
-    window.location.href = '';
-  };
-
-  const handleKakaoLogin = () => {
-    window.location.href = '';
-  };
 
   return (
     <S.LoginContainer>
@@ -79,16 +71,9 @@ const LoginPage = () => {
         <S.LoginButton type="submit">로그인</S.LoginButton>
       </S.LoginForm>
       <S.SocialDivider />
-      <S.SocialLoginContainer>
-        <S.GoogleLoginBtn onClick={handleGoogleLogin}>
-          <S.GoogleLogo />
-          <S.SocialLoginText>구글로 로그인하기</S.SocialLoginText>
-        </S.GoogleLoginBtn>
-        <S.KakaoLoginBtn onClick={handleKakaoLogin}>
-          <S.KakaoLogo />
-          <S.SocialLoginText>카카오로 로그인하기</S.SocialLoginText>
-        </S.KakaoLoginBtn>
-      </S.SocialLoginContainer>
+
+      <SocialLogin />
+
       <S.SignUpSection>
         무비글라스가 처음이세요? <span onClick={handleSignupClick}>회원가입하기</span>
       </S.SignUpSection>

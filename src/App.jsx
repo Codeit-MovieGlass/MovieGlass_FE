@@ -16,26 +16,27 @@ import MyPage from '@pages/MyPage/MyPage';
 import MyReviewPage from '@pages/MyPage/Review/MyReviewPage';
 import MyLikePage from '@pages/MyPage/Like/MyLikePage';
 import SearchPage from '@pages/Search/SearchPage';
+import MovieModal from '@pages/MovieModal/MovieModal';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* 임시 라우트 */}
+        <Route path="/movie-modal" element={<MovieModal />} />
+
         <Route element={<OnBoardingLayout />}>
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignUp />} />
         </Route>
-
         <Route path="oauth">
-          <Route path="google" element={<GoogleCallback />} />
           <Route path="kakao" element={<KakaoCallback />} />
+          <Route path="google" element={<GoogleCallback />} />
         </Route>
-
         <Route path="select">
           <Route path="genre" element={<GenreSelectionPage />} />
           <Route path="movie" element={<MovieSelection />} />
         </Route>
-
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="search" element={<SearchPage />} />

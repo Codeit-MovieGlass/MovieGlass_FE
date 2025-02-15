@@ -17,8 +17,7 @@ const animationVariants = {
   }),
 };
 
-const TopTenList = ({ movieList }) => {
-  const username = '김철흥';
+const TopTenList = ({ movieList, username }) => {
   const [currentMovieID, setCurrentMovieID] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -41,7 +40,7 @@ const TopTenList = ({ movieList }) => {
 
   return (
     <S.TopTenContainer>
-      <S.BackgroundImg src={movieList.posterImageURL} alt="poster-bg" />
+      <S.BackgroundImg src={currentMovieInfo.horizontalImage} alt="poster-bg" />
 
       <LeftArrow onClick={handlePreviousClick} />
       <S.MovieCarouselContainer>
@@ -82,8 +81,8 @@ const TopTenList = ({ movieList }) => {
             movieTitle={currentMovieInfo.movieName}
             genreList={currentMovieInfo.productionGenre}
             keywordList={currentMovieInfo.productionKeyword}
-            rating={0}
-            // rating={currentMovieInfo.rating}
+            rating={currentMovieInfo.averageRating}
+            isRendered={true}
           />
         </S.CurrentMovieContainer>
 
@@ -111,6 +110,9 @@ const TopTenList = ({ movieList }) => {
   );
 };
 
-TopTenList.propTypes = { movieList: PropTypes.array.isRequired };
+TopTenList.propTypes = {
+  movieList: PropTypes.array.isRequired,
+  username: PropTypes.string.isRequired,
+};
 
 export default TopTenList;

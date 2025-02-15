@@ -1,65 +1,52 @@
-import api from '@api/api';
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
-const KakaoCallback = () => {
-  // [수정할 부분]
-  //   - 로그인 성공 시 로컬 스토리지에 저장할 부분
-  //   - 리다이렉트 주소
-  //   - access 토큰 만료시 refresh 토큰을 활용해서 새로운 access 토큰 재발급 로직
+import { postAuthCodeToServer } from '@auth/utils/authHelper';
 
-  const location = useLocation();
+import LoadingFullScreen from '@pages/LoadingFullScreen/LoadingFullScreen';
+
+const KakaoRedirect = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const isFirstRender = useRef(true);
+  const isFirstRender = useRef(true); // 초기 렌더링 시에만 로그인 로직 실행하도록 하는 Flag
 
-  const queryParams = new URLSearchParams(location.search);
-  console.log('현재 URL 쿼리 문자열:', location.search);
-
-  const KAKAO_AUTH_CODE = queryParams.get('code');
+  const KAKAO_AUTH_CODE = new URLSearchParams(location.search).get('code');
 
   useEffect(() => {
     if (!isFirstRender.current) return;
     isFirstRender.current = false;
 
     if (KAKAO_AUTH_CODE) {
-      console.log('Authorization Code:', KAKAO_AUTH_CODE);
+      console.log('Kakao Authorization Code: ', KAKAO_AUTH_CODE);
 
-      const sendAuthCodeToserver = async () => {
+      const handleKakaoAuth = async () => {
         try {
-          const response = await api.get('/auth/kakao', {
-            params: { code: KAKAO_AUTH_CODE },
-          });
-          console.log(response.data);
-          //로그인 성공 시 로컬 스토리지에 저장할 요소 나중에 수정
-          if (response.data.isSuccess) {
-            const userId = response.data.result.userId;
-            localStorage.setItem('userId', userId);
+          const response = await postAuthCodeToServer('kakao', KAKAO_AUTH_CODE);
+          console.log('Kakao Login Response: ', response);
 
-            //상태 코드에 따른 리다이렉트 처리리
-            if (response.status === 201) {
-              // 최초 회원가입 -> 장르 선택 페이지로 이동
-
-              navigate('/select/genre');
-            } else if (response.status === 200) {
-              // 기존 로그인 -> 홈페이지로 이동
-              localStorage.setItem('accessToken', response.data.accessToken);
-              localStorage.setItem('refreshToken', response.data.refreshToken);
+          switch (response.status) {
+            case 200:
+              localStorage.setItem('accessToken', response.accessToken);
               navigate('/');
-            }
-          } else {
-            console.warn('Authorization Code POST fail');
-            navigate('/login');
+              break;
+            case 201:
+              localStorage.setItem('accessToken', response.accessToken);
+              navigate('/select/genre');
+              break;
+            default:
+              console.error('Kakao Login Failed: ', response.status);
           }
         } catch (error) {
-          console.error('Fetching access token failed: ', error.response);
+          console.error('Kakao Login failed: ', error);
         }
       };
-      sendAuthCodeToserver();
+
+      handleKakaoAuth();
     }
   }, [KAKAO_AUTH_CODE, navigate]);
 
-  return <h1>카카오 로그인 중...</h1>;
+  return <LoadingFullScreen />;
 };
 
-export default KakaoCallback;
+export default KakaoRedirect;

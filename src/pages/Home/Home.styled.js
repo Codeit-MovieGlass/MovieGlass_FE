@@ -6,7 +6,7 @@ export const HomeContainer = styled.div`
   height: fit-content;
 `;
 
-export const CurationWrapper = styled.div`
+export const CurationEmojiContainer = styled.div`
   width: 100%;
   height: fit-content;
   padding: ${pxToRem(48)} ${pxToRem(104)} ${pxToRem(96)};

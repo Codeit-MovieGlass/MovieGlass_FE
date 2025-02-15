@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
+
 import * as S from './UserMenuDropdown.styled';
 
-const UserMenuDropdown = () => {
+const UserMenuDropdown = ({ handleLogout }) => {
   return (
     <S.DropdownContainer>
       <S.OptionList>
@@ -8,11 +10,15 @@ const UserMenuDropdown = () => {
           <S.OptionLink to="/mypage">마이페이지</S.OptionLink>
         </S.Options>
         <S.Options>
-          <S.OptionLink>로그아웃</S.OptionLink>
+          <S.OptionLink onClick={handleLogout}>로그아웃</S.OptionLink>
         </S.Options>
       </S.OptionList>
     </S.DropdownContainer>
   );
+};
+
+UserMenuDropdown.propTypes = {
+  handleLogout: PropTypes.func.isRequired,
 };
 
 export default UserMenuDropdown;

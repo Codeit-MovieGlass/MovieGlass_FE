@@ -1,57 +1,130 @@
+import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
+
+import MyReviewTitle from './MyReviewTitle/MyReviewTitle';
 import Rating from '@components/Rating/Rating';
+import EditDeleteButton from '@components/EditDeleteButton/EditDeleteButton';
+import QuitOrDeleteModal from '@components/Modal/Quit/QuitOrDeleteModal';
 
 import { EyeIcon } from '@icons/Eye';
 import { CommentLogo } from '@icons/Logo';
 
 import * as S from './Review.styled';
 
-const Review = () => {
-  // 추후 API 연동 시 받아와야할 데이터
-  const myUserID = 'ChillGuy_01'; // 현재 로그인된 유저의 ID (userID(username)과 동일할 때, 최상단에 내가 작성한 리뷰로 렌더링)
-  const rating = 3.5;
-  const date = '2025.01.16';
-  const username = '칠가이';
-  const userID = 'ChillGuy_01';
-  const view = 5;
-  const comment =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
+const Review = ({ myReview = false, reviewInfos, handleReviewEditing }) => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleDeleteModalOpen = () => setIsDeleteModalOpen(true);
+  const handleDeleteModalClose = () => setIsDeleteModalOpen(false);
+
+  const deleteModalRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (deleteModalRef.current && !deleteModalRef.current.contains(event.target)) {
+        handleDeleteModalClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
-    <S.ReviewContainer>
-      <S.ReviewInfos>
-        <S.RatingDateContainer>
-          <S.RatingBox>
-            <Rating rating={rating} />
-            <span>{rating}/5.0</span>
-          </S.RatingBox>
-          <S.Date>{date}</S.Date>
-        </S.RatingDateContainer>
-        <S.ProfileViewContainer>
-          <S.UsernameViewBox>
-            <S.Username>
-              {username} <span className="user-id">| {userID}</span>
-            </S.Username>
-            <S.ViewBox>
-              <EyeIcon />
-              {view}
-            </S.ViewBox>
-          </S.UsernameViewBox>
-          <S.ProfileImage>
-            <CommentLogo />
-          </S.ProfileImage>
-        </S.ProfileViewContainer>
-      </S.ReviewInfos>
-      {myUserID === userID ? (
-        <S.MyReviewBorderHighlight>
-          <S.ReviewContent>{comment}</S.ReviewContent>
-        </S.MyReviewBorderHighlight>
-      ) : (
-        <S.ReviewContent>{comment}</S.ReviewContent>
-      )}
+    <S.ReviewWrapper>
+      <S.ReviewContainer>
+        {myReview && <MyReviewTitle />}
+        <S.ReviewInfos>
+          <S.RatingDateContainer>
+            {/* 별점 & 날짜 */}
+            {myReview ? (
+              <S.MyReviewRatingSpoilerContainer>
+                <S.RatingBox>
+                  <Rating rating={reviewInfos.rating} />
+                  <span>{reviewInfos.rating}/5.0</span>
+                </S.RatingBox>
+                <S.SpoilerDivider />
+                <S.MyReviewSpoilerText>
+                  {reviewInfos.spoiler ? '스포일러 있음' : '스포일러 없음'}
+                </S.MyReviewSpoilerText>
+              </S.MyReviewRatingSpoilerContainer>
+            ) : (
+              <S.RatingBox>
+                <Rating rating={reviewInfos.rating} />
+                <span>{reviewInfos.rating}/5.0</span>
+              </S.RatingBox>
+            )}
+            <S.Date>{reviewInfos.date}</S.Date>
+          </S.RatingDateContainer>
+          {/* 프로필 & 조회수 */}
+          {myReview ? (
+            <S.EditDeleteButtonContainer>
+              <EditDeleteButton
+                handleReviewEditing={handleReviewEditing}
+                handleDeleteModalOpen={handleDeleteModalOpen}
+              />
+              {isDeleteModalOpen && (
+                <S.QuitOrDeleteModalContainer>
+                  <QuitOrDeleteModal
+                    type="삭제"
+                    topRef={deleteModalRef}
+                    handleModalClose={handleDeleteModalClose}
+                  />
+                </S.QuitOrDeleteModalContainer>
+              )}
+            </S.EditDeleteButtonContainer>
+          ) : (
+            <S.ProfileViewContainer>
+              <S.UsernameViewBox>
+                <S.Username>
+                  {reviewInfos.username} <span className="user-id">| {reviewInfos.userId}</span>
+                </S.Username>
+                <S.ViewBox>
+                  <EyeIcon />
+                  {reviewInfos.view}
+                </S.ViewBox>
+              </S.UsernameViewBox>
+              <S.ProfileImageBox>
+                <CommentLogo />
+              </S.ProfileImageBox>
+            </S.ProfileViewContainer>
+          )}
+        </S.ReviewInfos>
 
+        {/* 리뷰 내용 */}
+        {myReview ? (
+          <S.MyReviewBorderHighlight>
+            <S.ReviewContent>{reviewInfos.comment}</S.ReviewContent>
+          </S.MyReviewBorderHighlight>
+        ) : reviewInfos.spoiler ? (
+          <S.SpoilerBlurContainer>
+            <S.SpoilerReviewBlur />
+            <S.SpoilerText>
+              <span className="spoiler">스포일러</span>가 포함된 댓글이라 가려졌어요.
+            </S.SpoilerText>
+            <S.ReviewContent>{reviewInfos.comment}</S.ReviewContent>
+          </S.SpoilerBlurContainer>
+        ) : (
+          <S.ReviewContent>{reviewInfos.comment}</S.ReviewContent>
+        )}
+      </S.ReviewContainer>
       <S.ReviewDivider />
-    </S.ReviewContainer>
+    </S.ReviewWrapper>
   );
+};
+
+Review.propTypes = {
+  myReview: PropTypes.bool,
+  reviewInfos: PropTypes.shape({
+    username: PropTypes.string,
+    userId: PropTypes.string,
+    date: PropTypes.string,
+    rating: PropTypes.number,
+    view: PropTypes.number,
+    spoiler: PropTypes.bool,
+    comment: PropTypes.string,
+  }),
+  handleReviewEditing: PropTypes.func,
 };
 
 export default Review;

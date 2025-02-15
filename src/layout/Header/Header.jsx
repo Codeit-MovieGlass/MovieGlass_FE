@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import useAuth from '@hooks/auth/useAuth';
+
 import SearchBar from './SearchBar/SearchBar';
 import UserMenuDropdown from '@components/UserMenuDropdown/UserMenuDropdown';
 
@@ -9,6 +11,12 @@ import * as M from '@icons/Magnifier';
 import * as S from './Header.styled';
 
 const Header = () => {
+  const { logout } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleProfileClick = () => {
@@ -26,7 +34,7 @@ const Header = () => {
         <M.MagnifierSolo />
         <S.ProfileButton onClick={handleProfileClick}>
           <S.DefaultProfile />
-          {isDropdownOpen && <UserMenuDropdown />}
+          {isDropdownOpen && <UserMenuDropdown handleLogout={handleLogout} />}
         </S.ProfileButton>
       </S.SearchProfile>
     </S.HeaderContainer>

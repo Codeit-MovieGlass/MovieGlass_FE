@@ -17,7 +17,7 @@ const animationVariants = {
   }),
 };
 
-const Curation = ({ curationTitle, movieList = [] }) => {
+const Curation = ({ curationTitle, movieList }) => {
   const [movieIndex, setMovieIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -50,38 +50,37 @@ const Curation = ({ curationTitle, movieList = [] }) => {
   return (
     <S.MovieListSection>
       <S.CurationTitle>{curationTitle}</S.CurationTitle>
+
       <S.MovieList>
         <S.LeftArrowButton $startOfList={movieIndex === 0} onClick={onClickPrevious}>
           <CurationLeftArrow $startOfList={movieIndex === 0} />
         </S.LeftArrowButton>
 
         {movieList.slice(movieIndex, movieIndex + SHOWING_MOVIES).map((movie, index) => (
-          <>
-            <S.MovieListItem
-              onMouseEnter={() => handleMovieMouseEnter(index)}
-              onMouseLeave={handleMovieMouseLeave}
+          <S.MovieListItem
+            key={movie.movie_id}
+            onMouseEnter={() => handleMovieMouseEnter(index)}
+            onMouseLeave={handleMovieMouseLeave}
+          >
+            <S.MovieInfoLink
+              variants={animationVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              custom={direction}
             >
-              <S.MovieInfoLink
-                key={movie.movie_id}
-                variants={animationVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                custom={direction}
-              >
-                <S.MoviePoster src={movie.poster_url} alt={movie.movie_name} />
-              </S.MovieInfoLink>
+              <S.MoviePoster src={movie.poster_url} alt={movie.movie_name} />
+            </S.MovieInfoLink>
 
-              {/* Movie IntroBox */}
-              <MovieIntroBox
-                movieTitle={movie.movie_name}
-                genreList={movie.genre}
-                keywordList={movie.keyword}
-                rating={movie.averageRating}
-                isRendered={selectedMovie === index}
-              />
-            </S.MovieListItem>
-          </>
+            {/* Movie IntroBox */}
+            <MovieIntroBox
+              movieTitle={movie.movie_name}
+              genreList={movie.genre}
+              keywordList={movie.keyword}
+              rating={movie.averageRating}
+              isRendered={selectedMovie === index}
+            />
+          </S.MovieListItem>
         ))}
 
         <S.RightArrowButton

@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import * as S from './Heart.styled';
 
-const Heart = () => {
-  const [isLiked, setIsLiked] = useState(true);
+const Heart = ({ initialLiked }) => {
+  const [isLiked, setIsLiked] = useState(initialLiked);
   const handleLikeClick = () => setIsLiked(!isLiked);
 
   return (
@@ -11,6 +12,10 @@ const Heart = () => {
       <S.HeartIcon onClick={handleLikeClick} $isLiked={isLiked} />
     </S.HeartButton>
   );
+};
+
+Heart.propTypes = {
+  initialLiked: PropTypes.bool.isRequired,
 };
 
 export default Heart;
