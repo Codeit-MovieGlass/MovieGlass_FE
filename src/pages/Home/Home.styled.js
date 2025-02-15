@@ -20,6 +20,8 @@ export const CurationShuffleContainer = styled.div`
   display: flex;
   width: 100%;
   cursor: pointer;
+  padding-right: ${pxToRem(50)};
+  padding-top: ${pxToRem(50)};
 `;
 
 export const CurationShuffleText = styled.p`
