@@ -6,7 +6,7 @@ import * as S from './BackToHomeOrMyPage.styled';
 
 const BackToHomeOrMyPage = ({ type }) => {
   return (
-    <S.BackToHomeLink href={type === 'home' ? '/' : `/${type}`}>
+    <S.BackToHomeLink href={type === 'home' ? '/browse' : `/${type}`}>
       <S.HomeIconBox>
         <HomeIcon />
       </S.HomeIconBox>

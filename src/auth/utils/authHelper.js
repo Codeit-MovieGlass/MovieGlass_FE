@@ -21,25 +21,7 @@ export const postAuthCodeToServer = async (service, authCode) => {
   }
 };
 
-// 서비스 자체 로그인 및 회원가입 Logic
-export const signup = async (userData) => {
-  try {
-    const response = await api.post('/auth/signup', userData);
-    console.log(response);
-
-    switch (response.status) {
-      case 201:
-        return { status: response.status };
-
-      case 400:
-        alert('이미 존재하는 닉네임입니다.');
-        break;
-    }
-  } catch (error) {
-    console.error('회원가입 실패: ', error);
-  }
-};
-
+// 서비스 자체 로그인 Logic
 export const login = async (userData) => {
   console.log('Login Form Data: ', userData);
 
@@ -58,5 +40,24 @@ export const login = async (userData) => {
     }
   } catch (error) {
     console.error('로그인 실패: ', error);
+  }
+};
+
+// 회원가입 Logic
+export const signup = async (userData) => {
+  try {
+    const response = await api.post('/auth/signup', userData);
+    console.log(response);
+
+    switch (response.status) {
+      case 201:
+        return { status: response.status };
+
+      case 400:
+        alert('이미 존재하는 닉네임입니다.');
+        break;
+    }
+  } catch (error) {
+    console.error('회원가입 실패: ', error);
   }
 };

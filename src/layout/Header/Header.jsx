@@ -25,7 +25,7 @@ const Header = () => {
 
   return (
     <S.HeaderContainer>
-      <S.Logos href="/">
+      <S.Logos href="/browse">
         <L.LogoSymbol />
         <L.LogoTypo />
       </S.Logos>

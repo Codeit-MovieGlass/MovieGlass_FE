@@ -11,27 +11,37 @@ import * as S from './MyLikePage.styled';
 
 const MyLikePage = () => {
   const [query, setQuery] = useState('');
+  const [searchLikedMovies, setSearchLikedMovies] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleSearchChange = (e) => {
     setQuery(e.target.value);
+    setIsSearching(false);
+  };
+
+  const normalizeKorean = (text) => {
+    return text ? text.normalize('NFC').toLowerCase() : '';
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // 검색 로직 추가
+
+    const filteredMovies = likedMovies.filter((movie) => {
+      const searchLower = normalizeKorean(query);
+      const titleMatch = normalizeKorean(movie.movie_name).includes(searchLower);
+      const genreMatch = normalizeKorean(movie.production_genre || '').includes(searchLower);
+      // const castMatch = (movie.cast || '').some((actor) =>
+      //   normalizeKorean(actor).includes(searchLower)
+      // );
+      return titleMatch || genreMatch;
+    });
+
+    setIsSearching(true);
+    setSearchLikedMovies(filteredMovies);
   };
 
   // 좋아요한 영화 목록 가져오기
   const [likedMovies, setLikedMovies] = useState([]);
-
-  // 검색 필터링
-  const filteredMovies = likedMovies.filter((movie) => {
-    const searchLower = query.toLowerCase();
-    const titleMatch = movie.title.toLowerCase().includes(searchLower);
-    const genreMatch = movie.genre.toLowerCase().includes(searchLower);
-    const castMatch = movie.cast.some((actor) => actor.toLowerCase().includes(searchLower));
-    return titleMatch || genreMatch || castMatch;
-  });
 
   useEffect(() => {
     const getLikedMovies = async () => {
@@ -80,23 +90,45 @@ const MyLikePage = () => {
 
       {/* 3) 카드 리스트 */}
       <S.LikedMovieList>
-        {filteredMovies.map((movie) => (
-          <S.LikedMovieListItem key={movie.id}>
-            <S.LikedMovieCard>
-              <S.PosterImageContainer>
-                <S.PosterImage src={movie.poster} alt={movie.title} />
-                <S.LikeButtonContainer>
-                  <Heart initialLiked={true} />
-                </S.LikeButtonContainer>
-              </S.PosterImageContainer>
+        {isSearching
+          ? searchLikedMovies.map((movie) => (
+              // key 값으로 id 값 필요 (추후 반영)
+              <S.LikedMovieListItem key={movie.movie_name}>
+                <S.LikedMovieCard>
+                  <S.PosterImageContainer>
+                    <S.PosterImage src={movie.production_image} alt={movie.movie_name} />
+                    <S.LikeButtonContainer>
+                      <Heart initialLiked={true} />
+                    </S.LikeButtonContainer>
+                  </S.PosterImageContainer>
 
-              <S.LikedMovieInfos>
-                <S.LikedMovieTitle>{movie.title}</S.LikedMovieTitle>
-                <Rating rating={movie.rating} />
-              </S.LikedMovieInfos>
-            </S.LikedMovieCard>
-          </S.LikedMovieListItem>
-        ))}
+                  <S.LikedMovieInfos>
+                    <S.LikedMovieTitle>{movie.movie_name}</S.LikedMovieTitle>
+                    {/* 현재 rating 값이 서버에서 전달되지 않음 (추후 반영 필요) */}
+                    <Rating rating={movie.rating} />
+                  </S.LikedMovieInfos>
+                </S.LikedMovieCard>
+              </S.LikedMovieListItem>
+            ))
+          : likedMovies.map((movie) => (
+              // key 값으로 id 값 필요 (추후 반영)
+              <S.LikedMovieListItem key={movie.movie_name}>
+                <S.LikedMovieCard>
+                  <S.PosterImageContainer>
+                    <S.PosterImage src={movie.production_image} alt={movie.movie_name} />
+                    <S.LikeButtonContainer>
+                      <Heart initialLiked={true} />
+                    </S.LikeButtonContainer>
+                  </S.PosterImageContainer>
+
+                  <S.LikedMovieInfos>
+                    <S.LikedMovieTitle>{movie.movie_name}</S.LikedMovieTitle>
+                    {/* 현재 rating 값이 서버에서 전달되지 않음 (추후 반영 필요) */}
+                    <Rating rating={movie.rating} />
+                  </S.LikedMovieInfos>
+                </S.LikedMovieCard>
+              </S.LikedMovieListItem>
+            ))}
       </S.LikedMovieList>
     </S.MyLikePageContainer>
   );

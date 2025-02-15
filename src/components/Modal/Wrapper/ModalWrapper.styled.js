@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ModalBackground = styled.div`
   position: fixed;
@@ -19,4 +19,11 @@ export const ModalContent = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 102;
+
+  ${({ $isMovieModal }) =>
+    $isMovieModal &&
+    css`
+      top: 3%;
+      transform: translate(-50%, 0%);
+    `}
 `;

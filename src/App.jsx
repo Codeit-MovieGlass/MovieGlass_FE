@@ -6,8 +6,7 @@ import OnBoardingLayout from '@layout/OnBoarding/OnBoardingLayout';
 import GoogleCallback from '@auth/redirects/GoogleRedirect';
 import KakaoCallback from '@auth/redirects/KakaoRedirect';
 
-import LoginPage from '@pages/Login/Login';
-import SignUp from '@pages/SignUp/SignUp';
+import LoginSignup from '@pages/LoginSignup/LoginSignup';
 import GenreSelectionPage from '@pages/Onboarding/GenreSelection/GenreSelection';
 import MovieSelection from '@pages/Onboarding/MovieSelection/MovieSelection';
 
@@ -16,19 +15,15 @@ import MyPage from '@pages/MyPage/MyPage';
 import MyReviewPage from '@pages/MyPage/Review/MyReviewPage';
 import MyLikePage from '@pages/MyPage/Like/MyLikePage';
 import SearchPage from '@pages/Search/SearchPage';
-import MovieModal from '@pages/MovieModal/MovieModal';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* 임시 라우트 */}
-        <Route path="/movie-modal" element={<MovieModal />} />
-
         <Route element={<OnBoardingLayout />}>
-          <Route path="login" element={<LoginPage />} />
-          <Route path="signup" element={<SignUp />} />
+          <Route index element={<LoginSignup />} />
         </Route>
+
         <Route path="oauth">
           <Route path="kakao" element={<KakaoCallback />} />
           <Route path="google" element={<GoogleCallback />} />
@@ -37,8 +32,9 @@ function App() {
           <Route path="genre" element={<GenreSelectionPage />} />
           <Route path="movie" element={<MovieSelection />} />
         </Route>
+
         <Route element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route path="browse" element={<Home />} />
           <Route path="search" element={<SearchPage />} />
 
           <Route path="mypage">

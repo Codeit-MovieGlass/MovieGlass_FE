@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
@@ -5,7 +6,7 @@ import { signup } from '@auth/utils/authHelper';
 
 import * as S from './SignUp.styled';
 
-const SignUp = () => {
+const SignUp = ({ handleLoginClick }) => {
   const navigate = useNavigate();
 
   const [userFormData, setUserFormData] = useState({ nickname: '', email: '', password: '' });
@@ -30,8 +31,6 @@ const SignUp = () => {
       alert('회원가입에 실패했습니다.');
     }
   };
-
-  const handleLoginClick = () => navigate('/login');
 
   return (
     <S.SignUpContainer>
@@ -88,6 +87,10 @@ const SignUp = () => {
       </S.SignUpForm>
     </S.SignUpContainer>
   );
+};
+
+SignUp.propTypes = {
+  handleLoginClick: PropTypes.func.isRequired,
 };
 
 export default SignUp;

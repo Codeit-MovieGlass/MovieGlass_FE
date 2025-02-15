@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 
+import { getMovieModalInfo } from '@api/movie';
+
 import MovieIntroBox from '@components/MovieIntroBox/MovieIntroBox';
 import { LeftArrow, RightArrow } from '@icons/Arrow';
 
@@ -17,7 +19,7 @@ const animationVariants = {
   }),
 };
 
-const TopTenList = ({ movieList, username }) => {
+const TopTenList = ({ movieList, username, handleMovieModalOpen, handleMovieModalData }) => {
   const [currentMovieID, setCurrentMovieID] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -36,6 +38,16 @@ const TopTenList = ({ movieList, username }) => {
   const handleNextClick = () => {
     setDirection(1); // 오른쪽 이동
     setCurrentMovieID(nextMovieID);
+  };
+
+  // 현재 영화 클릭 시 모달 열기
+  const handleCurrentMovieClick = async () => {
+    handleMovieModalOpen(currentMovieInfo.id);
+
+    const movieModalInfo = await getMovieModalInfo(currentMovieInfo.id);
+    console.log('Movie Modal Info: ', movieModalInfo);
+
+    handleMovieModalData(movieModalInfo);
   };
 
   return (
@@ -65,25 +77,27 @@ const TopTenList = ({ movieList, username }) => {
         {/* Current Movie Section */}
         <S.CurrentMovieContainer>
           <S.CurrentMovieNumber>{currentMovieID + 1}</S.CurrentMovieNumber>
-          <AnimatePresence custom={direction} mode="wait">
-            <S.CurrentMoviePoster
-              key={currentMovieID}
-              src={currentMovieInfo.productionImage}
-              alt="poster-main"
-              variants={animationVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              custom={direction}
+          <S.CurrentMovieModalButton onClick={handleCurrentMovieClick}>
+            <AnimatePresence custom={direction} mode="wait">
+              <S.CurrentMoviePoster
+                key={currentMovieID}
+                src={currentMovieInfo.productionImage}
+                alt="poster-main"
+                variants={animationVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                custom={direction}
+              />
+            </AnimatePresence>
+            <MovieIntroBox
+              movieTitle={currentMovieInfo.movieName}
+              genreList={currentMovieInfo.productionGenre}
+              keywordList={currentMovieInfo.productionKeyword}
+              rating={currentMovieInfo.averageRating}
+              isRendered={true}
             />
-          </AnimatePresence>
-          <MovieIntroBox
-            movieTitle={currentMovieInfo.movieName}
-            genreList={currentMovieInfo.productionGenre}
-            keywordList={currentMovieInfo.productionKeyword}
-            rating={currentMovieInfo.averageRating}
-            isRendered={true}
-          />
+          </S.CurrentMovieModalButton>
         </S.CurrentMovieContainer>
 
         {/* Next Movie Section */}
@@ -113,6 +127,8 @@ const TopTenList = ({ movieList, username }) => {
 TopTenList.propTypes = {
   movieList: PropTypes.array.isRequired,
   username: PropTypes.string.isRequired,
+  handleMovieModalOpen: PropTypes.func.isRequired,
+  handleMovieModalData: PropTypes.func.isRequired,
 };
 
 export default TopTenList;
