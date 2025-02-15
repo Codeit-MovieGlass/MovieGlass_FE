@@ -14,15 +14,15 @@ import * as S from './GenreSelection.styled';
 
 // 장르 목록
 const gernes = [
-  { id: 1, name: '드라마/감동' },
-  { id: 2, name: '스릴/긴장' },
+  { id: 1, name: '드라마' },
+  { id: 2, name: '스릴러/공포' },
   { id: 3, name: '모험/판타지' },
-  { id: 4, name: '역사/시대극' },
-  { id: 5, name: '코미디/즐거움' },
-  { id: 6, name: '다큐멘터리/현실기반' },
-  { id: 7, name: '예술/창의적' },
-  { id: 8, name: '로맨스/성인' },
-  { id: 9, name: '액션/자극' },
+  { id: 4, name: '코미디' },
+  { id: 5, name: '로맨스' },
+  { id: 6, name: '다큐멘터리' },
+  { id: 7, name: '액션/범죄' },
+  { id: 8, name: '뮤지컬' },
+  { id: 9, name: '애니메이션' },
 ];
 
 const GenreSelectionPage = () => {
