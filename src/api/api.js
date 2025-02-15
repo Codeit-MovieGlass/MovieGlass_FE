@@ -32,7 +32,8 @@ api.interceptors.response.use(
 
       try {
         // 토큰 재발급 요청 로직 수정 필요
-        const newToken = await api.post('/auth/verify');
+        const accessToken = localStorage.getItem('accessToken');
+        const newToken = await api.post('/auth/verify', accessToken);
         console.log(newToken);
 
         localStorage.setItem('accessToken', newToken.data.accessToken);

@@ -4,20 +4,22 @@ import useDisableScroll from '@hooks/useDisableScroll';
 
 import * as S from './ModalWrapper.styled';
 
-const ModalWrapper = ({ children }) => {
+const ModalWrapper = ({ children, isMovieModal = false, handleMovieModalClose }) => {
   useDisableScroll();
 
   return (
     <>
-      <S.ModalBackground />
+      <S.ModalBackground onClick={handleMovieModalClose} />
       {/* Modal Content */}
-      <S.ModalContent>{children}</S.ModalContent>
+      <S.ModalContent $isMovieModal={isMovieModal}>{children}</S.ModalContent>
     </>
   );
 };
 
 ModalWrapper.propTypes = {
   children: PropTypes.node.isRequired,
+  isMovieModal: PropTypes.bool,
+  handleMovieModalClose: PropTypes.func,
 };
 
 export default ModalWrapper;

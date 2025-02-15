@@ -52,6 +52,11 @@ export const CurrentMovieContainer = styled.div`
   height: fit-content;
 `;
 
+export const CurrentMovieModalButton = styled.button`
+  width: fit-content;
+  height: fit-content;
+`;
+
 export const CurrentMoviePoster = styled(motion.img)`
   width: ${pxToRem(432)};
   height: ${pxToRem(576)};

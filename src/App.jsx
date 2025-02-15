@@ -15,15 +15,11 @@ import MyPage from '@pages/MyPage/MyPage';
 import MyReviewPage from '@pages/MyPage/Review/MyReviewPage';
 import MyLikePage from '@pages/MyPage/Like/MyLikePage';
 import SearchPage from '@pages/Search/SearchPage';
-import MovieModal from '@pages/MovieModal/MovieModal';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* 임시 라우트 */}
-        <Route path="/movie-modal" element={<MovieModal />} />
-
         <Route element={<OnBoardingLayout />}>
           <Route index element={<LoginSignup />} />
         </Route>
