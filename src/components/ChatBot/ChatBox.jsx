@@ -6,7 +6,9 @@ import { postChatbotMessage } from '@api/chatbot';
 import Loading from '@components/Loading/Loading';
 
 const ChatBox = ({ setOpenChat, chatbotKey }) => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    { sender: 'bot', text: '안녕하세요! 영화에 관해 궁금한 점이 있다면 언제든지 물어보세요.' },
+  ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
@@ -27,6 +29,7 @@ const ChatBox = ({ setOpenChat, chatbotKey }) => {
         const botMessage = { text: response.result.message, sender: 'bot' };
 
         setMessages((prev) => [...prev, botMessage]); // 챗봇 메시지 추가
+        console.log(messages);
       } else {
         console.error('잘못된 챗봇 응답:', response);
       }

@@ -7,7 +7,7 @@ import Curation from '@components/Curation/Curation';
 import { getCurationShuffleData, getEmotionCurationData, getTopTenData } from '@api/home';
 
 import * as S from './Home.styled';
-import ChatBot from '@components/ChatBot/ChatBot';
+import ChatBot from '../../components/Chatbot/ChatBot';
 
 const Home = () => {
   const [username, setUsername] = useState('');
