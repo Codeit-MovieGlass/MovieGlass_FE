@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router';
 
 import TopTenList from '@components/TopTenList/TopTenList';
 import BallonSection from '@components/Balloon/BallonSection';
 import Curation from '@components/Curation/Curation';
+import MovieModal from '@pages/MovieModal/MovieModal';
 
 import { getCurationShuffleData, getEmotionCurationData, getTopTenData } from '@api/home';
 
@@ -13,8 +15,19 @@ const Home = () => {
   const [topTenMovieList, setTopTenMovieList] = useState([]);
   const [curationList, setCurationList] = useState([]);
 
-  const [emotioncuration, setEmotionCuration] = useState([]);
+  const [emotionCuration, setEmotionCuration] = useState([]);
   const [selectedEmoji, setSelectedEmoji] = useState('');
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleMovieModalOpen = (id) => {
+    setSearchParams({ movieId: id });
+    console.log('movieId: ', id);
+  };
+
+  const [movieModalData, setMovieModalData] = useState({});
+
+  const handleMovieModalData = (movieModalInfo) => setMovieModalData(movieModalInfo);
 
   // Top 10 영화 불러오기
   useEffect(() => {
@@ -38,7 +51,7 @@ const Home = () => {
     const fetchCurationList = async () => {
       try {
         const response = await getCurationShuffleData();
-        console.log('Curation List: ', response.result.shuffled_curations);
+        // console.log('Curation List: ', response.result.shuffled_curations);
 
         setCurationList(response.result.shuffled_curations);
       } catch (error) {
@@ -55,6 +68,7 @@ const Home = () => {
 
     try {
       const result = await getEmotionCurationData(selectedEmoji);
+
       setEmotionCuration(result?.result?.curations?.[0] || null);
     } catch (error) {
       console.error('Emoji curation fetch failed: ', error);
@@ -66,26 +80,38 @@ const Home = () => {
   }, [fetchEmotionCuration]);
 
   return (
-    <S.HomeContainer>
-      {topTenMovieList.length > 0 && <TopTenList movieList={topTenMovieList} username={username} />}
-      <S.CurationEmojiContainer>
-        {emotioncuration.length === 0 ? (
-          <BallonSection selectedEmoji={selectedEmoji} setSelectedEmoji={setSelectedEmoji} />
-        ) : (
-          <Curation
-            curationTitle={emotioncuration.curation_name}
-            movieList={emotioncuration.movies}
+    <>
+      <S.HomeContainer>
+        {topTenMovieList.length > 0 && (
+          <TopTenList
+            movieList={topTenMovieList}
+            username={username}
+            handleMovieModalOpen={handleMovieModalOpen}
+            handleMovieModalData={handleMovieModalData}
           />
         )}
-        {curationList.map((curation, index) => (
-          <Curation
-            key={curation.curation_id ?? `curation-${index}`}
-            curationTitle={curation.curation_name}
-            movieList={curation.movies}
-          />
-        ))}
-      </S.CurationEmojiContainer>
-    </S.HomeContainer>
+        <S.CurationEmojiContainer>
+          {emotionCuration.length === 0 ? (
+            <BallonSection selectedEmoji={selectedEmoji} setSelectedEmoji={setSelectedEmoji} />
+          ) : (
+            <Curation
+              curationTitle={emotionCuration.curation_name}
+              movieList={emotionCuration.movies}
+              handleMovieModalOpen={handleMovieModalOpen}
+              handleMovieModalData={handleMovieModalData}
+            />
+          )}
+          {curationList.map((curation, index) => (
+            <Curation
+              key={curation.curation_id ?? `curation-${index}`}
+              curationTitle={curation.curation_name}
+              movieList={curation.movies}
+            />
+          ))}
+        </S.CurationEmojiContainer>
+      </S.HomeContainer>
+      {searchParams.get('movieId') && <MovieModal movieModalData={movieModalData} />}
+    </>
   );
 };
 

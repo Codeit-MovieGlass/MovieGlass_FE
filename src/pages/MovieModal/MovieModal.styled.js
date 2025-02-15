@@ -2,8 +2,14 @@ import styled, { css } from 'styled-components';
 import pxToRem from '@utils/pxToRem';
 
 export const MovieModalContainer = styled.div`
-  width: ${pxToRem(1200)};
-  height: fit-content;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  width: 50vw;
+  height: 100vh;
 
   display: flex;
   flex-direction: column;
@@ -15,7 +21,8 @@ export const MovieModalContainer = styled.div`
 
   box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.25);
 
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;
 
 export const MovieTrailerSection = styled.section`

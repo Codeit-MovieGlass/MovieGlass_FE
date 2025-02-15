@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
+import { getMovieModalInfo } from '@api/movie';
+
 import MovieIntroBox from '@components/MovieIntroBox/MovieIntroBox';
 import { CurationLeftArrow, CurationRightArrow } from '@icons/Arrow';
 
@@ -17,7 +19,7 @@ const animationVariants = {
   }),
 };
 
-const Curation = ({ curationTitle, movieList }) => {
+const Curation = ({ curationTitle, movieList, handleMovieModalOpen, handleMovieModalData }) => {
   const [movieIndex, setMovieIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -47,6 +49,16 @@ const Curation = ({ curationTitle, movieList }) => {
     setSelectedMovie(null);
   };
 
+  // 현재 영화 클릭 시 모달 열기
+  const handleCurrentMovieClick = async (movie) => {
+    handleMovieModalOpen(movie.id);
+
+    const movieModalInfo = await getMovieModalInfo(movie.id);
+    console.log('Movie Modal Info: ', movieModalInfo);
+
+    handleMovieModalData(movieModalInfo);
+  };
+
   return (
     <S.MovieListSection>
       <S.CurationTitle>{curationTitle}</S.CurationTitle>
@@ -56,32 +68,35 @@ const Curation = ({ curationTitle, movieList }) => {
           <CurationLeftArrow $startOfList={movieIndex === 0} />
         </S.LeftArrowButton>
 
-        {movieList.slice(movieIndex, movieIndex + SHOWING_MOVIES).map((movie, index) => (
-          <S.MovieListItem
-            key={movie.movie_id}
-            onMouseEnter={() => handleMovieMouseEnter(index)}
-            onMouseLeave={handleMovieMouseLeave}
-          >
-            <S.MovieInfoLink
-              variants={animationVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              custom={direction}
+        {movieList.slice(movieIndex, movieIndex + SHOWING_MOVIES).map((movie, index) => {
+          return (
+            <S.MovieListItem
+              key={movie.movie_id}
+              onMouseEnter={() => handleMovieMouseEnter(index)}
+              onMouseLeave={handleMovieMouseLeave}
             >
-              <S.MoviePoster src={movie.poster_url} alt={movie.movie_name} />
-            </S.MovieInfoLink>
+              <S.MovieInfoLink
+                variants={animationVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                custom={direction}
+                onClick={() => handleCurrentMovieClick(movie.id)}
+              >
+                <S.MoviePoster src={movie.poster_url} alt={movie.movie_name} />
+              </S.MovieInfoLink>
 
-            {/* Movie IntroBox */}
-            <MovieIntroBox
-              movieTitle={movie.movie_name}
-              genreList={movie.genre}
-              keywordList={movie.keyword}
-              rating={movie.averageRating}
-              isRendered={selectedMovie === index}
-            />
-          </S.MovieListItem>
-        ))}
+              {/* Movie IntroBox */}
+              <MovieIntroBox
+                movieTitle={movie.movie_name}
+                genreList={movie.genre}
+                keywordList={movie.keyword}
+                rating={movie.averageRating}
+                isRendered={selectedMovie === index}
+              />
+            </S.MovieListItem>
+          );
+        })}
 
         <S.RightArrowButton
           $endOfList={movieIndex === movieList.length - SHOWING_MOVIES}
@@ -104,6 +119,8 @@ const Curation = ({ curationTitle, movieList }) => {
 Curation.propTypes = {
   curationTitle: PropTypes.string.isRequired,
   movieList: PropTypes.array.isRequired,
+  handleMovieModalOpen: PropTypes.func.isRequired,
+  handleMovieModalData: PropTypes.func.isRequired,
 };
 
 export default Curation;

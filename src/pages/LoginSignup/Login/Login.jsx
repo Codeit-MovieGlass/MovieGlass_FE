@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
@@ -7,7 +8,7 @@ import SocialLogin from './Social/SocialLogin';
 
 import * as S from './Login.styled';
 
-const LoginPage = () => {
+const Login = ({ handleSignupClick }) => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -31,15 +32,13 @@ const LoginPage = () => {
     const isLogin = await login(formData);
 
     if (isLogin) {
-      navigate('/');
+      navigate('/browse');
     } else {
       alert('로그인에 실패했습니다.');
     }
   };
 
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
-
-  const handleSignupClick = () => navigate('/signup');
 
   return (
     <S.LoginContainer>
@@ -81,4 +80,8 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+Login.propTypes = {
+  handleSignupClick: PropTypes.func.isRequired,
+};
+
+export default Login;
