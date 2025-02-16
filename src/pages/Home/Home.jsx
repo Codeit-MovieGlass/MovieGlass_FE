@@ -108,19 +108,10 @@ const Home = () => {
             handleMovieModalData={handleMovieModalData}
           />
         )}
-
         <S.CurationShuffleContainer onClick={onClickShuffle}>
           <S.CurationShuffleText>큐레이션 셔플하기</S.CurationShuffleText>
           <ShuffleIcon />
         </S.CurationShuffleContainer>
-        {emotionCuration.length === 0 ? (
-          <BallonSection selectedEmoji={selectedEmoji} setSelectedEmoji={setSelectedEmoji} />
-        ) : (
-          <Curation
-            curationTitle={emotionCuration.curation_name}
-            movieList={emotionCuration.movies}
-          />
-        )}
         <S.CurationEmojiContainer>
           {emotionCuration.length === 0 ? (
             <BallonSection selectedEmoji={selectedEmoji} setSelectedEmoji={setSelectedEmoji} />
