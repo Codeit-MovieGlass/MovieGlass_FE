@@ -24,7 +24,7 @@ const Calendar = ({ year, month, movieCalendar }) => {
         {year &&
           month &&
           generateCalendar(year, month).map((day, index) => {
-            const isPosterExist = movieCalendar[day.fullDate];
+            const isPosterExist = movieCalendar && movieCalendar[day.fullDate];
             const posterUrl = isPosterExist ? isPosterExist[0].poster : null;
 
             return (

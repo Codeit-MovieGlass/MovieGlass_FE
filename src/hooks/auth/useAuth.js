@@ -12,7 +12,7 @@ const useAuth = () => {
   }, []);
 
   useEffect(() => {
-    console.log('useAuth - 토큰 검증 실행');
+    // console.log('useAuth - 토큰 검증 실행');
     validateToken();
   }, [validateToken]);
 

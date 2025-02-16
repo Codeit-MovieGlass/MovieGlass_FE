@@ -24,6 +24,7 @@ const SignUp = ({ handleLoginClick }) => {
     e.preventDefault();
 
     const response = await signup(userFormData);
+    console.log(response);
 
     if (response.status === 201) {
       navigate('/select/genre');

@@ -13,7 +13,10 @@ const MovieSelection = () => {
 
         <S.MovieList>
           {displayMovies.map((movie) => (
-            <S.MovieItem key={movie.movie_id} onClick={() => selectMovie(movie.movie_id,movie.keyword)}>
+            <S.MovieItem
+              key={movie.movie_id}
+              onClick={() => selectMovie(movie.movie_id, movie.keyword)}
+            >
               <S.CheckButton $checked={selectedMovies.includes(movie.movie_id)}>
                 <CheckIcon $checked={selectedMovies.includes(movie.movie_id)} />
               </S.CheckButton>
@@ -28,7 +31,7 @@ const MovieSelection = () => {
           <S.CompleteButton
             $selected={selectedMovies.length >= 3}
             $active={selectedMovies.length >= 3}
-            onClick={()=>submitSelectedMovies()}
+            onClick={() => submitSelectedMovies()}
           >
             완료
           </S.CompleteButton>

@@ -7,7 +7,7 @@ const MovieInfoTab = ({ movieInfos }) => {
     <S.MovieInfoSection>
       {/* 영화 제목, 러닝타임, 개봉일 정보 */}
       <S.MovieTitleInfoSection>
-        <S.MovieTitle>{movieInfos.title}</S.MovieTitle>
+        <S.MovieTitle>{movieInfos.movie_name}</S.MovieTitle>
         <S.MovieRunningTimeReleaseDateContainer>
           <S.MovieRunningTime>러닝타임 {movieInfos.runtime}</S.MovieRunningTime>
           <S.MovieReleaseDate>{movieInfos.releaseDate}</S.MovieReleaseDate>
@@ -59,15 +59,15 @@ const MovieInfoTab = ({ movieInfos }) => {
 
 MovieInfoTab.propTypes = {
   movieInfos: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    runtime: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
-    actor: PropTypes.string.isRequired,
-    ageLimit: PropTypes.string.isRequired,
-    genre: PropTypes.arrayOf(PropTypes.string).isRequired,
-    keyword: PropTypes.arrayOf(PropTypes.string).isRequired,
-    synopsis: PropTypes.string.isRequired,
-  }).isRequired,
+    movie_name: PropTypes.string,
+    runtime: PropTypes.string,
+    releaseDate: PropTypes.string,
+    actor: PropTypes.string,
+    ageLimit: PropTypes.string,
+    genre: PropTypes.arrayOf(PropTypes.string),
+    keyword: PropTypes.arrayOf(PropTypes.string),
+    synopsis: PropTypes.string,
+  }),
 };
 
 export default MovieInfoTab;

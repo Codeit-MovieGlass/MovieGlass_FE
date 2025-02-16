@@ -47,7 +47,7 @@ const TopTenList = ({ movieList, username, handleMovieModalOpen, handleMovieModa
     const movieModalInfo = await getMovieModalInfo(currentMovieInfo.id);
     console.log('Movie Modal Info: ', movieModalInfo);
 
-    handleMovieModalData(movieModalInfo);
+    handleMovieModalData(movieModalInfo?.result.movieInfo);
   };
 
   return (

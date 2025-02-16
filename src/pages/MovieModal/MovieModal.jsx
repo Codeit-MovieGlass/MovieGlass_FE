@@ -35,6 +35,8 @@ const MovieModal = ({ movieModalData }) => {
   // 선택된 탭 정보 상태 관리
   const infoTabs = ['정보', '관람평'];
 
+  console.log('movieModalData: ', movieModalData);
+
   const [selectedTab, setSelectedTab] = useState('정보');
 
   const handleTabClick = (tabName) => {
@@ -55,24 +57,21 @@ const MovieModal = ({ movieModalData }) => {
     <ModalWrapper isMovieModal={true} handleMovieModalClose={handleMovieModalClose}>
       <S.MovieModalContainer ref={movieModalRef}>
         <S.MovieTrailerSection>
-          <S.MovieTrailerImage
-            src="https://i.pinimg.com/736x/b3/10/43/b31043d69ad59d096d17a3b6652a387f.jpg"
-            alt="Movie Trailer"
-          />
+          <S.MovieTrailerImage src={movieModalData?.horizontal_image} alt="Movie Trailer" />
         </S.MovieTrailerSection>
         <S.MetaDataSection>
           {/* 평점, 좋아요, 조회수 */}
           <S.RatingLikeViewCountContainer>
             <S.RatingContainer>
-              <Rating rating={movieModalData.rating} />
+              <Rating rating={movieModalData?.averageRating} />
               <S.RatingText>
-                {movieModalData.rating}
+                {movieModalData.averageRating}
                 <span className="total-rating"> / 5.0</span>
               </S.RatingText>
             </S.RatingContainer>
 
             <S.LikeViewCountContainer>
-              <Heart initialLiked={movieModalData.like} />
+              <Heart initialLiked={movieModalData?.like} />
               <ViewCount />
             </S.LikeViewCountContainer>
           </S.RatingLikeViewCountContainer>
@@ -97,11 +96,7 @@ const MovieModal = ({ movieModalData }) => {
         </S.InfoTabSection>
 
         {/* 영화 정보 표시 영역 */}
-        {selectedTab === '정보' ? (
-          <MovieInfoTab movieInfos={movieModalData.infos} />
-        ) : (
-          <MovieReviewTab />
-        )}
+        {selectedTab === '정보' ? <MovieInfoTab movieInfos={movieModalData} /> : <MovieReviewTab />}
       </S.MovieModalContainer>
     </ModalWrapper>
   );

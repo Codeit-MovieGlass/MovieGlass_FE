@@ -28,7 +28,7 @@ const GoogleRedirect = () => {
           switch (response.status) {
             case 200:
               localStorage.setItem('accessToken', response.accessToken);
-              navigate('/');
+              navigate('/browse');
               break;
             case 201:
               localStorage.setItem('accessToken', response.accessToken);

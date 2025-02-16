@@ -123,11 +123,13 @@ const Home = () => {
               handleMovieModalData={handleMovieModalData}
             />
           )}
-          {curationList.map((curation, index) => (
+          {curationList.map((curation) => (
             <Curation
-              key={curation.curation_id ?? `curation-${index}`}
+              key={curation?.curation_id}
               curationTitle={curation.curation_name}
               movieList={curation.movies}
+              handleMovieModalOpen={handleMovieModalOpen}
+              handleMovieModalData={handleMovieModalData}
             />
           ))}
         </S.CurationEmojiContainer>
